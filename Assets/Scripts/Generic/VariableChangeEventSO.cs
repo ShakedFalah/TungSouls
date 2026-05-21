@@ -4,7 +4,7 @@ using UnityEngine.Events;
 [CreateAssetMenu(fileName = "VariableEvent", menuName = "Scriptable Objects/VariableEvent")]
 public class VariableChangeEventSO<T> : ScriptableObject
 {
-	[SerializeField] private T value;
+	private T value;
 	[SerializeField] private T defaultValue;
 
 	public event UnityAction<T> OnValueChanged = delegate { };

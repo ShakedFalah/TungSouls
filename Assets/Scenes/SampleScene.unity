@@ -649,8 +649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5cfd825b24b21e4c92b9343ae7405a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  difficultyManager: {fileID: 0}
-  changeDifficultyTime: 0
+  difficultyManager: {fileID: 11400000, guid: babb71b0908fd34488c999f973e74238, type: 2}
+  changeDifficultyTime: 120
 --- !u!4 &611144191
 Transform:
   m_ObjectHideFlags: 0
