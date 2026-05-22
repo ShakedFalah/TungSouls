@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        float targerXPosition = currentLane * laneSpacing; // where the player should be (same lane)
+        float targerXPosition = currentLane; // where the player should be (same lane)
         
         Vector3 targetPosition = new Vector3(targerXPosition, transform.position.y, transform.position.z); // keeps the same y and z
         

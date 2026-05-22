@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7176917709989247973}
   - component: {fileID: 6192565892327072765}
   - component: {fileID: 4299157910996723860}
+  - component: {fileID: -3031431581479530732}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Coin
@@ -106,7 +107,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -114,3 +115,19 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &-3031431581479530732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6259663680197182818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bff89f61ee10c94999fc59fefedb377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CoinItem
+  difficultySettings: {fileID: 11400000, guid: a4b2e3854d789c74390750353a1d8358, type: 2}
+  despawnDistance: -5
+  poolTag: Coin
+  scoreValue: 1
