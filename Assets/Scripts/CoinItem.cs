@@ -6,7 +6,10 @@ public class CoinItem : ItemLogic
 
     protected override void OnPlayerHit(GameObject player)
     {
-        Debug.Log("Coin Collected"); // add score logic later !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.AddScore(scoreValue);
+        }
         
         base.OnPlayerHit(player); // calls the original function from parent and despawn the coin
     }
