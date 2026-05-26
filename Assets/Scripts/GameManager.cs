@@ -17,10 +17,6 @@ public class GameManager : Singleton<GameManager> // making it a singleton
     private float currentTime = 0f;
     private float currentDistance = 0f;
     private int currentScore = 0;
-    protected override void Awake() 
-    {
-        base.Awake();
-    }
 
     void Start()
     {
