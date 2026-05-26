@@ -791,9 +791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   difficultyManager: {fileID: 11400000, guid: babb71b0908fd34488c999f973e74238, type: 2}
-  difficultySettings: {fileID: 11400000, guid: a4b2e3854d789c74390750353a1d8358, type: 2}
-  changeDifficultyTime: 120
-  movementspeed: 5
+  changeDifficultyTime: 5
 --- !u!4 &611144191
 Transform:
   m_ObjectHideFlags: 0

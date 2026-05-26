@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a42371e1487dae443b51070d1644def9, type: 3}
   m_Name: DifficultyManager
   m_EditorClassIdentifier: Assembly-CSharp::DifficultyManager
-  defaultValue: {fileID: 11400000, guid: a4b2e3854d789c74390750353a1d8358, type: 2}
   difficultyList:
   - {fileID: 11400000, guid: a4b2e3854d789c74390750353a1d8358, type: 2}
   - {fileID: 11400000, guid: 340e0484c1ede634a9fe2c0a02a799b4, type: 2}
   - {fileID: 11400000, guid: 2a58487b98db7b84596b0547f9694c55, type: 2}
+  difficultyChangeTime: 10

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Difficulty3
   m_EditorClassIdentifier: Assembly-CSharp::DifficultySettings
   spawnRate: 3
-  movementSpeed: 3
+  movementSpeed: 500
   maxObstacles: 3
   obstacleSettings: []

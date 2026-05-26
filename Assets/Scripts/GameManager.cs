@@ -1,19 +1,22 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class GameManager : Singleton<GameManager> // making it a singleton
 {
-    [SerializeField] private DifficultyManager difficultyManager; // the manager 
-    [SerializeField] private DifficultySettings difficultySettings; // the manager 
-    [SerializeField] private float changeDifficultyTime;
+    [SerializeField] private DifficultyManager difficultyManager;
+    private int currentDifficultyIndex;
+    public event Action<DifficultySettings> onDifficultyChange;
+    public DifficultySettings CurrentDifficulty {
+        get 
+        {
+            return difficultyManager.difficultyList[currentDifficultyIndex];
+        }
+    }
 
     private float currentTime = 0f;
     private float currentDistance = 0f;
     private int currentScore = 0;
-    private int currentDifficulty;
-
-    [SerializeField] private float movementspeed;
-
     protected override void Awake() 
     {
         base.Awake();
@@ -21,7 +24,6 @@ public class GameManager : Singleton<GameManager> // making it a singleton
 
     void Start()
     {
-        movementspeed = difficultySettings.movementSpeed;
         StartCoroutine(ChangeDifficulty());
     }
 
@@ -29,16 +31,11 @@ public class GameManager : Singleton<GameManager> // making it a singleton
     {
         currentTime += Time.deltaTime; // time
         
-        currentDistance += movementspeed * Time.deltaTime; // distance
-
-        if (difficultyManager != null)
-        {
-            currentDifficulty = difficultyManager.currentDifficulty; // difficulty
-        }
+        currentDistance += CurrentDifficulty.movementSpeed * Time.deltaTime; // distance
 
         if (HUDManager.Instance != null)
         {
-            HUDManager.Instance.UpdateHUDFields(currentTime, currentDistance, currentDifficulty);
+            HUDManager.Instance.UpdateHUDFields(currentTime, currentDistance, currentDifficultyIndex + 1);
         }
         
     }
@@ -57,10 +54,15 @@ public class GameManager : Singleton<GameManager> // making it a singleton
     {
         while (true)
         {
-            yield return new WaitForSeconds(changeDifficultyTime);
-            difficultyManager.nextDifficulty();
-            
-            movementspeed = difficultySettings.movementSpeed;
+            yield return new WaitForSeconds(difficultyManager.difficultyChangeTime);
+            if (currentDifficultyIndex < difficultyManager.difficultyList.Count - 1) { 
+                currentDifficultyIndex++;
+                if (onDifficultyChange != null)
+                {
+                    onDifficultyChange.Invoke(CurrentDifficulty);
+                }
+            }
         }
     }
 }
+
