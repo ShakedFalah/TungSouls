@@ -24,7 +24,6 @@ public class TaggedObjectPooler : Singleton<TaggedObjectPooler>
     }
     void Start()
     {
-
         foreach (Pool pool in pools)
         {
             pooledObjects[pool.tag] = new Queue<GameObject>();

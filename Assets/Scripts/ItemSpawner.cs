@@ -40,12 +40,13 @@ public class ItemSpawner : MonoBehaviour
 
         if (spawnTimer <= 0f)
         {
-            SpawnRandomItem();
+            SpawnRandomItem("Coin");
+            SpawnRandomItem("Obstacle");
             spawnTimer = difficultySettings.spawnRate;
         }
     }
 
-    void SpawnRandomItem()
+    void SpawnRandomItem(string tagName)
     {
         int randomIndex = Random.Range(0, lanes.Length);
         float spawnXPosition = lanes[randomIndex];
@@ -54,12 +55,12 @@ public class ItemSpawner : MonoBehaviour
         
         Vector3 spawnPosition = new Vector3(spawnXPosition, spawnYPosition ,spawnZPosition);
         
-        GameObject coin = TaggedObjectPooler.Instance.GetPooledObject("Coin");
+        GameObject spawnedItem = TaggedObjectPooler.Instance.GetPooledObject(tagName);
 
-        if (coin != null)
+        if (spawnedItem != null)
         {
-            coin.transform.position = spawnPosition;
-            coin.SetActive(true);
+            spawnedItem.transform.position = spawnPosition;
+            spawnedItem.SetActive(true);
         }
     }
 }
