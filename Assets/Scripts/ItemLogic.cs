@@ -7,10 +7,6 @@ public class ItemLogic : MonoBehaviour
     [SerializeField] private float despawnDistance = -8f;
     
     [SerializeField] private string poolTag; // for returning objects to the pool
-    private void Start()
-    {
-        difficultySettings = GameManager.Instance.CurrentDifficulty;
-    }
     void Update()
     {
         if (difficultySettings == null) return;
