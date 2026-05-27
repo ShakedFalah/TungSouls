@@ -10,13 +10,14 @@ public class ItemSpawner : MonoBehaviour
     private float[] lanes; // will use the laneSpacing from PlayerController
     
     [Header("Connections")]
-    [SerializeField] private DifficultySettings difficultySettings;
+    private DifficultySettings difficultySettings;
     [SerializeField] private PlayerController playerController;
 
     private float spawnTimer;
     
     void Start()
     {
+        difficultySettings = GameManager.Instance.CurrentDifficulty;
         if (playerController != null)
         {
             lanes = playerController.lanesPositions; // takes the array of lanes from the player
@@ -30,6 +31,8 @@ public class ItemSpawner : MonoBehaviour
         {
             spawnTimer = difficultySettings.spawnRate;
         }
+
+        GameManager.Instance.onDifficultyChange += updateDifficulty;
     }
 
     void Update()
@@ -63,4 +66,10 @@ public class ItemSpawner : MonoBehaviour
             spawnedItem.SetActive(true);
         }
     }
+
+    private void updateDifficulty(DifficultySettings newDifficultySettings)
+    {
+        this.difficultySettings = newDifficultySettings;
+    }
+
 }

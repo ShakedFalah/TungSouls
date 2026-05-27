@@ -791,7 +791,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   difficultyManager: {fileID: 11400000, guid: babb71b0908fd34488c999f973e74238, type: 2}
-  changeDifficultyTime: 5
 --- !u!4 &611144191
 Transform:
   m_ObjectHideFlags: 0
@@ -2243,6 +2242,9 @@ MonoBehaviour:
   - tag: Coin
     prefab: {fileID: 6259663680197182818, guid: d58ee47338b8a1d49a687f00a7e61c91, type: 3}
     initialPoolSize: 20
+  - tag: Obstacle
+    prefab: {fileID: 4676819659719530838, guid: d42a685ccc81af34ca241e3bab73ffe3, type: 3}
+    initialPoolSize: 5
 --- !u!4 &1618828499
 Transform:
   m_ObjectHideFlags: 0
@@ -2291,7 +2293,6 @@ MonoBehaviour:
   heightY:
   - 1
   - 5
-  difficultySettings: {fileID: 11400000, guid: a4b2e3854d789c74390750353a1d8358, type: 2}
   playerController: {fileID: 972797515}
 --- !u!4 &1674588194
 Transform:
