@@ -11,6 +11,8 @@ public class ItemLogic : MonoBehaviour
     {
         if (difficultySettings == null) return;
         
+        if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return;
+        
         transform.position += Vector3.back * difficultySettings.movementSpeed * Time.deltaTime; // moves towards the screen / player
 
         if (transform.position.z < despawnDistance)
@@ -22,7 +24,7 @@ public class ItemLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             OnPlayerHit(other.gameObject);
         }
@@ -40,12 +42,18 @@ public class ItemLogic : MonoBehaviour
 
     private void OnEnable()
     {
-        difficultySettings = GameManager.Instance.CurrentDifficulty;
-        GameManager.Instance.onDifficultyChange += updateDifficulty;
+        if (GameManager.Instance != null)
+        {
+            difficultySettings = GameManager.Instance.CurrentDifficulty;
+            GameManager.Instance.onDifficultyChange += updateDifficulty;
+        }
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.onDifficultyChange -= updateDifficulty;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.onDifficultyChange -= updateDifficulty;
+        }
     }
 }
