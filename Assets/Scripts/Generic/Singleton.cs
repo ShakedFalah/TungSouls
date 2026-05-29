@@ -39,9 +39,6 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             // Destroy duplicate instances to maintain the singleton
             Destroy(gameObject);
-        } else
-        {
-            DontDestroyOnLoad(gameObject);
         }
     }
 }
