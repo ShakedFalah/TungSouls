@@ -15,4 +15,9 @@ MonoBehaviour:
   spawnRate: 2
   movementSpeed: 10
   maxObstacles: 15
-  obstacleSettings: []
+  obstacleSettings:
+  - obstacleTag: Coin
+    probability: 50
+  - obstacleTag: Obstacle
+    probability: 50
+  groundMaterial: {fileID: 2100000, guid: 329d307df651d334b847e7f378417f16, type: 2}

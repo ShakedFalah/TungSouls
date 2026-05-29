@@ -8,11 +8,12 @@ public class DifficultySettings : ScriptableObject
     public float movementSpeed;
     public int maxObstacles;
     public List<ObstacleSettings> obstacleSettings;
+    public Material groundMaterial;
 }
 
 [System.Serializable]
 public struct ObstacleSettings
 {
-    public GameObject obstacle;
+    public string obstacleTag;
     public float probability;
 }
