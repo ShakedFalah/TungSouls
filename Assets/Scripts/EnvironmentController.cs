@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class EnvironmentController : MonoBehaviour
 {
-    [SerializeField] private float timeToSpawn;
-    private float spawnCooldown;
+    [SerializeField] private float distanceToSpawn;
+    [SerializeField] private Vector3 spawnPosition;
+    private float distanceLeft;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -14,23 +15,42 @@ public class EnvironmentController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (spawnCooldown <= 0)
+        if (distanceLeft <= 0)
         {
-            spawnCooldown = timeToSpawn;
+            distanceLeft = distanceToSpawn;
             SpawnRandomObject();
         }
 
-        spawnCooldown -= Time.deltaTime;
+        distanceLeft -= GameManager.Instance.CurrentDifficulty.movementSpeed * Time.deltaTime;
     }
 
     void SpawnRandomObject()
     {
         List<ObstacleSettings> environmentObjects = GameManager.Instance.CurrentDifficulty.environmentObjects;
-        float[] totalProbabilities = new float[environmentObjects.Count];
-        totalProbabilities[0] = environmentObjects[0].probability;
+        float totalProbability = 0f;
         for (int i = 1; i < environmentObjects.Count; i++)
         {
-            totalProbabilities[i] = environmentObjects[i].probability + totalProbabilities[i - 1];
+            totalProbability += environmentObjects[i].probability;
         }
+
+        float randomNumber = Random.Range(0, totalProbability);
+
+        string selectedTag = environmentObjects[0].obstacleTag;
+        float currentWeight = 0f;
+
+        foreach (var evnironmentObject in environmentObjects)
+        {
+            currentWeight += evnironmentObject.probability;
+
+            if (randomNumber <= currentWeight)
+            {
+                selectedTag = evnironmentObject.obstacleTag;
+                break;
+            }
+        }
+
+        GameObject environmentObjectInstance = TaggedObjectPooler.Instance.GetPooledObject(selectedTag);
+        environmentObjectInstance.transform.position = spawnPosition;
+        environmentObjectInstance.SetActive(true);
     }
 }
