@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ItemSpawner : MonoBehaviour
 {
@@ -39,14 +40,48 @@ public class ItemSpawner : MonoBehaviour
     {
         if (difficultySettings == null) return;
         
+        if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return; // stop spawning when game over
+        
         spawnTimer -= Time.deltaTime;
 
         if (spawnTimer <= 0f)
         {
-            SpawnRandomItem("Coin");
-            SpawnRandomItem("Obstacle");
+            string randomItemTag = GetItemTag();
+            
+            if (!string.IsNullOrEmpty(randomItemTag))
+            {
+                SpawnRandomItem(randomItemTag);
+            }
+            
             spawnTimer = difficultySettings.spawnRate;
         }
+    }
+
+    private string GetItemTag() // item spawns are based on difficulty probabilities
+    {
+        if (difficultySettings == null ||
+            difficultySettings.obstacleSettings.Count == 0) return null;
+
+        float totalProbability = 0f;
+        
+        foreach (ObstacleSettings obstacle in difficultySettings.obstacleSettings) // adds every item's probability to the sum total of the probability 
+        {
+            totalProbability += obstacle.probability;
+        }
+
+        float roll = Random.Range(0f, totalProbability); // roll
+        float currentProbability = 0f;
+
+        foreach (ObstacleSettings obstacle in difficultySettings.obstacleSettings) // checks where the rolled number landed (which item)
+        {
+            currentProbability += obstacle.probability;
+            if (roll <= currentProbability)
+            {
+                return obstacle.obstacleTag;
+            }
+        }
+        
+        return difficultySettings.obstacleSettings[0].obstacleTag; // if misses everthing, returns the first item
     }
 
     void SpawnRandomItem(string tagName)

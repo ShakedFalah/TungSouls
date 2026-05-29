@@ -17,9 +17,9 @@ MonoBehaviour:
   maxObstacles: 15
   obstacleSettings:
   - obstacleTag: Coin
-    probability: 50
+    probability: 40
   - obstacleTag: Obstacle
-    probability: 50
+    probability: 60
   groundMaterial: {fileID: 2100000, guid: 329d307df651d334b847e7f378417f16, type: 2}
   environmentObjects:
   - obstacleTag: Lamp
