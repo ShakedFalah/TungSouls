@@ -48,15 +48,13 @@ public class GameManager : Singleton<GameManager> // making it a singleton
 
     IEnumerator ChangeDifficulty()
     {
-        while (true)
+        while (currentDifficultyIndex < difficultyManager.difficultyList.Count - 1)
         {
             yield return new WaitForSeconds(difficultyManager.difficultyChangeTime);
-            if (currentDifficultyIndex < difficultyManager.difficultyList.Count - 1) { 
-                currentDifficultyIndex++;
-                if (onDifficultyChange != null)
-                {
-                    onDifficultyChange.Invoke(CurrentDifficulty);
-                }
+            currentDifficultyIndex++;
+            if (onDifficultyChange != null)
+            {
+                onDifficultyChange.Invoke(CurrentDifficulty);
             }
         }
     }
