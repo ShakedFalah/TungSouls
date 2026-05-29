@@ -8,6 +8,7 @@ public class HUDManager : Singleton<HUDManager> // singleton
     [SerializeField] private TextMeshProUGUI timeText; // time
     [SerializeField] private TextMeshProUGUI distanceText; // distance
     [SerializeField] private TextMeshProUGUI difficultyText; // difficulty
+    [SerializeField] private TextMeshProUGUI gameOverText;
 
     protected override void Awake()
     {
@@ -16,8 +17,10 @@ public class HUDManager : Singleton<HUDManager> // singleton
 
     void Start()
     {
+        gameOverText.enabled = false;
         UpdateScoreDisplay(0);
         UpdateHUDFields(0f, 0f, 1);
+        GameManager.Instance.onGameOver += ShowGameOver;
     }
     
     public void UpdateScoreDisplay(int scoreToDisplay)
@@ -46,5 +49,10 @@ public class HUDManager : Singleton<HUDManager> // singleton
         {
             difficultyText.text = "Difficulty: " + difficulty;
         }
+    }
+
+    private void ShowGameOver()
+    {
+        gameOverText.enabled = true;
     }
 }

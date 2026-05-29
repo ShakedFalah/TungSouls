@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager> // making it a singleton
     private int currentScore = 0;
     
     public event Action<DifficultySettings> onDifficultyChange;
+    public event Action onGameOver;
     public DifficultySettings CurrentDifficulty => difficultyManager.difficultyList[currentDifficultyIndex];
 
     [Header("Game State")]
@@ -59,7 +60,11 @@ public class GameManager : Singleton<GameManager> // making it a singleton
     {
         if (isGameOver) return;
         isGameOver = true;
-        
+        onGameOver.Invoke();
+
+        Time.timeScale = 0;
+
+
         StopAllCoroutines();
         Debug.Log("Game Over");
         
@@ -68,8 +73,8 @@ public class GameManager : Singleton<GameManager> // making it a singleton
 
     IEnumerator RestartSequence()
     {
-        yield return new WaitForSeconds(2f);
-        
+        yield return new WaitForSecondsRealtime(2f);
+
         // disabling any active item
         ItemLogic[] activeItems = FindObjectsByType<ItemLogic>(FindObjectsSortMode.None);
         foreach (ItemLogic item in activeItems)
@@ -78,6 +83,7 @@ public class GameManager : Singleton<GameManager> // making it a singleton
         }
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // reload level
+        Time.timeScale = 1;
     }
     
     
