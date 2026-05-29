@@ -30,7 +30,7 @@ public class TaggedObjectPooler : Singleton<TaggedObjectPooler>
 
             for (int i = 0; i < pool.initialPoolSize; i++)
             {
-                GameObject obj = Instantiate(pool.prefab);
+                GameObject obj = Instantiate(pool.prefab, transform);
                 obj.SetActive(false);  // Deactivate initially to save resources.
                 pooledObjects[pool.tag].Enqueue(obj);
             }

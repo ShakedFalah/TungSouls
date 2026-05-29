@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be03e5e1af2500642a11990771e2aa3a, type: 3}
   m_Name: Difficulty1
   m_EditorClassIdentifier: Assembly-CSharp::DifficultySettings
-  spawnRate: 1
-  movementSpeed: 1
-  maxObstacles: 15
+  spawnRate: 2
+  movementSpeed: 5
+  maxObstacles: 10
   obstacleSettings: []
