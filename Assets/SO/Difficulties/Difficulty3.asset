@@ -21,3 +21,6 @@ MonoBehaviour:
   - obstacleTag: Obstacle
     probability: 80
   groundMaterial: {fileID: 2100000, guid: 8caac294f6026bd4f9c6bcc37b2afcda, type: 2}
+  environmentObjects:
+  - obstacleTag: Lamp
+    probability: 100

@@ -9,6 +9,7 @@ public class DifficultySettings : ScriptableObject
     public int maxObstacles;
     public List<ObstacleSettings> obstacleSettings;
     public Material groundMaterial;
+    public List<ObstacleSettings> environmentObjects;
 }
 
 [System.Serializable]
