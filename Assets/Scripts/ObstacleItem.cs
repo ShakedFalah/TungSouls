@@ -6,7 +6,7 @@ public class ObstacleItem : ItemLogic
     {
         if (GameManager.Instance != null)
         {
-            Debug.Log("Player hit");
+            GameManager.Instance.TriggerGameOver(); // calls GameManager TriggerGameOver sequence
         }
 
     }

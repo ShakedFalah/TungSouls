@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Difficulty2
   m_EditorClassIdentifier: Assembly-CSharp::DifficultySettings
   spawnRate: 2
-  movementSpeed: 10
+  movementSpeed: 15
   maxObstacles: 15
   obstacleSettings:
   - obstacleTag: Coin

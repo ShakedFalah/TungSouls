@@ -5,7 +5,7 @@ public class ItemLogic : ItemLogicBase
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             OnPlayerHit(other.gameObject);
         }
