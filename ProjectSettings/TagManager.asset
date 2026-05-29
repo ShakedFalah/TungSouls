@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Coin
+  - Obstacle
+  - Lamp
   layers:
   - Default
   - TransparentFX

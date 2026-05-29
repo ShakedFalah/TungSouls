@@ -2439,6 +2439,9 @@ MonoBehaviour:
   - tag: Obstacle
     prefab: {fileID: 4676819659719530838, guid: d42a685ccc81af34ca241e3bab73ffe3, type: 3}
     initialPoolSize: 10
+  - tag: Lamp
+    prefab: {fileID: 50384562795888050, guid: e3ad9dc10587518439bbe9a28cc190bc, type: 3}
+    initialPoolSize: 2
 --- !u!4 &1618828499
 Transform:
   m_ObjectHideFlags: 0
