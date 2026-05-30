@@ -3,13 +3,18 @@ using UnityEngine;
 
 public class EnvironmentController : MonoBehaviour
 {
-    [SerializeField] private float distanceToSpawn;
+    [SerializeField] private float distanceBetweenObjectSpawns;
     [SerializeField] private Vector3 spawnPosition;
+    [SerializeField] private GameObject ground;
+    private Renderer groundRenderer;
+    private float movementSpeed;
     private float distanceLeft;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        groundRenderer = ground.GetComponent<Renderer>();
+        GameManager.Instance.onDifficultyChange += DifficultyChanged;
+        DifficultyChanged(GameManager.Instance.CurrentDifficulty);
     }
 
     // Update is called once per frame
@@ -17,11 +22,12 @@ public class EnvironmentController : MonoBehaviour
     {
         if (distanceLeft <= 0)
         {
-            distanceLeft = distanceToSpawn;
+            distanceLeft = distanceBetweenObjectSpawns;
             SpawnRandomObject();
         }
 
         distanceLeft -= GameManager.Instance.CurrentDifficulty.movementSpeed * Time.deltaTime;
+        groundRenderer.material.mainTextureOffset -= new Vector2(0f, (movementSpeed / ground.transform.localScale.z) * Time.deltaTime);
     }
 
     void SpawnRandomObject()
@@ -52,5 +58,14 @@ public class EnvironmentController : MonoBehaviour
         GameObject environmentObjectInstance = TaggedObjectPooler.Instance.GetPooledObject(selectedTag);
         environmentObjectInstance.transform.position = spawnPosition;
         environmentObjectInstance.SetActive(true);
+    }
+
+    void DifficultyChanged(DifficultySettings newDifficulty)
+    {
+        if (newDifficulty.groundMaterial != null)
+        {
+            groundRenderer.material = newDifficulty.groundMaterial;
+        }
+        movementSpeed = newDifficulty.movementSpeed;
     }
 }

@@ -17,7 +17,7 @@ public class ItemSpawner : MonoBehaviour
     
     void Start()
     {
-        difficultySettings = GameManager.Instance.CurrentDifficulty;
+        updateDifficulty(GameManager.Instance.CurrentDifficulty);
         if (playerController != null)
         {
             lanes = playerController.lanesPositions; // takes the array of lanes from the player

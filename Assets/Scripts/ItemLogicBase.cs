@@ -27,7 +27,7 @@ public class ItemLogicBase : MonoBehaviour
 
     private void OnEnable()
     {
-        difficultySettings = GameManager.Instance.CurrentDifficulty;
+        updateDifficulty(GameManager.Instance.CurrentDifficulty);
         GameManager.Instance.onDifficultyChange += updateDifficulty;
     }
 

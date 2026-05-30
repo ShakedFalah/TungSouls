@@ -2112,8 +2112,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7439393cf5bdf0440b508693d55448e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  distanceToSpawn: 50
+  distanceBetweenObjectSpawns: 50
   spawnPosition: {x: 5, y: -1, z: 130}
+  ground: {fileID: 1323445780}
 --- !u!4 &1358027480
 Transform:
   m_ObjectHideFlags: 0
