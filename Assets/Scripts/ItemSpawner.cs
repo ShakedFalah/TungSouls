@@ -107,4 +107,8 @@ public class ItemSpawner : MonoBehaviour
         this.difficultySettings = newDifficultySettings;
     }
 
+    private void OnDestroy()
+    {
+        GameManager.Instance.onDifficultyChange -= updateDifficulty;
+    }
 }

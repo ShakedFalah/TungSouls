@@ -1,19 +1,14 @@
 using UnityEngine;
 using TMPro;
 
-public class HUDManager : Singleton<HUDManager> // singleton
+public class HUDManager : MonoBehaviour // singleton
 {
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI scoreText; // score
     [SerializeField] private TextMeshProUGUI timeText; // time
     [SerializeField] private TextMeshProUGUI distanceText; // distance
     [SerializeField] private TextMeshProUGUI difficultyText; // difficulty
-    [SerializeField] private TextMeshProUGUI gameOverText;
-
-    protected override void Awake()
-    {
-        base.Awake();
-    }
+    [SerializeField] private TextMeshProUGUI gameOverText; // game over
 
     void Start()
     {
@@ -54,5 +49,10 @@ public class HUDManager : Singleton<HUDManager> // singleton
     private void ShowGameOver()
     {
         gameOverText.enabled = true;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.onGameOver -= ShowGameOver;
     }
 }

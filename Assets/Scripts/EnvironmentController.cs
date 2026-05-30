@@ -62,10 +62,15 @@ public class EnvironmentController : MonoBehaviour
 
     void DifficultyChanged(DifficultySettings newDifficulty)
     {
-        if (newDifficulty.groundMaterial != null)
+        if (newDifficulty.groundMaterial != null && groundRenderer != null)
         {
             groundRenderer.material = newDifficulty.groundMaterial;
         }
         movementSpeed = newDifficulty.movementSpeed;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.onDifficultyChange -= DifficultyChanged;
     }
 }
