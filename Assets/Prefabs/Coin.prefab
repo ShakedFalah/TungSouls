@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6259663680197182818
+--- !u!1 &4782090564225606810
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 360794382329207670}
-  - component: {fileID: 7176917709989247973}
-  - component: {fileID: 6192565892327072765}
-  - component: {fileID: 4299157910996723860}
-  - component: {fileID: -3031431581479530732}
+  - component: {fileID: 2913996746369290369}
+  - component: {fileID: 2790008901728445673}
+  - component: {fileID: 5740774840277560673}
+  - component: {fileID: 4950188180312226175}
+  - component: {fileID: 3406070786258169529}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Coin
@@ -20,36 +20,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &360794382329207670
+--- !u!4 &2913996746369290369
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6259663680197182818}
+  m_GameObject: {fileID: 4782090564225606810}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -1.01, y: 2.83, z: -5.23}
-  m_LocalScale: {x: 1, y: -0.1, z: 1}
+  m_LocalRotation: {x: 0.7064338, y: -0.03084362, z: -0.03084362, w: 0.7064338}
+  m_LocalPosition: {x: -1.0700006, y: 3.8100002, z: -3.1}
+  m_LocalScale: {x: 25, y: -0.1, z: 25}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &7176917709989247973
+  m_LocalEulerAnglesHint: {x: 85, y: -90, z: -90}
+--- !u!33 &2790008901728445673
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6259663680197182818}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &6192565892327072765
+  m_GameObject: {fileID: 4782090564225606810}
+  m_Mesh: {fileID: 4300000, guid: 69e570a331da80d4f9bb60a69b974919, type: 3}
+--- !u!23 &5740774840277560673
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6259663680197182818}
+  m_GameObject: {fileID: 4782090564225606810}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c2e40fa84d53ccd428f640eac126b1fb, type: 2}
+  - {fileID: 2100000, guid: b0fd845b3b348c44694de5f36b35d8da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,13 +92,13 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &4299157910996723860
+--- !u!136 &4950188180312226175
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6259663680197182818}
+  m_GameObject: {fileID: 4782090564225606810}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -111,23 +111,22 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Radius: 0.03
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &-3031431581479530732
+--- !u!114 &3406070786258169529
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6259663680197182818}
+  m_GameObject: {fileID: 4782090564225606810}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6bff89f61ee10c94999fc59fefedb377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinItem
-  difficultySettings: {fileID: 11400000, guid: a4b2e3854d789c74390750353a1d8358, type: 2}
   despawnDistance: -5
   poolTag: Coin
   scoreValue: 1
