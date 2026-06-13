@@ -1243,6 +1243,10 @@ MonoBehaviour:
   laneSwitchSpeed: 10
   laneSpacing: 1.5
   middleLane: 0
+  isInvincible: 0
+  scoreMultiplier: 1
+  isMagnetActive: 0
+  magnetPullDistance: 3
   jumpPower: 12
   gravity: 20
 --- !u!136 &972797516

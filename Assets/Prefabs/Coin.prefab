@@ -129,4 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoinItem
   despawnDistance: -5
   poolTag: Coin
+  magnetPullSpeed: 15
+  isMagnetable: 1
+  itemType: 0
   scoreValue: 1
+  effectDuration: 0
+  extraValue: 0

@@ -68,8 +68,8 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         yield return new WaitForSecondsRealtime(2f);
 
         // disabling any active item
-        ItemLogic[] activeItems = FindObjectsByType<ItemLogic>(FindObjectsSortMode.None);
-        foreach (ItemLogic item in activeItems)
+        MovingItemLogic[] activeItems = FindObjectsByType<MovingItemLogic>(FindObjectsSortMode.None);
+        foreach (MovingItemLogic item in activeItems)
         {
             item.gameObject.SetActive(false);
         }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -11,11 +12,17 @@ public class PlayerController : MonoBehaviour
     
     private float currentLane;
     
-    public float[] lanesPositions => new float[] {-laneSpacing, middleLane, laneSpacing}; // using Lambda, I can skip making a function that gets the lanesPositions, making it in one line
+    [Header("Power-Up statuses")]
+    public bool isInvincible = false;
+    public float scoreMultiplier = 1f;
+    public bool isMagnetActive = false;
+    public float magnetPullDistance = 3f;
     
     [Header("Jump Setup")]    
     [SerializeField] private float jumpPower = 4f;
     [SerializeField] private float gravity = 2f;
+    
+    public float[] lanesPositions => new float[] {-laneSpacing, middleLane, laneSpacing}; // using Lambda, I can skip making a function that gets the lanesPositions, making it in one line
     
     private Rigidbody rb;
     private bool isGrounded;
@@ -75,4 +82,49 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
         }
     }
+    
+    // Invincibility 
+    public void StartInvinciblity(float duration) // start invincibility coroutine
+    {
+        StopCoroutine("IsInvincibleRoutine"); // resets the timer
+        StartCoroutine(IsInvincibleRoutine(duration));
+    }
+
+    private IEnumerator IsInvincibleRoutine(float duration) // invincibility timer
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
+    }
+    
+    // Multiplayer
+    public void StartMultiplier(float duration, float multiplierValue)
+    {
+        StopCoroutine("MultiplierRoutine");
+        StartCoroutine(MultiplierRoutine(duration, multiplierValue));
+    }
+
+    private IEnumerator MultiplierRoutine(float duration, float multiplierValue)
+    {
+        scoreMultiplier = multiplierValue;
+        yield return new WaitForSeconds(duration);
+        scoreMultiplier = 1f;
+    }
+    
+    // Magnet
+    public void StartMagnet(float duration, float zLocation)
+    {
+        StopCoroutine("MagnetRoutine");
+        StartCoroutine(MagnetRoutine(duration, zLocation));
+    }
+
+    private IEnumerator MagnetRoutine(float duration, float zLocation)
+    {
+        isMagnetActive = true;
+        magnetPullDistance = zLocation;
+        yield return new WaitForSeconds(duration);
+        isMagnetActive = false;
+        magnetPullDistance = 0f;
+    }
+    
 }

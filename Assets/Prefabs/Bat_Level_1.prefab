@@ -82,30 +82,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 100002, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -1931468623916505174}
+      addedObject: {fileID: 8795844760233614336}
     - targetCorrespondingSourceObject: {fileID: 100002, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8795844760233614336}
+      addedObject: {fileID: -1931468623916505174}
   m_SourcePrefab: {fileID: 100100000, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
 --- !u!1 &3150422409802780327 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100002, guid: 59afa1f2c595d6343b15e945602e1f8f, type: 3}
   m_PrefabInstance: {fileID: 3150422409802680325}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-1931468623916505174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3150422409802780327}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72bf179b0a7d5ee49be17e0d31625c4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ObstacleItem
-  despawnDistance: -8
-  poolTag: Obstacle
 --- !u!65 &8795844760233614336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -127,3 +113,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.04, y: 0.024018213, z: 0.0125244325}
   m_Center: {x: 0, y: 0.007990959, z: -0.0017333896}
+--- !u!114 &-1931468623916505174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3150422409802780327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72bf179b0a7d5ee49be17e0d31625c4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ObstacleItem
+  despawnDistance: -8
+  poolTag: Obstacle
+  magnetPullSpeed: 15
+  isObstacle: 1
