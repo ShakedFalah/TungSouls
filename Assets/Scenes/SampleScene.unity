@@ -2633,6 +2633,15 @@ MonoBehaviour:
   - tag: Lamp
     prefab: {fileID: 50384562795888050, guid: e3ad9dc10587518439bbe9a28cc190bc, type: 3}
     initialPoolSize: 2
+  - tag: Invincibility
+    prefab: {fileID: 3824110197468282073, guid: 39a89156ed4b1964797c43fe949616b2, type: 3}
+    initialPoolSize: 5
+  - tag: Multiplier
+    prefab: {fileID: 8588061054967466627, guid: b9c8344f96f0ab54f817d85239661d67, type: 3}
+    initialPoolSize: 5
+  - tag: Magnet
+    prefab: {fileID: 8050537342152234946, guid: 515d1c807dbf1ff448dab24da2dd68ab, type: 3}
+    initialPoolSize: 5
 --- !u!4 &1618828499
 Transform:
   m_ObjectHideFlags: 0

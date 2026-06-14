@@ -130,6 +130,12 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         // Unsubscribe to clean up memory
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
+    void OnDestroy()
+    {
+        // Unsubscribe to clean up memory
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Restart();
