@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[CreateAssetMenu(fileName = "VariableEvent", menuName = "Scriptable Objects/VariableEvent")]
+[CreateAssetMenu(fileName = "VariableEvent")]
 public class VariableChangeEventSO<T> : ScriptableObject
 {
 	[SerializeField] private T value;
