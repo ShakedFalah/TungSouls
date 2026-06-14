@@ -8,7 +8,6 @@ public class MovingItemLogic : MonoBehaviour
     [SerializeField] protected string poolTag; // for returning objects to the pool
     
     [Header("Magnet Pull Settings")]
-    [SerializeField] private float magnetPullSpeed = 15f;
     [SerializeField] private bool isMagnetable = false; // only on for items that arent affected by magnet the player
     
     private PlayerController playerScript;
@@ -30,7 +29,7 @@ public class MovingItemLogic : MonoBehaviour
 
             if (zDistanceToPlayer > 0 && zDistanceToPlayer <= playerScript.magnetPullDistance)
             {
-                transform.position = Vector3.MoveTowards(transform.position, playerScript.transform.position, magnetPullSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, playerScript.transform.position, playerScript.magnetPullSpeed * Time.deltaTime);
                 return; // skips the forward movement
             }
         }

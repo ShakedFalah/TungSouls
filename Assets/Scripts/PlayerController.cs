@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float scoreMultiplier = 1f;
     public bool isMagnetActive = false;
     public float magnetPullDistance = 3f;
+    public float magnetPullSpeed = 0f;
     
     [Header("Jump Setup")]    
     [SerializeField] private float jumpPower = 4f;
@@ -112,9 +113,10 @@ public class PlayerController : MonoBehaviour
     }
     
     // Magnet
-    public void StartMagnet(float duration, float zLocation)
+    public void StartMagnet(float duration, float zLocation, float pullSpeed)
     {
         StopCoroutine("MagnetRoutine");
+        magnetPullSpeed = pullSpeed;
         StartCoroutine(MagnetRoutine(duration, zLocation));
     }
 
