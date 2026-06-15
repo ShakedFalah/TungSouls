@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "MultiplierSettings", menuName = "Scriptable Objects/Powerups/MultiplierSettings")]
+[CreateAssetMenu(fileName = "MultiplierSettings", menuName = "Scriptable Objects/Collectable/MultiplierSettings")]
 public class MultiplierSettings : PowerUpSettings
 {
     public float multiplierValue;
 
-    public override void Activate(PlayerController player)
+    public override void OnCollect(PlayerController player)
     {
         player.StartMultiplier(duration, multiplierValue);
     }

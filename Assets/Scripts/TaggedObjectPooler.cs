@@ -66,4 +66,22 @@ public class TaggedObjectPooler : Singleton<TaggedObjectPooler>
             pooledObjects[tag].Enqueue(obj);
         }
     }
+
+    public GameObject GetPooledObjectWithAutoReturn(string tag)
+    {
+        GameObject obj = GetPooledObject(tag);
+
+        if (obj != null)
+        {
+            var poolableComponent = obj.GetComponent<IPoolableObject>();
+            if (poolableComponent != null)
+            {
+                // Set up auto-return action
+                poolableComponent.SetReturnAction(() => ReturnObject(obj, tag));
+            }
+        }
+
+        return obj;
+    }
+
 }

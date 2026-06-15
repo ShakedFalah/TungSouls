@@ -1,8 +1,6 @@
 using UnityEngine;
 
-public abstract class PowerUpSettings : ScriptableObject
+public abstract class PowerUpSettings : CollectableSettings
 {
-    public readonly float duration;
-
-    public abstract void Activate(PlayerController player);
+    public float duration;
 }
