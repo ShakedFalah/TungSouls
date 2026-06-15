@@ -1731,7 +1731,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1860,6 +1860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55d285687567e848bc1d2fe6c7e7832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  bgmAudioSource: {fileID: 1178327884}
+  bgmClip: {fileID: 8300000, guid: 9dd57d536523c3a448b6cb5b6ee5d441, type: 3}
   sfxTag: SFXSource
 --- !u!4 &1220722674
 Transform:
