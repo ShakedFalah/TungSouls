@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34af3c18bff0cc84ca89b159ea39543e, type: 3}
   m_Name: CoinSettings
   m_EditorClassIdentifier: Assembly-CSharp::CoinSettings
-  collectSound: {fileID: 0}
+  collectSound: {fileID: 8300000, guid: acce1dda46d9f0b4ea82796c784d0f25, type: 3}
+  scoreValue: 1

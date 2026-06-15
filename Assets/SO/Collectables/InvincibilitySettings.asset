@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: InvincibilitySettings
   m_EditorClassIdentifier: Assembly-CSharp::InvincibilitySettings
   collectSound: {fileID: 0}
+  duration: 5

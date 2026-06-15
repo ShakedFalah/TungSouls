@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d886bfcf9288e25498bdd69ab15ffec4, type: 3}
   m_Name: MagnetSettings
   m_EditorClassIdentifier: Assembly-CSharp::MagnetSettings
-  isActive: 0
-  duration: 0
-  pullSpeed: 0
-  pullDistance: 0
+  collectSound: {fileID: 0}
+  duration: 30
+  pullSpeed: 15
+  pullDistance: 15

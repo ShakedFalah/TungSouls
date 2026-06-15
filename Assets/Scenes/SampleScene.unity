@@ -1859,8 +1859,8 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c55d285687567e848bc1d2fe6c7e7832, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  sfxTag: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  sfxTag: SFXSource
 --- !u!4 &1220722674
 Transform:
   m_ObjectHideFlags: 0
