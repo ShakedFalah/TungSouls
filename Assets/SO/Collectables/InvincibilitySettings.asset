@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f18d4e8c84138b408005dd7f77ba76f, type: 3}
   m_Name: InvincibilitySettings
   m_EditorClassIdentifier: Assembly-CSharp::InvincibilitySettings
-  collectSound: {fileID: 0}
+  collectSound: {fileID: 8300000, guid: d0f0e2be580bcdb458eed8bab4a4c261, type: 3}
   duration: 5

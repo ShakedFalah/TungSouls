@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 884dae88488f6644cad764894920f5ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.4466355
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 884dae88488f6644cad764894920f5ba, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.29898876
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 884dae88488f6644cad764894920f5ba, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 71.409485
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 884dae88488f6644cad764894920f5ba, type: 3}
       propertyPath: m_LocalRotation.w
@@ -75,6 +75,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 884dae88488f6644cad764894920f5ba, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7621981584965302771}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 884dae88488f6644cad764894920f5ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5334887610457508985}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 884dae88488f6644cad764894920f5ba, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2832829974383161991}
   m_SourcePrefab: {fileID: 100100000, guid: 884dae88488f6644cad764894920f5ba, type: 3}
 --- !u!1 &3824110197468282073 stripped
 GameObject:
@@ -88,7 +94,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3824110197468282073}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 845c415f3181b4840ab566c40e714752, type: 3}
   m_Name: 
@@ -107,3 +113,40 @@ MonoBehaviour:
   isScaling: 1
   useEasingForScaling: 1
   scaleLerpSpeed: 1.11
+--- !u!114 &-5334887610457508985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824110197468282073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bff89f61ee10c94999fc59fefedb377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableItem
+  despawnDistance: -8
+  poolTag: Invincibility
+  isMagnetable: 1
+  collectableSettings: {fileID: 11400000, guid: 9a2379df5ef3c684889bada97606db79, type: 2}
+--- !u!65 &2832829974383161991
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824110197468282073}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.0289712, y: 2.8914113, z: 0.448667}
+  m_Center: {x: 0.0000012516975, y: 0.14671701, z: 0}

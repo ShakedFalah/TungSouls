@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: e9f10851f5b79d94db00a34dbfa7afa9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -2.8164449
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9f10851f5b79d94db00a34dbfa7afa9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.067248106
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9f10851f5b79d94db00a34dbfa7afa9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 69.94399
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e9f10851f5b79d94db00a34dbfa7afa9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -63,6 +63,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e9f10851f5b79d94db00a34dbfa7afa9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4936489610023860970}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e9f10851f5b79d94db00a34dbfa7afa9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -2468580275962784421}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e9f10851f5b79d94db00a34dbfa7afa9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8622863119628684807}
   m_SourcePrefab: {fileID: 100100000, guid: e9f10851f5b79d94db00a34dbfa7afa9, type: 3}
 --- !u!1 &8050537342152234946 stripped
 GameObject:
@@ -76,7 +82,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8050537342152234946}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 845c415f3181b4840ab566c40e714752, type: 3}
   m_Name: 
@@ -95,3 +101,40 @@ MonoBehaviour:
   isScaling: 1
   useEasingForScaling: 1
   scaleLerpSpeed: 1.11
+--- !u!114 &-2468580275962784421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8050537342152234946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bff89f61ee10c94999fc59fefedb377, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollectableItem
+  despawnDistance: -8
+  poolTag: Magnet
+  isMagnetable: 1
+  collectableSettings: {fileID: 11400000, guid: 5025fb7ede4f46a4f8a8328ba9e2a924, type: 2}
+--- !u!65 &8622863119628684807
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8050537342152234946}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8644096, y: 1.9911377, z: 0.33526295}
+  m_Center: {x: 0, y: 0.06281698, z: -0.16763142}

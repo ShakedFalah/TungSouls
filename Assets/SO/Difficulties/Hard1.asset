@@ -10,17 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be03e5e1af2500642a11990771e2aa3a, type: 3}
-  m_Name: Difficulty3
+  m_Name: Hard1
   m_EditorClassIdentifier: Assembly-CSharp::DifficultySettings
   spawnRate: 1
   movementSpeed: 20
-  maxObstacles: 12
+  maxObstacles: 20
   obstacleSettings:
   - obstacleTag: Coin
-    probability: 10
+    probability: 20
   - obstacleTag: Obstacle
-    probability: 90
-  groundMaterial: {fileID: 2100000, guid: 8caac294f6026bd4f9c6bcc37b2afcda, type: 2}
+    probability: 71
+  - obstacleTag: Invincibility
+    probability: 3
+  - obstacleTag: Multiplier
+    probability: 3
+  - obstacleTag: Magnet
+    probability: 3
+  groundMaterial: {fileID: 2100000, guid: 102f422f73f382a48989da897532a678, type: 2}
   environmentObjects:
   - obstacleTag: Lamp
     probability: 100
