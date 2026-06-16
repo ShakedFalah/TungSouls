@@ -9,6 +9,8 @@ TagManager:
   - Obstacle
   - Lamp
   - HUDManager
+  - HUD
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

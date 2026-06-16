@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement; // to restart the game
 
 public class GameManager : SingletonPersistent<GameManager> // making it a singleton
 {
-    [SerializeField] private DifficultyManager difficultyManager;
-    private HUDManager hudManager;
 
     private int currentDifficultyIndex;
     private float currentTime = 0f;
@@ -21,6 +19,13 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     [SerializeField] private bool isGameOver = false;
     public bool IsGameOver => isGameOver;
     private Coroutine difficultyCoroutine;
+
+    [Header("Difficulty")]
+    [SerializeField] private DifficultyManager difficultyManager;
+
+    private HUDManager hudManager;
+    private Canvas hud;
+    private Canvas pauseMenu;
 
 
     void Update()
@@ -108,7 +113,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         currentScore = 0;
         Time.timeScale = 1f;
 
-        hudManager = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HUDManager>();
+        AssignReferences();
 
         // Restart the difficulty loop safely
         if (difficultyCoroutine != null)
@@ -117,6 +122,13 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         }
         difficultyCoroutine = StartCoroutine(ChangeDifficulty());
 
+    }
+
+    private void AssignReferences()
+    {
+        hudManager = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HUDManager>();
+        hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Canvas>();
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>();
     }
 
     void OnEnable()
@@ -139,6 +151,20 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Restart();
+    }
+
+    public void PauseGame()
+    {
+        pauseMenu.enabled = true;
+        hud.enabled = false;
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        pauseMenu.enabled = false;
+        hud.enabled = true;
+        Time.timeScale = 1;
     }
 }
 
