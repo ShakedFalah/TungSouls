@@ -18,11 +18,12 @@ public class PlaySFXPool : MonoBehaviour, IPoolableObject
         }
     }
 
-    public void PlaySound(AudioClip clip, Action onComplete = null)
+    public void PlaySound(AudioClip clip, float volume, Action onComplete = null)
     {
         if (audioSource != null && clip != null)
         {
             audioSource.clip = clip;
+            audioSource.volume = volume;
             audioSource.Play();
 
             if (onComplete != null)

@@ -1,15 +1,18 @@
 using UnityEngine;
 
-public class AudioManager : Singleton<AudioManager>
+public class AudioManager : SingletonPersistent<AudioManager>
 {
     [Header("BGM")]
     [SerializeField] private AudioSource bgmAudioSource;
     [SerializeField] private AudioClip bgmClip;
     [Header("SFX")]
     [SerializeField] private string sfxTag = "SFXSource";
+    private float sfxVolume;
 
     private void Start()
     {
+        SettingsManager.Instance.onMusicVolumeChanged += UpdateMusicVolume;
+        SettingsManager.Instance.onSFXVolumeChanged += UpdateSFXVolume;
         PlayMusic();
     }
 
@@ -20,7 +23,7 @@ public class AudioManager : Singleton<AudioManager>
         {
             sfxPlayer.transform.SetParent(transform);
         }
-        sfxPlayer.PlaySound(audioClip, sfxPlayer.TriggerReturn);
+        sfxPlayer.PlaySound(audioClip, sfxVolume, sfxPlayer.TriggerReturn);
     }
 
     public void PlayMusic()
@@ -33,5 +36,15 @@ public class AudioManager : Singleton<AudioManager>
 
         bgmAudioSource.clip = bgmClip;
         bgmAudioSource.Play();
+    }
+
+    public void UpdateMusicVolume(float volume)
+    {
+        bgmAudioSource.volume = volume;
+    }
+
+    public void UpdateSFXVolume(float volume)
+    {
+        sfxVolume = volume;
     }
 }
