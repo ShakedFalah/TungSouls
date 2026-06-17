@@ -2087,7 +2087,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   isGameOver: 0
-  difficultyManager: {fileID: 11400000, guid: babb71b0908fd34488c999f973e74238, type: 2}
+  difficultyManagers:
+  - {fileID: 11400000, guid: babb71b0908fd34488c999f973e74238, type: 2}
+  - {fileID: 11400000, guid: b048fa9e186cd6f4da56341807a9dafb, type: 2}
+  - {fileID: 11400000, guid: f9e5231e892bd5c4fba98374240ad2ad, type: 2}
 --- !u!4 &611144191
 Transform:
   m_ObjectHideFlags: 0

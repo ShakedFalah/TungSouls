@@ -8,19 +8,12 @@ public enum InputType
     Swipe = 1
 }
 
-public enum Difficulty
-{
-    Easy = 0,
-    Medium = 1,
-    Hard = 2
-}
-
 public class SettingsManager : SingletonPersistent<SettingsManager>
 {
     GameSettings settings;
     public event Action<float> onMusicVolumeChanged;
     public event Action<float> onSFXVolumeChanged;
-    public event Action<Difficulty> onDifficultyChanged;
+    public event Action<int> onDifficultyChanged;
     public event Action<InputType> onInputChanged;
 
     public override void Awake()
@@ -63,7 +56,7 @@ public class SettingsManager : SingletonPersistent<SettingsManager>
 
     public void UpdateDifficulty(int difficultyValue)
     {
-        settings.difficulty = (Difficulty)difficultyValue;
+        settings.difficulty = difficultyValue;
         onDifficultyChanged?.Invoke(settings.difficulty);
     }
 
@@ -80,6 +73,6 @@ public class GameSettings
 {
     public float musicVolume = 1f;
     public float sfxVolume = 1f;
-    public Difficulty difficulty = Difficulty.Easy;
+    public int difficulty = 0;
     public InputType inputType = InputType.Buttons;
 }

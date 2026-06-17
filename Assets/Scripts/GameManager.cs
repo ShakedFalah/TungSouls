@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement; // to restart the game
 
@@ -13,7 +14,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     public event Action<DifficultySettings> onDifficultyChange;
     public event Action onGameOver;
-    public DifficultySettings CurrentDifficulty => difficultyManager.difficultyList[currentDifficultyIndex];
+    public DifficultySettings CurrentDifficulty => difficultyManagers[(int)difficultyLevel].difficultyList[currentDifficultyIndex];
 
     [Header("Game State")]
     [SerializeField] private bool isGameOver = false;
@@ -21,13 +22,17 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     private Coroutine difficultyCoroutine;
 
     [Header("Difficulty")]
-    [SerializeField] private DifficultyManager difficultyManager;
+    [SerializeField] private List<DifficultyManager> difficultyManagers;
+    private int difficultyLevel;
 
     private HUDManager hudManager;
     private Canvas hud;
     private Canvas pauseMenu;
 
-
+    private void Start()
+    {
+        SettingsManager.Instance.onDifficultyChanged += UpdateDifficutlyLevel;
+    }
     void Update()
     {
         if (isGameOver) return;
@@ -86,13 +91,13 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     IEnumerator ChangeDifficulty()
     {
-        while (currentDifficultyIndex < difficultyManager.difficultyList.Count - 1)
+        while (currentDifficultyIndex < difficultyManagers[(int)difficultyLevel].difficultyList.Count - 1)
         {
-            yield return new WaitForSeconds(difficultyManager.difficultyChangeTime);
+            yield return new WaitForSeconds(difficultyManagers[(int)difficultyLevel].difficultyChangeTime);
 
             if (isGameOver) yield break;
 
-            if (currentDifficultyIndex < difficultyManager.difficultyList.Count - 1)
+            if (currentDifficultyIndex < difficultyManagers[(int)difficultyLevel].difficultyList.Count - 1)
             {
                 currentDifficultyIndex++;
                 if (onDifficultyChange != null)
@@ -165,6 +170,12 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         pauseMenu.enabled = false;
         hud.enabled = true;
         Time.timeScale = 1;
+    }
+
+    public void UpdateDifficutlyLevel(int difficultyLevel)
+    {
+        this.difficultyLevel = difficultyLevel;
+        onDifficultyChange.Invoke(CurrentDifficulty);
     }
 }
 
