@@ -42,7 +42,7 @@ public class SettingsManager : SingletonPersistent<SettingsManager>
     {
         PlayerPrefs.SetFloat("MusicVolume", settings.musicVolume);
         PlayerPrefs.SetFloat("SfxVolume", settings.sfxVolume);
-        PlayerPrefs.SetInt("Difficulty", (int)settings.difficulty);
+        PlayerPrefs.SetInt("Difficulty", settings.difficulty);
         PlayerPrefs.SetInt("InputType", (int)settings.inputType);
 
         PlayerPrefs.Save();
