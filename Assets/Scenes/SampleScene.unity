@@ -992,10 +992,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1751015353}
   m_HandleRect: {fileID: 1352085858}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3783,6 +3783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c55d285687567e848bc1d2fe6c7e7832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  mixer: {fileID: 24100000, guid: 7b383d607ca10f141857605cedcd5eb7, type: 2}
   bgmAudioSource: {fileID: 1220722675}
   bgmClip: {fileID: 8300000, guid: 9dd57d536523c3a448b6cb5b6ee5d441, type: 3}
   sfxTag: SFXSource
@@ -3810,7 +3811,7 @@ AudioSource:
   m_GameObject: {fileID: 1220722672}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7212019130066306120, guid: 7b383d607ca10f141857605cedcd5eb7, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -6686,10 +6687,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 529749104}
   m_HandleRect: {fileID: 1284422991}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
