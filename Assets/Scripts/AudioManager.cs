@@ -10,10 +10,29 @@ public class AudioManager : SingletonPersistent<AudioManager>
     [Header("SFX")]
     [SerializeField] private string sfxTag = "SFXSource";
 
-    private void Start()
+    public override void Awake()
     {
+        base.Awake();
+
+        if (this != Instance)
+        {
+            return;
+        }
+
         SettingsManager.Instance.onMusicVolumeChanged += UpdateMusicVolume;
         SettingsManager.Instance.onSFXVolumeChanged += UpdateSFXVolume;
+    }
+
+    private void OnDestroy()
+    {
+        SettingsManager.Instance.onMusicVolumeChanged -= UpdateMusicVolume;
+        SettingsManager.Instance.onSFXVolumeChanged -= UpdateSFXVolume;
+    }
+    private void Start()
+    {
+        UpdateMusicVolume(SettingsManager.Instance.settings.musicVolume);
+        UpdateSFXVolume(SettingsManager.Instance.settings.sfxVolume);
+
         PlayMusic();
     }
 
@@ -41,7 +60,14 @@ public class AudioManager : SingletonPersistent<AudioManager>
 
     public void UpdateMusicVolume(float volume)
     {
+        float volumeOut;
+        bool success = mixer.GetFloat("Music", out volumeOut);
+
+        Debug.Log($"{success}: the volume is {volumeOut}: before set to {volume}");
         mixer.SetFloat("Music", Mathf.Log10(volume) * 20);
+        success = mixer.GetFloat("Music", out volumeOut);
+        Debug.Log($"{success}: the volume is {volumeOut}: after set to {volume}");
+
     }
 
     public void UpdateSFXVolume(float volume)

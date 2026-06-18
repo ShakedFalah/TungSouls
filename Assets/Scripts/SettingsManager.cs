@@ -11,7 +11,7 @@ public enum InputType
 
 public class SettingsManager : SingletonPersistent<SettingsManager>
 {
-    GameSettings settings;
+    public GameSettings settings;
     public event Action<float> onMusicVolumeChanged;
     public event Action<float> onSFXVolumeChanged;
     public event Action<int> onDifficultyChanged;
