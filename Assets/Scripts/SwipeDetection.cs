@@ -1,56 +1,101 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
+public enum SwipeDirection
+{
+    Left,
+    Right,
+    Up,
+    Down
+}
 
 public class SwipeDetection : MonoBehaviour
 {
-    public float minSwipeDistance = 10f;
-    Vector2 touchStart;
-    Vector2 touchEnd;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [Header("Input")]
+    [SerializeField] private InputActionReference touchPress;
+    [SerializeField] private InputActionReference touchPosition;
+
+    [Header("Swipe Settings")]
+    [SerializeField] private float minSwipeDistance = 80f;
+
+    [SerializeField] private PlayerController playerController;
+
+    public System.Action<SwipeDirection> OnSwipe;
+
+    private Vector2 startPos;
+    private bool isSwiping;
+
+    private void OnEnable()
     {
-        
+        touchPress.action.started += StartSwipe;
+        touchPress.action.canceled += EndSwipe;
+
+        touchPress.action.Enable();
+        touchPosition.action.Enable();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        if (Input.touchCount == 1)
+        touchPress.action.started -= StartSwipe;
+        touchPress.action.canceled -= EndSwipe;
+
+        touchPress.action.Disable();
+        touchPosition.action.Disable();
+    }
+
+    private void StartSwipe(InputAction.CallbackContext ctx)
+    {
+        startPos = touchPosition.action.ReadValue<Vector2>();
+        isSwiping = true;
+    }
+
+    private void EndSwipe(InputAction.CallbackContext ctx)
+    {
+        if (!isSwiping)
+            return;
+
+        Vector2 endPos = touchPosition.action.ReadValue<Vector2>();
+        Vector2 delta = endPos - startPos;
+
+        isSwiping = false;
+
+        if (delta.magnitude < minSwipeDistance)
         {
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
-            {
-                touchStart = touch.position;
-            } else if (touch.phase == TouchPhase.Ended)
-            {
-                Vector2 swipeVector = touch.position - touchStart;
-
-                Vector2 absVector = swipeVector.Abs();
-
-                if (Mathf.Max(absVector.x, absVector.y) < minSwipeDistance)
-                {
-                    return;
-                }
-
-                if (absVector.x > absVector.y)
-                {
-                    Debug.Log("Horizontal Swipe");
-                    if (swipeVector.x > 0)
-                    {
-                        Debug.Log("Right swipe");
-                    } else
-                    {
-                        Debug.Log("Left swipe");
-                    }
-                } else
-                {
-                    Debug.Log("Vertical Swipe");
-                    if (swipeVector.y > 0)
-                    {
-                        Debug.Log("Up swipe");
-                    }
-                }
-            }
+            return;
         }
+
+        switch (HandleSwipe(delta))
+        {
+            case SwipeDirection.Right:
+                playerController.MoveRight();
+                break;
+            case SwipeDirection.Left:
+                playerController.MoveLeft();
+                break;
+            case SwipeDirection.Up:
+                playerController.Jump();
+                break;
+            default:
+                break;
+        }
+    }
+
+    private SwipeDirection HandleSwipe(Vector2 dir)
+    {
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+        {
+            if (dir.x > 0)
+            {
+                return SwipeDirection.Right;
+            }
+
+            return SwipeDirection.Left;
+        }
+        if (dir.y > 0)
+        {
+            return SwipeDirection.Up;
+        }
+
+        return SwipeDirection.Down;
     }
 }
