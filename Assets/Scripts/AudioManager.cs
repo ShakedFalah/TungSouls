@@ -63,10 +63,8 @@ public class AudioManager : SingletonPersistent<AudioManager>
         float volumeOut;
         bool success = mixer.GetFloat("Music", out volumeOut);
 
-        Debug.Log($"{success}: the volume is {volumeOut}: before set to {volume}");
         mixer.SetFloat("Music", Mathf.Log10(volume) * 20);
         success = mixer.GetFloat("Music", out volumeOut);
-        Debug.Log($"{success}: the volume is {volumeOut}: after set to {volume}");
 
     }
 

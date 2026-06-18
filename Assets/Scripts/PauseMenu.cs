@@ -21,6 +21,11 @@ public class PauseMenu : MonoBehaviour
         SettingsManager.Instance.UpdateDifficulty(difficultyLevel);
     }
 
+    public void UpdateInputType(int inputValue)
+    {
+        SettingsManager.Instance.UpdateInput(inputValue);
+    }
+
     public void ResumeGame()
     {
         GameManager.Instance.ResumeGame();
