@@ -31,7 +31,9 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     private void Start()
     {
-        SettingsManager.Instance.onDifficultyChanged += UpdateDifficutlyLevel;
+        SettingsManager.Instance.onDifficultyChanged += UpdateDifficultyLevel;
+
+        UpdateDifficultyLevel(SettingsManager.Instance.settings.difficulty);
     }
     void Update()
     {
@@ -172,10 +174,10 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         Time.timeScale = 1;
     }
 
-    public void UpdateDifficutlyLevel(int difficultyLevel)
+    public void UpdateDifficultyLevel(int difficultyLevel)
     {
         this.difficultyLevel = difficultyLevel;
-        onDifficultyChange.Invoke(CurrentDifficulty);
+        onDifficultyChange?.Invoke(CurrentDifficulty);
     }
 }
 

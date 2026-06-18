@@ -1,18 +1,38 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : SingletonPersistent<AudioManager>
 {
+    [SerializeField] private AudioMixer mixer;
     [Header("BGM")]
     [SerializeField] private AudioSource bgmAudioSource;
     [SerializeField] private AudioClip bgmClip;
     [Header("SFX")]
     [SerializeField] private string sfxTag = "SFXSource";
-    private float sfxVolume;
 
-    private void Start()
+    public override void Awake()
     {
+        base.Awake();
+
+        if (this != Instance)
+        {
+            return;
+        }
+
         SettingsManager.Instance.onMusicVolumeChanged += UpdateMusicVolume;
         SettingsManager.Instance.onSFXVolumeChanged += UpdateSFXVolume;
+    }
+
+    private void OnDestroy()
+    {
+        SettingsManager.Instance.onMusicVolumeChanged -= UpdateMusicVolume;
+        SettingsManager.Instance.onSFXVolumeChanged -= UpdateSFXVolume;
+    }
+    private void Start()
+    {
+        UpdateMusicVolume(SettingsManager.Instance.settings.musicVolume);
+        UpdateSFXVolume(SettingsManager.Instance.settings.sfxVolume);
+
         PlayMusic();
     }
 
@@ -23,7 +43,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
         {
             sfxPlayer.transform.SetParent(transform);
         }
-        sfxPlayer.PlaySound(audioClip, sfxVolume, sfxPlayer.TriggerReturn);
+        sfxPlayer.PlaySound(audioClip, sfxPlayer.TriggerReturn);
     }
 
     public void PlayMusic()
@@ -40,11 +60,16 @@ public class AudioManager : SingletonPersistent<AudioManager>
 
     public void UpdateMusicVolume(float volume)
     {
-        bgmAudioSource.volume = volume;
+        float volumeOut;
+        bool success = mixer.GetFloat("Music", out volumeOut);
+
+        mixer.SetFloat("Music", Mathf.Log10(volume) * 20);
+        success = mixer.GetFloat("Music", out volumeOut);
+
     }
 
     public void UpdateSFXVolume(float volume)
     {
-        sfxVolume = volume;
+        mixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
     }
 }

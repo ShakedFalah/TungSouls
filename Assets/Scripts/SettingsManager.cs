@@ -1,6 +1,7 @@
 
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum InputType
 {
@@ -10,18 +11,31 @@ public enum InputType
 
 public class SettingsManager : SingletonPersistent<SettingsManager>
 {
-    GameSettings settings;
+    public GameSettings settings;
     public event Action<float> onMusicVolumeChanged;
     public event Action<float> onSFXVolumeChanged;
     public event Action<int> onDifficultyChanged;
     public event Action<InputType> onInputChanged;
+    private PauseMenu pauseMenu;
 
     public override void Awake()
     {
         base.Awake();
 
+        if (Instance != this)
+        {
+            return;
+        }
+
         settings = new GameSettings();
         Load();
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     public void Save()
@@ -66,6 +80,16 @@ public class SettingsManager : SingletonPersistent<SettingsManager>
         onInputChanged?.Invoke(settings.inputType);
     }
 
+    private void OnApplicationQuit()
+    {
+        Save();
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<PauseMenu>();
+        pauseMenu.UpdateSettings(settings);
+    }
 }
 
 

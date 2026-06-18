@@ -3,24 +3,38 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    [SerializeField] private Slider musicSlider;
+    [SerializeField] private Slider sfxSlider;
+
     public void UpdateMusicVolume(float volume)
     {
-        AudioManager.Instance.UpdateMusicVolume(volume);
+        SettingsManager.Instance.UpdateMusicVolume(volume);
     }
 
     public void UpdateSFXVolume(float volume)
     {
-        AudioManager.Instance.UpdateSFXVolume(volume);
+        SettingsManager.Instance.UpdateSFXVolume(volume);
     }
 
     public void UpdateDifficultyLevel(int difficultyLevel)
     {
-        GameManager.Instance.UpdateDifficutlyLevel(difficultyLevel);
+        SettingsManager.Instance.UpdateDifficulty(difficultyLevel);
+    }
+
+    public void UpdateInputType(int inputValue)
+    {
+        SettingsManager.Instance.UpdateInput(inputValue);
     }
 
     public void ResumeGame()
     {
         GameManager.Instance.ResumeGame();
+    }
+
+    public void UpdateSettings(GameSettings settings)
+    {
+        musicSlider.value = settings.musicVolume;
+        sfxSlider.value = settings.sfxVolume;
     }
 
 }

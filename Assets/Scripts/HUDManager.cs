@@ -9,6 +9,7 @@ public class HUDManager : MonoBehaviour // singleton
     [SerializeField] private TextMeshProUGUI distanceText; // distance
     [SerializeField] private TextMeshProUGUI difficultyText; // difficulty
     [SerializeField] private TextMeshProUGUI gameOverText; // game over
+    [SerializeField] private GameObject inputButtons;
 
     void Start()
     {
@@ -16,8 +17,11 @@ public class HUDManager : MonoBehaviour // singleton
         UpdateScoreDisplay(0);
         UpdateHUDFields(0f, 0f, 1);
         GameManager.Instance.onGameOver += ShowGameOver;
+
+        SettingsManager.Instance.onInputChanged += UpdateInputType;
+        UpdateInputType(SettingsManager.Instance.settings.inputType);
     }
-    
+
     public void UpdateScoreDisplay(int scoreToDisplay)
     {
         if(scoreText != null)
@@ -51,8 +55,20 @@ public class HUDManager : MonoBehaviour // singleton
         gameOverText.enabled = true;
     }
 
+    private void UpdateInputType(InputType inputType)
+    {
+        if (inputType != InputType.Buttons)
+        {
+            inputButtons.SetActive(false);
+        } else
+        {
+            inputButtons.SetActive(true);
+        }
+    }
+
     private void OnDestroy()
     {
         GameManager.Instance.onGameOver -= ShowGameOver;
+        SettingsManager.Instance.onInputChanged -= UpdateInputType;
     }
 }
