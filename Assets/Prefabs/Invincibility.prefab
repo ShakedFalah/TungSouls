@@ -66,7 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 86b9460a9415e6746990f17338b0983a, type: 2}
     - target: {fileID: 919132149155446097, guid: 884dae88488f6644cad764894920f5ba, type: 3}
       propertyPath: m_Name
-      value: Star
+      value: Invincibility
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 884dae88488f6644cad764894920f5ba, type: 3}
+      propertyPath: m_TagString
+      value: Invincibility
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

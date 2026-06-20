@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MultiplierSettings
   m_EditorClassIdentifier: Assembly-CSharp::MultiplierSettings
   collectSound: {fileID: 8300000, guid: 5c7f25b228fef2c429228b1fa412a73e, type: 3}
-  duration: 30
+  duration: 10
   multiplierValue: 2

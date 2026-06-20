@@ -5733,6 +5733,9 @@ MonoBehaviour:
   - 1
   - 5
   playerController: {fileID: 972797515}
+  availablePatterns:
+  - {fileID: 11400000, guid: 19c936266b35da943b7d944b44d978a9, type: 2}
+  - {fileID: 11400000, guid: a5fd449e0ffd059459e506769cb47399, type: 2}
 --- !u!4 &1674588194
 Transform:
   m_ObjectHideFlags: 0

@@ -8,12 +8,19 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] private float spawnZPosition = 40f ; // how far from the player
     [SerializeField] private float[] heightY = {1f, 5f};
 
-    private float[] lanes; // will use the laneSpacing from PlayerController
+    private float[] lanes; 
     
     [Header("Connections")]
     private DifficultySettings difficultySettings;
     [SerializeField] private PlayerController playerController;
 
+    [Header("Pattern Settings")]
+    [SerializeField] private LevelPatternSO[] availablePatterns;
+    
+    private LevelPatternSO currentPattern;
+    private int currentPatternIndex = 0;
+    private int currentRowIndex = 0;
+    
     private float spawnTimer;
     
     void Start()
@@ -34,11 +41,13 @@ public class ItemSpawner : MonoBehaviour
         }
 
         GameManager.Instance.onDifficultyChange += updateDifficulty;
+
+        PickNextPattern();
     }
 
     void Update()
     {
-        if (difficultySettings == null) return;
+        if (difficultySettings == null || currentPattern == null) return;
         
         if (GameManager.Instance != null && GameManager.Instance.IsGameOver) return; // stop spawning when game over
         
@@ -46,53 +55,55 @@ public class ItemSpawner : MonoBehaviour
 
         if (spawnTimer <= 0f)
         {
-            string randomItemTag = GetItemTag();
-            
-            if (!string.IsNullOrEmpty(randomItemTag))
+            SpawnPatternRow(currentPattern.rows[currentRowIndex]);
+            currentRowIndex++;
+
+            if (currentRowIndex >= currentPattern.rows.Length)
             {
-                SpawnRandomItem(randomItemTag);
+                PickNextPattern();
             }
             
-            spawnTimer = difficultySettings.spawnRate;
+            // faster row spawning
+            float calculatedSpawnRate = currentPattern.distanceBetweenRows / difficultySettings.movementSpeed;
+            spawnTimer = calculatedSpawnRate;
         }
     }
 
-    private string GetItemTag() // item spawns are based on difficulty probabilities
+    private void PickNextPattern()
     {
-        if (difficultySettings == null ||
-            difficultySettings.obstacleSettings.Count == 0) return null;
-
-        float totalProbability = 0f;
-        
-        foreach (ObstacleSettings obstacle in difficultySettings.obstacleSettings) // adds every item's probability to the sum total of the probability 
+        if (availablePatterns == null || availablePatterns.Length == 0)
         {
-            totalProbability += obstacle.probability;
-        }
-
-        float roll = Random.Range(0f, totalProbability); // roll
-        float currentProbability = 0f;
-
-        foreach (ObstacleSettings obstacle in difficultySettings.obstacleSettings) // checks where the rolled number landed (which item)
-        {
-            currentProbability += obstacle.probability;
-            if (roll <= currentProbability)
-            {
-                return obstacle.obstacleTag;
-            }
+            Debug.LogWarning("No Level Patterns assigned to the ItemSpawner!");
+            return;
         }
         
-        return difficultySettings.obstacleSettings[0].obstacleTag; // if misses everthing, returns the first item
+        // pick random pattern
+        int patternRoll = Random.Range(0, availablePatterns.Length);
+        currentPattern = availablePatterns[patternRoll];
+        
+        currentRowIndex = 0;
+    }
+    
+    private void SpawnPatternRow(PatternRow rowData)
+    {
+        // left lane
+        TrySpawnPooledItem(rowData.lane1Low, lanes[0], heightY[0]);
+        TrySpawnPooledItem(rowData.lane1High, lanes[0], heightY[1]);
+        
+        // middle lane
+        TrySpawnPooledItem(rowData.lane2Low, lanes[1], heightY[0]);
+        TrySpawnPooledItem(rowData.lane2High, lanes[1], heightY[1]);
+        
+        // right lane
+        TrySpawnPooledItem(rowData.lane3Low, lanes[2], heightY[0]);
+        TrySpawnPooledItem(rowData.lane3High, lanes[2], heightY[1]);
     }
 
-    void SpawnRandomItem(string tagName)
+    private void TrySpawnPooledItem(string tagName, float xPos, float yPos)
     {
-        int randomIndex = Random.Range(0, lanes.Length);
-        float spawnXPosition = lanes[randomIndex];
-        randomIndex = Random.Range(0, heightY.Length);
-        float spawnYPosition = heightY[randomIndex];
+        if(string.IsNullOrEmpty(tagName)) return; // skip if blank
         
-        Vector3 spawnPosition = new Vector3(spawnXPosition, spawnYPosition ,spawnZPosition);
-        
+        Vector3 spawnPosition = new Vector3(xPos, yPos, playerController.transform.position.z + spawnZPosition);
         GameObject spawnedItem = TaggedObjectPooler.Instance.GetPooledObject(tagName);
 
         if (spawnedItem != null)

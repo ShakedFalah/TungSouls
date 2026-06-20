@@ -11,6 +11,9 @@ TagManager:
   - HUDManager
   - HUD
   - PauseMenu
+  - Invincibility
+  - Magnet
+  - Multiplier
   layers:
   - Default
   - TransparentFX

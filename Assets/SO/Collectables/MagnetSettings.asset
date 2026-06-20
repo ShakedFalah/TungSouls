@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MagnetSettings
   m_EditorClassIdentifier: Assembly-CSharp::MagnetSettings
   collectSound: {fileID: 8300000, guid: 04c3b7af72c434b4b849ab491115fdcd, type: 3}
-  duration: 30
+  duration: 10
   pullSpeed: 15
   pullDistance: 15
