@@ -95,4 +95,9 @@ public class MovingItemLogic : MonoBehaviour
         }
     }
 
+    public string GetPoolTag()
+    {
+        return poolTag;
+    }
+
 }
