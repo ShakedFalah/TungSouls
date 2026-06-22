@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
-        currentLane = middleLane;
+        currentLane = transform.position.x;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; // stopping the player from spinning 
     }

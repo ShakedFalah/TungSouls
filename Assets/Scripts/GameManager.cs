@@ -31,6 +31,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     private void Start()
     {
+        LoadGame("Save");
         SettingsManager.Instance.onDifficultyChanged += UpdateDifficultyLevel;
 
         UpdateDifficultyLevel(SettingsManager.Instance.settings.difficulty);
@@ -90,12 +91,12 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         Time.timeScale = 1;
     }
 
-
     IEnumerator ChangeDifficulty()
     {
+        yield return new WaitForEndOfFrame();
         while (currentDifficultyIndex < difficultyManagers[(int)difficultyLevel].difficultyList.Count - 1)
         {
-            yield return new WaitForSeconds(difficultyManagers[(int)difficultyLevel].difficultyChangeTime);
+            yield return new WaitForSeconds(difficultyManagers[(int)difficultyLevel].difficultyChangeTime * (currentDifficultyIndex + 1) - currentTime);
 
             if (isGameOver) yield break;
 
@@ -127,6 +128,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         {
             StopCoroutine(difficultyCoroutine);
         }
+        
         difficultyCoroutine = StartCoroutine(ChangeDifficulty());
 
     }
@@ -138,17 +140,16 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>();
     }
 
-    void OnEnable()
+    public override void Awake()
     {
+        base.Awake();
+
+        if (Instance != this) return;
+
         // Listen for scene loads
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    void OnDisable()
-    {
-        // Unsubscribe to clean up memory
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
 
     void OnDestroy()
     {
@@ -178,6 +179,47 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     {
         this.difficultyLevel = difficultyLevel;
         onDifficultyChange?.Invoke(CurrentDifficulty);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGame();
+    }
+
+    private void SaveGame()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        SaveData data = new SaveData();
+        data.score = currentScore;
+        data.distance = currentDistance;
+        data.time = currentTime;
+        data.difficultyIndex = difficultyLevel;
+        data.playerPositionX = player.transform.position.x;
+        data.obstaclesData = JsonHandler.GetObstacleDataList();
+        JsonHandler.SaveToJson(data, "Save");
+    }
+
+    public void LoadGame(string fileName)
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Vector3 playerPosition = player.transform.position;
+        SaveData data = JsonHandler.ReadFromJson(fileName);
+
+        AddScore(data.score);
+        currentDistance = data.distance;
+        currentTime = data.time;
+        currentDifficultyIndex = data.difficultyIndex;
+        player.transform.position = new Vector3(data.playerPositionX, playerPosition.y, playerPosition.z);
+        LoadObstacles(data.obstaclesData);
+    }
+
+    private void LoadObstacles(ObstacleData[] obstaclesData)
+    {
+        foreach (ObstacleData data in obstaclesData)
+        {
+            GameObject spawnedObject = TaggedObjectPooler.Instance.GetPooledObject(data.tag);
+            spawnedObject.transform.position = new Vector3(data.positionX, data.positionY, data.positionZ);
+        }
     }
 }
 

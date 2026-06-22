@@ -1,6 +1,5 @@
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -8,13 +7,15 @@ using UnityEngine;
 public struct ObstacleData
 {
     public string tag;
-    public Vector3 position;
+    public float positionX;
+    public float positionY;
+    public float positionZ;
 }
 
 [Serializable]
 public class SaveData
 {
-    public Vector3 playerPosition;
+    public float playerPositionX;
     public ObstacleData[] obstaclesData;
     public int difficultyIndex;
     public float time;
@@ -42,39 +43,26 @@ public static class JsonHandler
     }
 
     // Function to read SaveData from JSON
-    public static SaveData ReadFromJson(string filePath)
+    public static SaveData ReadFromJson(string fileName)
     {
         try
         {
+            string path = Path.Combine(Application.persistentDataPath, fileName + ".json");
+
             // Read the JSON file content
-            string jsonContent = File.ReadAllText(filePath);
+            string jsonContent = File.ReadAllText(path);
 
             // Deserialize the JSON to SaveData
-            SaveData items = JsonConvert.DeserializeObject<SaveData>(jsonContent);
+            SaveData data = JsonConvert.DeserializeObject<SaveData>(jsonContent);
 
-            Debug.Log($"Successfully read items from {filePath}");
-            return items;
+            Debug.Log($"Successfully read items from {path}");
+            return data;
         }
         catch (Exception e)
         {
             Debug.LogError($"Error reading JSON file: {e.Message}");
             return new SaveData();
         }
-    }
-
-    public static SaveData CreateSaveData()
-    {
-        SaveData data = new SaveData();
-        data.score = 0;
-        data.time = 0;
-        data.distance = 0;
-        data.difficultyIndex = 0;
-        data.timesSeedUsed = 0;
-        data.seed = "";
-        data.playerPosition = Vector3.zero;
-        data.obstaclesData = new ObstacleData[0];
-
-        return data;
     }
 
     public static ObstacleData[] GetObstacleDataList()
@@ -85,7 +73,9 @@ public static class JsonHandler
         {
             obstacleDatas[i] = new ObstacleData()
             {
-                position = movingItemLogics[i].transform.position,
+                positionX = movingItemLogics[i].transform.position.x,
+                positionY = movingItemLogics[i].transform.position.y,
+                positionZ = movingItemLogics[i].transform.position.z,
                 tag = movingItemLogics[i].GetPoolTag(),
             };
         }
