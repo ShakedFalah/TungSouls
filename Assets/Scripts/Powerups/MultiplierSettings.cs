@@ -7,6 +7,6 @@ public class MultiplierSettings : PowerUpSettings
 
     public override void OnCollect(PlayerController player)
     {
-        player.StartMultiplier(duration, multiplierValue);
+        player.StartMultiplier(duration);
     }
 }

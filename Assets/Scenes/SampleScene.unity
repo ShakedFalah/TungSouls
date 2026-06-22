@@ -2078,6 +2078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 611144191}
   - component: {fileID: 611144190}
+  - component: {fileID: 611144192}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2117,6 +2118,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &611144192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611144189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c17e585f992524385104f8878ecb78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraCaptureToTexture
+  captureCamera: {fileID: 330585545}
+  textureWidth: 1920
+  textureHeight: 1080
+  capturedTexture: {fileID: 0}
 --- !u!1 &630834283
 GameObject:
   m_ObjectHideFlags: 0
@@ -2842,11 +2859,13 @@ MonoBehaviour:
   laneSwitchSpeed: 10
   laneSpacing: 1.5
   middleLane: 0
-  isInvincible: 0
+  invincibleDuration: 0
+  multiplierDuration: 0
+  magnetDuration: 0
   scoreMultiplier: 1
-  isMagnetActive: 0
-  magnetPullDistance: 3
-  magnetPullSpeed: 0
+  magnetSettings: {fileID: 11400000, guid: 5025fb7ede4f46a4f8a8328ba9e2a924, type: 2}
+  invincibilitySettings: {fileID: 11400000, guid: 9a2379df5ef3c684889bada97606db79, type: 2}
+  multiplierSettings: {fileID: 11400000, guid: e7a88228f19b88546a09a07f634932b2, type: 2}
   jumpPower: 12
   gravity: 20
 --- !u!136 &972797516

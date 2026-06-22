@@ -189,27 +189,41 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     private void SaveGame()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerController playerController = player.GetComponent<PlayerController>();
         SaveData data = new SaveData();
         data.score = currentScore;
         data.distance = currentDistance;
         data.time = currentTime;
         data.difficultyIndex = difficultyLevel;
         data.playerPositionX = player.transform.position.x;
-        data.obstaclesData = JsonHandler.GetObstacleDataList();
-        JsonHandler.SaveToJson(data, "Save");
+        data.obstaclesData = SaveHandler.GetObstacleDataList();
+        data.magnetDuration = playerController.magnetDuration;
+        data.multiplierDuration = playerController.multiplierDuration;
+        data.invincibilityDuration = playerController.invincibleDuration;
+        data.multiplierValue = playerController.scoreMultiplier;
+        SaveHandler.SaveToJson(data, "Save");
+
+        CameraCaptureToTexture cameraCapture = GetComponent<CameraCaptureToTexture>();
+        Texture2D thumbnail = cameraCapture.Capture();
+        SaveHandler.SaveThumbnail(thumbnail, "Save");
     }
 
     public void LoadGame(string fileName)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerController playerController = player.GetComponent<PlayerController>();
         Vector3 playerPosition = player.transform.position;
-        SaveData data = JsonHandler.ReadFromJson(fileName);
+        SaveData data = SaveHandler.ReadFromJson(fileName);
 
         AddScore(data.score);
         currentDistance = data.distance;
         currentTime = data.time;
         currentDifficultyIndex = data.difficultyIndex;
         player.transform.position = new Vector3(data.playerPositionX, playerPosition.y, playerPosition.z);
+        playerController.magnetDuration = data.magnetDuration;
+        playerController.multiplierDuration = data.multiplierDuration;
+        playerController.invincibleDuration = data.invincibilityDuration;
+        playerController.scoreMultiplier = data.multiplierValue;
         LoadObstacles(data.obstaclesData);
     }
 

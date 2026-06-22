@@ -8,6 +8,6 @@ public class MagnetSettings : PowerUpSettings
 
     public override void OnCollect(PlayerController player)
     {
-        player.StartMagnet(duration, pullDistance, pullSpeed);
+        player.StartMagnet(duration);
     }
 }

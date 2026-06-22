@@ -1,7 +1,5 @@
 using UnityEngine;
 
-public enum ItemType { Coin, Invincibility, ScoreMultiplier, Magnet}
-
 public class CollectableItem : MovingItemLogic
 {
     [Header("Collectable")]

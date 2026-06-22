@@ -7,7 +7,7 @@ public class ObstacleItem : MovingItemLogic
         PlayerController playerScript = player.GetComponent<PlayerController>();
 
         // if player is invincible
-        if (playerScript != null && playerScript.isInvincible)
+        if (playerScript != null && playerScript.invincibleDuration > 0)
         {
             Debug.Log("Ignore Hit!!!");
             

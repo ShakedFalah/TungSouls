@@ -23,13 +23,13 @@ public class MovingItemLogic : MonoBehaviour
     
     void Update()
     {
-        if (isMagnetable && playerScript != null && playerScript.isMagnetActive) // activating the magnet pull
+        if (isMagnetable && playerScript != null && playerScript.magnetDuration > 0) // activating the magnet pull
         {
             float zDistanceToPlayer = transform.position.z - playerScript.transform.position.z;
 
-            if (zDistanceToPlayer > 0 && zDistanceToPlayer <= playerScript.magnetPullDistance)
+            if (zDistanceToPlayer > 0 && zDistanceToPlayer <= playerScript.magnetSettings.pullDistance)
             {
-                transform.position = Vector3.MoveTowards(transform.position, playerScript.transform.position, playerScript.magnetPullSpeed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, playerScript.transform.position, playerScript.magnetSettings.pullSpeed * Time.deltaTime);
                 return; // skips the forward movement
             }
         }

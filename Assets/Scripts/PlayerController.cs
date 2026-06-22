@@ -13,11 +13,13 @@ public class PlayerController : MonoBehaviour
     private float currentLane;
     
     [Header("Power-Up statuses")]
-    public bool isInvincible = false;
+    public float invincibleDuration = 0f;
+    public float multiplierDuration = 0f;
+    public float magnetDuration = 0f;
     public float scoreMultiplier = 1f;
-    public bool isMagnetActive = false;
-    public float magnetPullDistance = 3f;
-    public float magnetPullSpeed = 0f;
+    public MagnetSettings magnetSettings;
+    public InvincibilitySettings invincibilitySettings;
+    public MultiplierSettings multiplierSettings;
     
     [Header("Jump Setup")]    
     [SerializeField] private float jumpPower = 4f;
@@ -46,6 +48,25 @@ public class PlayerController : MonoBehaviour
         if(!isGrounded && rb.linearVelocity.y  < 0)
         {
             rb.AddForce(Vector3.down * gravity * Time.deltaTime, ForceMode.VelocityChange);
+        }
+
+        LowerTimer(ref magnetDuration);
+        LowerTimer(ref invincibleDuration);
+
+        if (multiplierDuration > 0)
+        {
+            multiplierDuration -= Time.deltaTime;
+        } else
+        {
+            scoreMultiplier = 1f;
+        }
+    }
+
+    private void LowerTimer(ref float timer)
+    {
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
         }
     }
 
@@ -87,46 +108,19 @@ public class PlayerController : MonoBehaviour
     // Invincibility 
     public void StartInvinciblity(float duration) // start invincibility coroutine
     {
-        StopCoroutine("IsInvincibleRoutine"); // resets the timer
-        StartCoroutine(IsInvincibleRoutine(duration));
-    }
-
-    private IEnumerator IsInvincibleRoutine(float duration) // invincibility timer
-    {
-        isInvincible = true;
-        yield return new WaitForSeconds(duration);
-        isInvincible = false;
+        invincibleDuration = duration;
     }
     
     // Multiplayer
-    public void StartMultiplier(float duration, float multiplierValue)
+    public void StartMultiplier(float duration)
     {
-        StopCoroutine("MultiplierRoutine");
-        StartCoroutine(MultiplierRoutine(duration, multiplierValue));
-    }
-
-    private IEnumerator MultiplierRoutine(float duration, float multiplierValue)
-    {
-        scoreMultiplier = multiplierValue;
-        yield return new WaitForSeconds(duration);
-        scoreMultiplier = 1f;
+        multiplierDuration = duration;
+        scoreMultiplier *= multiplierSettings.multiplierValue;
     }
     
     // Magnet
-    public void StartMagnet(float duration, float zLocation, float pullSpeed)
+    public void StartMagnet(float duration)
     {
-        StopCoroutine("MagnetRoutine");
-        magnetPullSpeed = pullSpeed;
-        StartCoroutine(MagnetRoutine(duration, zLocation));
-    }
-
-    private IEnumerator MagnetRoutine(float duration, float zLocation)
-    {
-        isMagnetActive = true;
-        magnetPullDistance = zLocation;
-        yield return new WaitForSeconds(duration);
-        isMagnetActive = false;
-        magnetPullDistance = 0f;
-    }
-    
+        magnetDuration = duration;
+    }    
 }

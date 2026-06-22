@@ -23,31 +23,41 @@ public class SaveData
     public int score;
     public string seed;
     public int timesSeedUsed;
+    public float magnetDuration;
+    public float multiplierDuration;
+    public float invincibilityDuration;
+    public float multiplierValue;
 }
 
-public static class JsonHandler
+public static class SaveHandler
 {
+    private readonly static string savePath = Path.Combine(Application.persistentDataPath, "Saves");
+    private readonly static string saveFileName = "data.json";
+    private readonly static string thumbnailName = "thumbnail.png";
+
     // This function will save a SaveData object as a JSON file
-    public static void SaveToJson(SaveData data, string fileName)
+    public static void SaveToJson(SaveData data, string directoryName)
     {
         // Convert the SaveData directly to JSON format using Newtonsoft.Json
         string json = JsonConvert.SerializeObject(data, Formatting.Indented); // 'Indented' makes the output human-readable
 
         // Create a file path (this saves the file in the persistent data path of the game)
-        string path = Path.Combine(Application.persistentDataPath, fileName + ".json");
+        string path = Path.Combine(savePath,  directoryName);
+
+        Directory.CreateDirectory(path);
 
         // Write the JSON data to a file
-        File.WriteAllText(path, json);
+        File.WriteAllText(Path.Combine(path, saveFileName), json);
 
         Debug.Log("List of data saved as JSON to: " + path); // For debugging purposes
     }
 
     // Function to read SaveData from JSON
-    public static SaveData ReadFromJson(string fileName)
+    public static SaveData ReadFromJson(string directoryName)
     {
         try
         {
-            string path = Path.Combine(Application.persistentDataPath, fileName + ".json");
+            string path = Path.Combine(savePath, directoryName, saveFileName);
 
             // Read the JSON file content
             string jsonContent = File.ReadAllText(path);
@@ -81,5 +91,11 @@ public static class JsonHandler
         }
 
         return obstacleDatas;
+    }
+
+    public static void SaveThumbnail(Texture2D image, string directoryName)
+    {
+        var bytes = image.EncodeToPNG();
+        File.WriteAllBytes(Path.Combine(savePath, directoryName, thumbnailName), bytes);
     }
 }
