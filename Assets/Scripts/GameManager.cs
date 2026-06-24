@@ -214,6 +214,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         PlayerController playerController = player.GetComponent<PlayerController>();
         Vector3 playerPosition = player.transform.position;
         SaveData data = SaveHandler.ReadFromJson(fileName);
+        string[] saves = SaveHandler.GetSaveNames();
 
         AddScore(data.score);
         currentDistance = data.distance;

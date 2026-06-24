@@ -98,4 +98,29 @@ public static class SaveHandler
         var bytes = image.EncodeToPNG();
         File.WriteAllBytes(Path.Combine(savePath, directoryName, thumbnailName), bytes);
     }
+
+    public static Texture2D LoadThumbnail(string directoryName)
+    {
+        Texture2D tex = null;
+        byte[] fileData;
+        string path = Path.Combine(savePath, directoryName, thumbnailName);
+
+        if (File.Exists(path))
+        {
+            fileData = File.ReadAllBytes(path);
+            tex = new Texture2D(2, 2);
+            tex.LoadImage(fileData);
+        }
+        return tex;
+    }
+
+    public static string[] GetSaveNames()
+    {
+        string[] paths = Directory.GetDirectories(savePath);
+        for (int i = 0; i < paths.Length; i++)
+        {
+            paths[i] = Path.GetFileName(paths[i]);
+        }
+        return paths;
+    }
 }
