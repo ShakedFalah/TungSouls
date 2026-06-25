@@ -31,7 +31,6 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     private void Start()
     {
-        LoadGame("Save");
         SettingsManager.Instance.onDifficultyChanged += UpdateDifficultyLevel;
 
         UpdateDifficultyLevel(SettingsManager.Instance.settings.difficulty);
