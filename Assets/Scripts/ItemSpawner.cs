@@ -15,7 +15,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] private PlayerController playerController;
 
     [Header("Pattern Settings")]
-    [SerializeField] private LevelPatternSO[] availablePatterns;
+    [SerializeField] private PatternSettings[] availablePatterns;
     
     private LevelPatternSO currentPattern;
     private int currentPatternIndex = 0;
@@ -77,11 +77,27 @@ public class ItemSpawner : MonoBehaviour
             return;
         }
 
+        float totalProbability = 0f;
+
+        foreach (var pattern in availablePatterns)
+        {
+            totalProbability += pattern.probability;
+        }
+
         // pick random pattern
-        int patternRoll = Random.Range(0, availablePatterns.Length);
-        currentPattern = availablePatterns[patternRoll];
-        
+        float patternRoll = Random.Range(0f, totalProbability);
         currentRowIndex = 0;
+
+        for (int i = 0; i < availablePatterns.Length; i++)
+        {
+            patternRoll -= availablePatterns[i].probability;
+            if (patternRoll <= 0f)
+            {
+                currentPattern = availablePatterns[i].pattern;
+                return;
+            }
+        }
+        
     }
     
     private void SpawnPatternRow(PatternRow rowData)
@@ -116,6 +132,7 @@ public class ItemSpawner : MonoBehaviour
     private void updateDifficulty(DifficultySettings newDifficultySettings)
     {
         this.difficultySettings = newDifficultySettings;
+        availablePatterns = difficultySettings.obstacleSettings;
     }
 
     private void OnDestroy()

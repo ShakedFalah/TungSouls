@@ -12,9 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be03e5e1af2500642a11990771e2aa3a, type: 3}
   m_Name: Hard3
   m_EditorClassIdentifier: Assembly-CSharp::DifficultySettings
-  spawnRate: 0.7
+  spawnRate: 2
   movementSpeed: 30
   maxObstacles: 20
-  obstacleSettings: []
-  groundMaterial: {fileID: 2100000, guid: 8caac294f6026bd4f9c6bcc37b2afcda, type: 2}
+  obstacleSettings:
+  - pattern: {fileID: 11400000, guid: 19c936266b35da943b7d944b44d978a9, type: 2}
+    probability: 20
+  - pattern: {fileID: 11400000, guid: a5fd449e0ffd059459e506769cb47399, type: 2}
+    probability: 20
+  - pattern: {fileID: 11400000, guid: a9c8b93f02fd28b4db908971184ed5c2, type: 2}
+    probability: 20
+  - pattern: {fileID: 11400000, guid: 82d2aaa60f5d7ad41a4f79ee5f609b57, type: 2}
+    probability: 20
+  - pattern: {fileID: 11400000, guid: 0afef2c2138871e4186229834c642323, type: 2}
+    probability: 20
+  groundMaterial: {fileID: 2100000, guid: 102f422f73f382a48989da897532a678, type: 2}
   environmentObjects: 07000000

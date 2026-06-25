@@ -2130,7 +2130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c17e585f992524385104f8878ecb78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraCaptureToTexture
-  captureCamera: {fileID: 330585545}
   textureWidth: 1920
   textureHeight: 1080
 --- !u!1 &630834283
@@ -5754,6 +5753,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 19c936266b35da943b7d944b44d978a9, type: 2}
   - {fileID: 11400000, guid: a5fd449e0ffd059459e506769cb47399, type: 2}
   - {fileID: 11400000, guid: a9c8b93f02fd28b4db908971184ed5c2, type: 2}
+  - {fileID: 11400000, guid: 82d2aaa60f5d7ad41a4f79ee5f609b57, type: 2}
+  - {fileID: 11400000, guid: 0afef2c2138871e4186229834c642323, type: 2}
 --- !u!4 &1674588194
 Transform:
   m_ObjectHideFlags: 0

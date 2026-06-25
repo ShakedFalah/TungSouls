@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class CameraCaptureToTexture : MonoBehaviour
 {
-    public Camera captureCamera; // The camera from which to capture
     public int textureWidth = 1920; // Width of the output texture
     public int textureHeight = 1080; // Height of the output texture
 
     // This method captures the current camera view and stores it in 'capturedTexture'
     public Texture2D Capture()
     {
+        Camera captureCamera = Camera.main;
         // Step 1: Create a temporary RenderTexture with the specified width and height
         RenderTexture renderTexture = new RenderTexture(textureWidth, textureHeight, 24);
         captureCamera.targetTexture = renderTexture;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MediumDifficultyManager
   m_EditorClassIdentifier: Assembly-CSharp::DifficultyManager
   difficultyList:
-  - {fileID: 11400000, guid: b3502b287e92c66409bcd6ae9ae93aee, type: 2}
-  - {fileID: 11400000, guid: 4a5830b6b3d88454fb1e752d3f844bf0, type: 2}
-  - {fileID: 11400000, guid: 86c4a67c1619f304fb94be6bc558fbc6, type: 2}
+  - {fileID: 11400000, guid: 97f38c921e6a9634aa187a46fb930c8d, type: 2}
+  - {fileID: 11400000, guid: 1ebb3220bad074c40a25a6ffde9002ed, type: 2}
+  - {fileID: 11400000, guid: 728a8ed746b2c4f47bf3c3c314d4f4ee, type: 2}
   difficultyChangeTime: 60

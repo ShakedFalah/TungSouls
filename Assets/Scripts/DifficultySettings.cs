@@ -7,7 +7,7 @@ public class DifficultySettings : ScriptableObject
     public float spawnRate;
     public float movementSpeed;
     public int maxObstacles;
-    public List<PatternSettings> obstacleSettings;
+    public PatternSettings[] obstacleSettings;
     public Material groundMaterial;
     public List<ItemType> environmentObjects;
 }

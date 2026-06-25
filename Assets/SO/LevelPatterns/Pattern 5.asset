@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18562a5aca832d14ca7c0a6d55c39587, type: 3}
-  m_Name: Pattern 4
+  m_Name: Pattern 5
   m_EditorClassIdentifier: Assembly-CSharp::LevelPatternSO
   distanceBetweenRows: 8
   rows:
-  - lane1Low: 5
+  - lane1Low: 1
     lane1High: 0
     lane2Low: 1
     lane2High: 0
-    lane3Low: 1
+    lane3Low: 5
     lane3High: 0
   - lane1Low: 1
     lane1High: 0
@@ -26,9 +26,9 @@ MonoBehaviour:
     lane2High: 0
     lane3Low: 1
     lane3High: 0
-  - lane1Low: 1
+  - lane1Low: 2
     lane1High: 0
     lane2Low: 1
     lane2High: 0
-    lane3Low: 2
+    lane3Low: 1
     lane3High: 0
