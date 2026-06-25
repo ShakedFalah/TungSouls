@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelPatternSO
   distanceBetweenRows: 8
   rows:
-  - lane1Low: Obstacle
-    lane1High: 
-    lane2Low: Invincibility
-    lane2High: 
-    lane3Low: Obstacle
-    lane3High: 
-  - lane1Low: Obstacle
-    lane1High: 
-    lane2Low: 
-    lane2High: 
-    lane3Low: Obstacle
-    lane3High: 
-  - lane1Low: Obstacle
-    lane1High: Obstacle
-    lane2Low: Obstacle
-    lane2High: 
-    lane3Low: Obstacle
-    lane3High: Obstacle
+  - lane1Low: 1
+    lane1High: 1
+    lane2Low: 3
+    lane2High: 1
+    lane3Low: 1
+    lane3High: 1
+  - lane1Low: 1
+    lane1High: 1
+    lane2Low: 1
+    lane2High: 1
+    lane3Low: 1
+    lane3High: 1
+  - lane1Low: 1
+    lane1High: 1
+    lane2Low: 2
+    lane2High: 1
+    lane3Low: 1
+    lane3High: 1

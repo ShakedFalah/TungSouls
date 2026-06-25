@@ -7,14 +7,14 @@ public class DifficultySettings : ScriptableObject
     public float spawnRate;
     public float movementSpeed;
     public int maxObstacles;
-    public List<ObstacleSettings> obstacleSettings;
+    public List<PatternSettings> obstacleSettings;
     public Material groundMaterial;
-    public List<ObstacleSettings> environmentObjects;
+    public List<ItemType> environmentObjects;
 }
 
 [System.Serializable]
-public struct ObstacleSettings
+public struct PatternSettings
 {
-    public string obstacleTag;
+    public LevelPatternSO pattern;
     public float probability;
 }

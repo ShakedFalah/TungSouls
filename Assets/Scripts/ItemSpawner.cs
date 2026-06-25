@@ -76,7 +76,7 @@ public class ItemSpawner : MonoBehaviour
             Debug.LogWarning("No Level Patterns assigned to the ItemSpawner!");
             return;
         }
-        
+
         // pick random pattern
         int patternRoll = Random.Range(0, availablePatterns.Length);
         currentPattern = availablePatterns[patternRoll];
@@ -99,9 +99,9 @@ public class ItemSpawner : MonoBehaviour
         TrySpawnPooledItem(rowData.lane3High, lanes[2], heightY[1]);
     }
 
-    private void TrySpawnPooledItem(string tagName, float xPos, float yPos)
+    private void TrySpawnPooledItem(ItemType tagName, float xPos, float yPos)
     {
-        if(string.IsNullOrEmpty(tagName)) return; // skip if blank
+        if(tagName == ItemType.None) return; // skip if blank
         
         Vector3 spawnPosition = new Vector3(xPos, yPos, playerController.transform.position.z + spawnZPosition);
         GameObject spawnedItem = TaggedObjectPooler.Instance.GetPooledObject(tagName);

@@ -1,24 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+public enum ItemType
+{
+    None,
+    Bat,
+    Coin,
+    Invincibility,
+    Magnet,
+    Multiplier,
+    SfxSource,
+    Lamp
+}
+
 public class TaggedObjectPooler : Singleton<TaggedObjectPooler>
 {
     [System.Serializable]
     public class Pool
     {
-        public string tag;  // The tag to identify the pool.
+        public ItemType tag;  // The tag to identify the pool.
         public GameObject prefab;  // The prefab to pool.
         public int initialPoolSize = 10;  // Initial number of objects in the pool.
     }
 
     public List<Pool> pools;  // A list of different pools.
 
-    private Dictionary<string, Queue<GameObject>> pooledObjects;  // A dictionary to hold pooled objects by tags.
+    private Dictionary<ItemType, Queue<GameObject>> pooledObjects;  // A dictionary to hold pooled objects by tags.
 
     override
     protected void Awake()
     {
-        pooledObjects = new Dictionary<string, Queue<GameObject>>();
+        pooledObjects = new Dictionary<ItemType, Queue<GameObject>>();
 
         base.Awake();
     }
@@ -37,7 +49,7 @@ public class TaggedObjectPooler : Singleton<TaggedObjectPooler>
         }
     }
 
-    public GameObject GetPooledObject(string tag)
+    public GameObject GetPooledObject(ItemType tag)
     {
         if (pooledObjects.ContainsKey(tag) && pooledObjects[tag].Count > 0)
         {
@@ -58,7 +70,7 @@ public class TaggedObjectPooler : Singleton<TaggedObjectPooler>
         return null;
     }
 
-    public void ReturnObject(GameObject obj, string tag)
+    public void ReturnObject(GameObject obj, ItemType tag)
     {
         if (obj != null && pooledObjects.ContainsKey(tag))
         {
@@ -67,7 +79,7 @@ public class TaggedObjectPooler : Singleton<TaggedObjectPooler>
         }
     }
 
-    public GameObject GetPooledObjectWithAutoReturn(string tag)
+    public GameObject GetPooledObjectWithAutoReturn(ItemType tag)
     {
         GameObject obj = GetPooledObject(tag);
 

@@ -7,8 +7,6 @@ public class AudioManager : SingletonPersistent<AudioManager>
     [Header("BGM")]
     [SerializeField] private AudioSource bgmAudioSource;
     [SerializeField] private AudioClip bgmClip;
-    [Header("SFX")]
-    [SerializeField] private string sfxTag = "SFXSource";
 
     public override void Awake()
     {
@@ -38,7 +36,7 @@ public class AudioManager : SingletonPersistent<AudioManager>
 
     public void PlaySound(AudioClip audioClip, Transform parent = null)
     {
-        PlaySFXPool sfxPlayer = TaggedObjectPooler.Instance.GetPooledObjectWithAutoReturn(sfxTag).GetComponent<PlaySFXPool>();
+        PlaySFXPool sfxPlayer = TaggedObjectPooler.Instance.GetPooledObjectWithAutoReturn(ItemType.SfxSource).GetComponent<PlaySFXPool>();
         if (parent != null)
         {
             sfxPlayer.transform.SetParent(transform);

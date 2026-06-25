@@ -32,28 +32,11 @@ public class EnvironmentController : MonoBehaviour
 
     void SpawnRandomObject()
     {
-        List<ObstacleSettings> environmentObjects = GameManager.Instance.CurrentDifficulty.environmentObjects;
-        float totalProbability = 0f;
-        for (int i = 1; i < environmentObjects.Count; i++)
-        {
-            totalProbability += environmentObjects[i].probability;
-        }
+        List<ItemType> environmentObjects = GameManager.Instance.CurrentDifficulty.environmentObjects;
 
-        float randomNumber = Random.Range(0, totalProbability);
+        int randomNumber = Random.Range(0, environmentObjects.Count);
 
-        string selectedTag = environmentObjects[0].obstacleTag;
-        float currentWeight = 0f;
-
-        foreach (var evnironmentObject in environmentObjects)
-        {
-            currentWeight += evnironmentObject.probability;
-
-            if (randomNumber <= currentWeight)
-            {
-                selectedTag = evnironmentObject.obstacleTag;
-                break;
-            }
-        }
+        ItemType selectedTag = environmentObjects[randomNumber];
 
         GameObject environmentObjectInstance = TaggedObjectPooler.Instance.GetPooledObject(selectedTag);
         environmentObjectInstance.transform.position = spawnPosition;

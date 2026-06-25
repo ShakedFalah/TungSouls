@@ -15,18 +15,6 @@ MonoBehaviour:
   spawnRate: 2
   movementSpeed: 10
   maxObstacles: 20
-  obstacleSettings:
-  - obstacleTag: Coin
-    probability: 20
-  - obstacleTag: Obstacle
-    probability: 56
-  - obstacleTag: Invincibility
-    probability: 8
-  - obstacleTag: Multiplier
-    probability: 8
-  - obstacleTag: Magnet
-    probability: 8
+  obstacleSettings: []
   groundMaterial: {fileID: 2100000, guid: 102f422f73f382a48989da897532a678, type: 2}
-  environmentObjects:
-  - obstacleTag: Lamp
-    probability: 100
+  environmentObjects: 07000000

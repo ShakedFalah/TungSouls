@@ -14,39 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelPatternSO
   distanceBetweenRows: 8
   rows:
-  - lane1Low: 
-    lane1High: 
-    lane2Low: Magnet
-    lane2High: Obstacle
-    lane3Low: 
-    lane3High: 
-  - lane1Low: Coin
-    lane1High: Coin
-    lane2Low: 
-    lane2High: 
-    lane3Low: Coin
-    lane3High: Coin
-  - lane1Low: Coin
-    lane1High: Coin
-    lane2Low: 
-    lane2High: 
-    lane3Low: Coin
-    lane3High: Coin
-  - lane1Low: Coin
-    lane1High: Coin
-    lane2Low: 
-    lane2High: 
-    lane3Low: Coin
-    lane3High: Coin
-  - lane1Low: Coin
-    lane1High: Coin
-    lane2Low: 
-    lane2High: 
-    lane3Low: Coin
-    lane3High: Coin
-  - lane1Low: Coin
-    lane1High: Coin
-    lane2Low: 
-    lane2High: 
-    lane3Low: Coin
-    lane3High: Coin
+  - lane1Low: 0
+    lane1High: 0
+    lane2Low: 4
+    lane2High: 0
+    lane3Low: 0
+    lane3High: 0
+  - lane1Low: 2
+    lane1High: 2
+    lane2Low: 0
+    lane2High: 0
+    lane3Low: 2
+    lane3High: 2
+  - lane1Low: 2
+    lane1High: 2
+    lane2Low: 0
+    lane2High: 0
+    lane3Low: 2
+    lane3High: 2
+  - lane1Low: 2
+    lane1High: 2
+    lane2Low: 0
+    lane2High: 0
+    lane3Low: 2
+    lane3High: 2
+  - lane1Low: 2
+    lane1High: 2
+    lane2Low: 0
+    lane2High: 0
+    lane3Low: 2
+    lane3High: 2
+  - lane1Low: 2
+    lane1High: 2
+    lane2Low: 0
+    lane2High: 0
+    lane3Low: 2
+    lane3High: 2

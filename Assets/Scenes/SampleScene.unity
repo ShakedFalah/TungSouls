@@ -3840,7 +3840,6 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: 7b383d607ca10f141857605cedcd5eb7, type: 2}
   bgmAudioSource: {fileID: 1220722675}
   bgmClip: {fileID: 8300000, guid: 9dd57d536523c3a448b6cb5b6ee5d441, type: 3}
-  sfxTag: SFXSource
 --- !u!4 &1220722674
 Transform:
   m_ObjectHideFlags: 0
@@ -5437,25 +5436,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TaggedObjectPooler
   pools:
-  - tag: Coin
+  - tag: 2
     prefab: {fileID: 4782090564225606810, guid: f84c51bfe3d044141b36fc2c3f8b825b, type: 3}
     initialPoolSize: 20
-  - tag: Obstacle
+  - tag: 1
     prefab: {fileID: 3150422409802780327, guid: c2ca37be4afbe5c4698a9e65646d6f1a, type: 3}
     initialPoolSize: 10
-  - tag: Lamp
+  - tag: 7
     prefab: {fileID: 50384562795888050, guid: e3ad9dc10587518439bbe9a28cc190bc, type: 3}
     initialPoolSize: 2
-  - tag: Invincibility
+  - tag: 3
     prefab: {fileID: 3824110197468282073, guid: 39a89156ed4b1964797c43fe949616b2, type: 3}
     initialPoolSize: 5
-  - tag: Multiplier
+  - tag: 5
     prefab: {fileID: 8588061054967466627, guid: b9c8344f96f0ab54f817d85239661d67, type: 3}
     initialPoolSize: 5
-  - tag: Magnet
+  - tag: 4
     prefab: {fileID: 8050537342152234946, guid: 515d1c807dbf1ff448dab24da2dd68ab, type: 3}
     initialPoolSize: 5
-  - tag: SFXSource
+  - tag: 6
     prefab: {fileID: 2370967067132296572, guid: 584a8583f3c79b54091371a790f9e01c, type: 3}
     initialPoolSize: 10
 --- !u!4 &1618828499
@@ -5754,6 +5753,7 @@ MonoBehaviour:
   availablePatterns:
   - {fileID: 11400000, guid: 19c936266b35da943b7d944b44d978a9, type: 2}
   - {fileID: 11400000, guid: a5fd449e0ffd059459e506769cb47399, type: 2}
+  - {fileID: 11400000, guid: a9c8b93f02fd28b4db908971184ed5c2, type: 2}
 --- !u!4 &1674588194
 Transform:
   m_ObjectHideFlags: 0

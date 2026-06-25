@@ -5,7 +5,7 @@ public class MovingItemLogic : MonoBehaviour
     [Header("Connections")]
     private DifficultySettings difficultySettings;
     [SerializeField] private float despawnDistance = -8f;
-    [SerializeField] protected string poolTag; // for returning objects to the pool
+    [SerializeField] protected ItemType poolTag; // for returning objects to the pool
     
     [Header("Magnet Pull Settings")]
     [SerializeField] private bool isMagnetable = false; // only on for items that arent affected by magnet the player
@@ -95,7 +95,7 @@ public class MovingItemLogic : MonoBehaviour
         }
     }
 
-    public string GetPoolTag()
+    public ItemType GetPoolTag()
     {
         return poolTag;
     }
