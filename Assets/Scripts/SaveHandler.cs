@@ -116,6 +116,12 @@ public static class SaveHandler
 
     public static string[] GetSaveNames()
     {
+        if (!Directory.Exists(savePath))
+        {
+            Directory.CreateDirectory(savePath);
+            return new string[0]; 
+        }
+        
         string[] paths = Directory.GetDirectories(savePath);
         for (int i = 0; i < paths.Length; i++)
         {
