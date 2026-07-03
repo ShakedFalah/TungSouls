@@ -858,13 +858,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: -11}
+  m_LocalRotation: {x: 0.15558143, y: -0, z: -0, w: 0.98782307}
+  m_LocalPosition: {x: 0, y: 5.24, z: -10.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 17.901, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2864,8 +2864,8 @@ MonoBehaviour:
   magnetSettings: {fileID: 11400000, guid: 5025fb7ede4f46a4f8a8328ba9e2a924, type: 2}
   invincibilitySettings: {fileID: 11400000, guid: 9a2379df5ef3c684889bada97606db79, type: 2}
   multiplierSettings: {fileID: 11400000, guid: e7a88228f19b88546a09a07f634932b2, type: 2}
-  jumpPower: 12
-  gravity: 20
+  jumpPower: 11
+  gravity: 25
 --- !u!136 &972797516
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5750,11 +5750,16 @@ MonoBehaviour:
   - 5
   playerController: {fileID: 972797515}
   availablePatterns:
-  - {fileID: 11400000, guid: 19c936266b35da943b7d944b44d978a9, type: 2}
-  - {fileID: 11400000, guid: a5fd449e0ffd059459e506769cb47399, type: 2}
-  - {fileID: 11400000, guid: a9c8b93f02fd28b4db908971184ed5c2, type: 2}
-  - {fileID: 11400000, guid: 82d2aaa60f5d7ad41a4f79ee5f609b57, type: 2}
-  - {fileID: 11400000, guid: 0afef2c2138871e4186229834c642323, type: 2}
+  - pattern: {fileID: 0}
+    probability: 0
+  - pattern: {fileID: 0}
+    probability: 0
+  - pattern: {fileID: 0}
+    probability: 0
+  - pattern: {fileID: 0}
+    probability: 0
+  - pattern: {fileID: 0}
+    probability: 0
 --- !u!4 &1674588194
 Transform:
   m_ObjectHideFlags: 0
