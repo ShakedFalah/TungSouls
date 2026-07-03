@@ -182,10 +182,10 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     private void OnApplicationQuit()
     {
-        SaveGame();
+        SaveGame("Save");
     }
 
-    private void SaveGame()
+    private void SaveGame(string saveName)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerController playerController = player.GetComponent<PlayerController>();
@@ -200,11 +200,11 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         data.multiplierDuration = playerController.multiplierDuration;
         data.invincibilityDuration = playerController.invincibleDuration;
         data.multiplierValue = playerController.scoreMultiplier;
-        SaveHandler.SaveToJson(data, "Save");
+        SaveHandler.SaveToJson(data, saveName);
 
         CameraCaptureToTexture cameraCapture = GetComponent<CameraCaptureToTexture>();
         Texture2D thumbnail = cameraCapture.Capture();
-        SaveHandler.SaveThumbnail(thumbnail, "Save");
+        SaveHandler.SaveThumbnail(thumbnail, saveName);
     }
 
     public void LoadGame(string fileName)
