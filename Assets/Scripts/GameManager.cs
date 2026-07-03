@@ -11,6 +11,8 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     private float currentTime = 0f;
     private float currentDistance = 0f;
     private int currentScore = 0;
+    
+    [SerializeField] ThemesSo _themesSo;
 
     public event Action<DifficultySettings> onDifficultyChange;
     public event Action onGameOver;
@@ -34,6 +36,8 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         SettingsManager.Instance.onDifficultyChanged += UpdateDifficultyLevel;
 
         UpdateDifficultyLevel(SettingsManager.Instance.settings.difficulty);
+        
+        RenderSettings.skybox = _themesSo.skyThemes[_themesSo.currentThemeIndex];
     }
     void Update()
     {
