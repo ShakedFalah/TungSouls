@@ -40,13 +40,13 @@ MonoBehaviour:
     lane3High: 2
   - lane1Low: 2
     lane1High: 2
-    lane2Low: 0
-    lane2High: 0
+    lane2Low: 2
+    lane2High: 2
     lane3Low: 2
     lane3High: 2
   - lane1Low: 2
     lane1High: 2
-    lane2Low: 0
-    lane2High: 0
+    lane2Low: 2
+    lane2High: 2
     lane3Low: 2
     lane3High: 2

@@ -14,21 +14,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelPatternSO
   distanceBetweenRows: 8
   rows:
-  - lane1Low: 1
+  - lane1Low: 0
     lane1High: 0
-    lane2Low: 1
+    lane2Low: 0
     lane2High: 0
-    lane3Low: 5
+    lane3Low: 0
     lane3High: 0
-  - lane1Low: 1
+  - lane1Low: 3
     lane1High: 0
+    lane2Low: 5
+    lane2High: 2
+    lane3Low: 2
+    lane3High: 2
+  - lane1Low: 1
+    lane1High: 1
+    lane2Low: 1
+    lane2High: 2
+    lane3Low: 2
+    lane3High: 2
+  - lane1Low: 1
+    lane1High: 1
     lane2Low: 2
+    lane2High: 2
+    lane3Low: 2
+    lane3High: 2
+  - lane1Low: 1
+    lane1High: 1
+    lane2Low: 2
+    lane2High: 2
+    lane3Low: 2
+    lane3High: 2
+  - lane1Low: 5
+    lane1High: 2
+    lane2Low: 1
+    lane2High: 1
+    lane3Low: 0
+    lane3High: 0
+  - lane1Low: 0
+    lane1High: 0
+    lane2Low: 0
     lane2High: 0
-    lane3Low: 1
+    lane3Low: 0
     lane3High: 0
   - lane1Low: 2
-    lane1High: 0
+    lane1High: 2
     lane2Low: 1
-    lane2High: 0
-    lane3Low: 1
+    lane2High: 1
+    lane3Low: 0
+    lane3High: 0
+  - lane1Low: 2
+    lane1High: 2
+    lane2Low: 1
+    lane2High: 1
+    lane3Low: 0
     lane3High: 0
