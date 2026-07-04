@@ -33,8 +33,6 @@ public class MainMenuHUD : MonoBehaviour
         IsLoadingFromSave = false;
 
         // Create new seed
-        string newSeed = Random.Range(100000, 999999).ToString();
-        ApplySeededRandomness(newSeed);
 
         LoadGameplayScene();
     }
@@ -42,21 +40,7 @@ public class MainMenuHUD : MonoBehaviour
     public void StartLoadedGame()
     {
         LoadGameplayScene();
-    }
-
-    private void ApplySeededRandomness(string seedString)
-    {
-        if (string.IsNullOrEmpty(seedString))
-        {
-            seedString = "DefaultSeedValue";
-        }
-        
-        int seedHash = seedString.GetHashCode();
-        Random.InitState(seedHash);
-
-        Debug.Log($"Pseudorandom State Lock Initiated. Seed Content: '{seedString}' -> State Key: {seedHash}");
-    }
-    
+    }    
     
     public void LoadGameplayScene()
     {

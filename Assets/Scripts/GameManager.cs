@@ -11,7 +11,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     private float currentTime = 0f;
     private float currentDistance = 0f;
     private int currentScore = 0;
-    
+
     [SerializeField] ThemesSo _themesSo;
     [SerializeField] ProfileSO _profileSO;
 
@@ -38,7 +38,11 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         {
             LoadGame(_profileSO.profileName);
         }
-        
+        else
+        {
+            ApplySeededRandomness(UnityEngine.Random.Range(100000, 999999).ToString());
+        }
+
         SettingsManager.Instance.onDifficultyChanged += UpdateDifficultyLevel;
 
         UpdateDifficultyLevel(SettingsManager.Instance.settings.difficulty);
@@ -209,6 +213,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         data.multiplierDuration = playerController.multiplierDuration;
         data.invincibilityDuration = playerController.invincibleDuration;
         data.multiplierValue = playerController.scoreMultiplier;
+        data.randomState = JsonUtility.ToJson(UnityEngine.Random.state);
         SaveHandler.SaveToJson(data, saveName);
 
         CameraCaptureToTexture cameraCapture = GetComponent<CameraCaptureToTexture>();
@@ -228,6 +233,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         currentDistance = data.distance;
         currentTime = data.time;
         currentDifficultyIndex = data.difficultyIndex;
+        UnityEngine.Random.state = JsonUtility.FromJson<UnityEngine.Random.State>(data.randomState);
         player.transform.position = new Vector3(data.playerPositionX, playerPosition.y, playerPosition.z);
         playerController.magnetDuration = data.magnetDuration;
         playerController.multiplierDuration = data.multiplierDuration;
@@ -244,5 +250,19 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
             spawnedObject.transform.position = new Vector3(data.positionX, data.positionY, data.positionZ);
         }
     }
+
+    private void ApplySeededRandomness(string seedString)
+    {
+        if (string.IsNullOrEmpty(seedString))
+        {
+            seedString = "DefaultSeedValue";
+        }
+
+        int seedHash = seedString.GetHashCode();
+        UnityEngine.Random.InitState(seedHash);
+
+        Debug.Log($"Pseudorandom State Lock Initiated. Seed Content: '{seedString}' -> State Key: {seedHash}");
+    }
+
 }
 

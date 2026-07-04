@@ -21,12 +21,11 @@ public class SaveData
     public float time;
     public float distance;
     public int score;
-    public string seed;
-    public int timesSeedUsed;
     public float magnetDuration;
     public float multiplierDuration;
     public float invincibilityDuration;
     public float multiplierValue;
+    public string randomState;
 }
 
 public static class SaveHandler

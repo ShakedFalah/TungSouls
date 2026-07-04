@@ -24,23 +24,30 @@ public class ProfileSelectionMenu : MonoBehaviour
         }
         
         string[] saveDirectories = SaveHandler.GetSaveNames();
-        Array.Sort(saveDirectories);
-
-        int maxNumber = saveDirectories.Select(s =>
+        if (saveDirectories != null && saveDirectories.Length > 0)
         {
-            Match match = Regex.Match(s, @"^Save(\d+)$");
-            return match.Success ? int.Parse(match.Groups[1].Value) : 0;
-        }).Max();
 
-        nextSave = $"Save{maxNumber + 1}";
-                    
-        foreach (string dirName in saveDirectories)
+            Array.Sort(saveDirectories);
+
+            int maxNumber = saveDirectories.Select(s =>
+            {
+                Match match = Regex.Match(s, @"^Save(\d+)$");
+                return match.Success ? int.Parse(match.Groups[1].Value) : 0;
+            }).Max();
+
+            nextSave = $"Save{maxNumber + 1}";
+
+            foreach (string dirName in saveDirectories)
+            {
+                ProfileSlotUI newSlot = Instantiate(slotPrefab, slotsContainer);
+
+                Texture2D thumbnail = SaveHandler.LoadThumbnail(dirName);
+
+                newSlot.SetupSlot(dirName, thumbnail, OnProfileSelected);
+            }
+        } else
         {
-            ProfileSlotUI newSlot = Instantiate(slotPrefab, slotsContainer);
-            
-            Texture2D thumbnail = SaveHandler.LoadThumbnail(dirName);
-            
-            newSlot.SetupSlot(dirName, thumbnail, OnProfileSelected);
+            nextSave = "Save1";
         }
 
         ProfileSlotUI creationSlot = Instantiate(slotPrefab, slotsContainer);
