@@ -13,6 +13,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     private int currentScore = 0;
     
     [SerializeField] ThemesSo _themesSo;
+    [SerializeField] ProfileSO _profileSO;
 
     public event Action<DifficultySettings> onDifficultyChange;
     public event Action onGameOver;
@@ -33,11 +34,14 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     private void Start()
     {
+        if (_profileSO.iSProfileLoaded)
+        {
+            LoadGame(_profileSO.profileName);
+        }
+        
         SettingsManager.Instance.onDifficultyChanged += UpdateDifficultyLevel;
 
         UpdateDifficultyLevel(SettingsManager.Instance.settings.difficulty);
-        
-        RenderSettings.skybox = _themesSo.skyThemes[_themesSo.currentThemeIndex];
     }
     void Update()
     {
@@ -116,6 +120,8 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     void Restart()
     {
+        RenderSettings.skybox = _themesSo.skyThemes[_themesSo.currentThemeIndex];
+        
         // Reset our variables for the fresh scene
         isGameOver = false;
         currentDifficultyIndex = 0;
@@ -133,7 +139,6 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         }
         
         difficultyCoroutine = StartCoroutine(ChangeDifficulty());
-
     }
 
     private void AssignReferences()
@@ -186,7 +191,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     private void OnApplicationQuit()
     {
-        SaveGame("Save");
+        SaveGame(_profileSO.profileName);
     }
 
     private void SaveGame(string saveName)

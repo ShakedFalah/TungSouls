@@ -2099,6 +2099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _themesSo: {fileID: 11400000, guid: 8d7c5c2f504101d4590ce8c7966255fb, type: 2}
+  _profileSO: {fileID: 11400000, guid: de069106c7b195c418cfd02961ee6516, type: 2}
   isGameOver: 0
   difficultyManagers:
   - {fileID: 11400000, guid: babb71b0908fd34488c999f973e74238, type: 2}

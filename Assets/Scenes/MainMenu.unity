@@ -1308,6 +1308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProfileSelectionMenu
   slotsContainer: {fileID: 1104682395}
   slotPrefab: {fileID: 146996086861484127, guid: e7a52afed281c2a44a2eb7885e6bd5d1, type: 3}
+  _ProfileSO: {fileID: 11400000, guid: de069106c7b195c418cfd02961ee6516, type: 2}
 --- !u!1 &1842021998
 GameObject:
   m_ObjectHideFlags: 0

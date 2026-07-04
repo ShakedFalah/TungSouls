@@ -5,8 +5,9 @@ public class ProfileSelectionMenu : MonoBehaviour
 {
     [Header("UI References")]
     [SerializeField] private Transform slotsContainer; 
-    [SerializeField] private ProfileSlotUI slotPrefab; 
+    [SerializeField] private ProfileSlotUI slotPrefab;
 
+    [SerializeField] private ProfileSO _ProfileSO;
     void OnEnable()
     {
         PopulateProfileList();
@@ -20,16 +21,12 @@ public class ProfileSelectionMenu : MonoBehaviour
         }
         
         string[] saveDirectories = SaveHandler.GetSaveNames();
-
-        if (saveDirectories == null || saveDirectories.Length == 0)
-        {
-            Debug.Log("No profile saves found yet. Spawning creation slot.");
+        
+        Debug.Log("No profile saves found yet. Spawning creation slot.");
             
-            ProfileSlotUI creationSlot = Instantiate(slotPrefab, slotsContainer);
+        ProfileSlotUI creationSlot = Instantiate(slotPrefab, slotsContainer);
             
-            creationSlot.SetupSlot("Create New Profile", null, HandleCreateNewProfile);
-            return;
-        }
+        creationSlot.SetupSlot("Create New Profile", null, HandleCreateNewProfile);
         
         foreach (string dirName in saveDirectories)
         {
@@ -45,24 +42,24 @@ public class ProfileSelectionMenu : MonoBehaviour
     {
         Debug.Log($"Profile selected: {chosenDirectory}!");
         
-        SaveData loadedSession = SaveHandler.ReadFromJson(chosenDirectory);
+        _ProfileSO.profileName = chosenDirectory;
+        _ProfileSO.iSProfileLoaded = true;
         
         MainMenuHUD mainHUD = Object.FindFirstObjectByType<MainMenuHUD>();
         if (mainHUD != null)
         {
-            mainHUD.StartLoadedGame(loadedSession);
+            mainHUD.StartLoadedGame();
         }
     }
 
     private void HandleCreateNewProfile(string placeholderName)
     {
+        _ProfileSO.profileName = placeholderName;
+        _ProfileSO.iSProfileLoaded = false;
+        
         Debug.Log("User clicked to create a brand new save profile slot.");
         
         string newProfileName = "Profile_1";
-
-        SaveData newGameSession = new SaveData(); 
-        
-        SaveHandler.SaveToJson(newGameSession, newProfileName);
         
         PopulateProfileList();
     }

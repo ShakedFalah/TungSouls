@@ -9,7 +9,6 @@ public class MainMenuHUD : MonoBehaviour
 
     [SerializeField] private GameObject profileSelectionPanel;
     
-    public static SaveData SelectedProfileData { get; private set; }
     public static bool IsLoadingFromSave { get; private set; }
 
     public void OpenProfileSelection()
@@ -32,7 +31,6 @@ public class MainMenuHUD : MonoBehaviour
     public void StartNewGame()
     {
         IsLoadingFromSave = false;
-        SelectedProfileData = null;
 
         // Create new seed
         string newSeed = Random.Range(100000, 999999).ToString();
@@ -41,13 +39,8 @@ public class MainMenuHUD : MonoBehaviour
         LoadGameplayScene();
     }
 
-    public void StartLoadedGame(SaveData loadedProfile)
+    public void StartLoadedGame()
     {
-        IsLoadingFromSave = true;
-        SelectedProfileData = loadedProfile;
-        
-        ApplySeededRandomness(loadedProfile.seed);
-
         LoadGameplayScene();
     }
 
