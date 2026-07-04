@@ -21,6 +21,9 @@ public class ProfileSlotUI : MonoBehaviour
         if (thumbnail != null)
         {
             thumbnailImage.texture = thumbnail;
+        } else
+        {
+            thumbnailImage.enabled = false;
         }
         
         selectButton.onClick.RemoveAllListeners();

@@ -126,6 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstacleItem
   despawnDistance: -8
-  poolTag: Obstacle
-  magnetPullSpeed: 15
-  isObstacle: 1
+  poolTag: 1
+  isMagnetable: 0

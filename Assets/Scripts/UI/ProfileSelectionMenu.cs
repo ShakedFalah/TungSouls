@@ -1,5 +1,7 @@
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 using UnityEngine;
-using System.IO;
 
 public class ProfileSelectionMenu : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class ProfileSelectionMenu : MonoBehaviour
     [SerializeField] private ProfileSlotUI slotPrefab;
 
     [SerializeField] private ProfileSO _ProfileSO;
+    private string nextSave = "";
     void OnEnable()
     {
         PopulateProfileList();
@@ -21,13 +24,16 @@ public class ProfileSelectionMenu : MonoBehaviour
         }
         
         string[] saveDirectories = SaveHandler.GetSaveNames();
-        
-        Debug.Log("No profile saves found yet. Spawning creation slot.");
-            
-        ProfileSlotUI creationSlot = Instantiate(slotPrefab, slotsContainer);
-            
-        creationSlot.SetupSlot("Create New Profile", null, HandleCreateNewProfile);
-        
+        Array.Sort(saveDirectories);
+
+        int maxNumber = saveDirectories.Select(s =>
+        {
+            Match match = Regex.Match(s, @"^Save(\d+)$");
+            return match.Success ? int.Parse(match.Groups[1].Value) : 0;
+        }).Max();
+
+        nextSave = $"Save{maxNumber + 1}";
+                    
         foreach (string dirName in saveDirectories)
         {
             ProfileSlotUI newSlot = Instantiate(slotPrefab, slotsContainer);
@@ -36,6 +42,10 @@ public class ProfileSelectionMenu : MonoBehaviour
             
             newSlot.SetupSlot(dirName, thumbnail, OnProfileSelected);
         }
+
+        ProfileSlotUI creationSlot = Instantiate(slotPrefab, slotsContainer);
+
+        creationSlot.SetupSlot("New Profile", null, HandleCreateNewProfile);
     }
 
     private void OnProfileSelected(string chosenDirectory)
@@ -45,7 +55,7 @@ public class ProfileSelectionMenu : MonoBehaviour
         _ProfileSO.profileName = chosenDirectory;
         _ProfileSO.iSProfileLoaded = true;
         
-        MainMenuHUD mainHUD = Object.FindFirstObjectByType<MainMenuHUD>();
+        MainMenuHUD mainHUD = UnityEngine.Object.FindFirstObjectByType<MainMenuHUD>();
         if (mainHUD != null)
         {
             mainHUD.StartLoadedGame();
@@ -54,13 +64,15 @@ public class ProfileSelectionMenu : MonoBehaviour
 
     private void HandleCreateNewProfile(string placeholderName)
     {
-        _ProfileSO.profileName = placeholderName;
+        _ProfileSO.profileName = nextSave;
         _ProfileSO.iSProfileLoaded = false;
-        
+
+        MainMenuHUD mainHUD = UnityEngine.Object.FindFirstObjectByType<MainMenuHUD>();
+        if (mainHUD != null)
+        {
+            mainHUD.StartLoadedGame();
+        }
+
         Debug.Log("User clicked to create a brand new save profile slot.");
-        
-        string newProfileName = "Profile_1";
-        
-        PopulateProfileList();
     }
 }

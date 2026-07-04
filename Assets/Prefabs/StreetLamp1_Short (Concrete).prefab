@@ -130,9 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemLogicBase
   despawnDistance: -8
-  poolTag: Lamp
-  magnetPullSpeed: 15
-  isObstacle: 1
+  poolTag: 7
+  isMagnetable: 0
 --- !u!1 &6947888012375459675
 GameObject:
   m_ObjectHideFlags: 0
