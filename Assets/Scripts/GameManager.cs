@@ -12,6 +12,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     private float currentDistance = 0f;
     private int currentScore = 0;
 
+    [Header("Themes and Profiles")]
     [SerializeField] ThemesSo _themesSo;
     [SerializeField] ProfileSO _profileSO;
 
@@ -202,7 +203,9 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         PlayerController playerController = player.GetComponent<PlayerController>();
-        SaveData data = new SaveData();
+        
+        SaveData data = SaveHandler.ReadFromJson(saveName);
+
         data.score = currentScore;
         data.distance = currentDistance;
         data.time = currentTime;
@@ -214,6 +217,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         data.invincibilityDuration = playerController.invincibleDuration;
         data.multiplierValue = playerController.scoreMultiplier;
         data.randomState = JsonUtility.ToJson(UnityEngine.Random.state);
+
         SaveHandler.SaveToJson(data, saveName);
 
         CameraCaptureToTexture cameraCapture = GetComponent<CameraCaptureToTexture>();
@@ -229,25 +233,38 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         SaveData data = SaveHandler.ReadFromJson(fileName);
         string[] saves = SaveHandler.GetSaveNames();
 
+        if(data == null) return;
+        
         AddScore(data.score);
         currentDistance = data.distance;
         currentTime = data.time;
         currentDifficultyIndex = data.difficultyIndex;
-        UnityEngine.Random.state = JsonUtility.FromJson<UnityEngine.Random.State>(data.randomState);
+
+        if (!string.IsNullOrEmpty(data.randomState))
+        {
+            UnityEngine.Random.state = JsonUtility.FromJson<UnityEngine.Random.State>(data.randomState);
+        }
+        
         player.transform.position = new Vector3(data.playerPositionX, playerPosition.y, playerPosition.z);
         playerController.magnetDuration = data.magnetDuration;
         playerController.multiplierDuration = data.multiplierDuration;
         playerController.invincibleDuration = data.invincibilityDuration;
         playerController.scoreMultiplier = data.multiplierValue;
+        
         LoadObstacles(data.obstaclesData);
     }
 
     private void LoadObstacles(ObstacleData[] obstaclesData)
     {
+        if (obstaclesData == null) return;
+        
         foreach (ObstacleData data in obstaclesData)
         {
             GameObject spawnedObject = TaggedObjectPooler.Instance.GetPooledObject(data.tag);
-            spawnedObject.transform.position = new Vector3(data.positionX, data.positionY, data.positionZ);
+            if (spawnedObject != null) // safety checks
+            {
+                spawnedObject.transform.position = new Vector3(data.positionX, data.positionY, data.positionZ);
+            }
         }
     }
 

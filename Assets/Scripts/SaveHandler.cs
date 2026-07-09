@@ -26,6 +26,9 @@ public class SaveData
     public float invincibilityDuration;
     public float multiplierValue;
     public string randomState;
+    
+    public string lastClaimedTimeStr; // when player got their last reward
+    public int totalTungs; // the daily reward
 }
 
 public static class SaveHandler
@@ -48,23 +51,29 @@ public static class SaveHandler
         // Write the JSON data to a file
         File.WriteAllText(Path.Combine(path, saveFileName), json);
 
-        Debug.Log("List of data saved as JSON to: " + path); // For debugging purposes
+        //Debug.Log("List of data saved as JSON to: " + path); // For debugging purposes
     }
 
     // Function to read SaveData from JSON
     public static SaveData ReadFromJson(string directoryName)
     {
+        string path = Path.Combine(savePath, directoryName, saveFileName);
+        
+        if (!File.Exists(path))
+        {
+            //Debug.Log($"Save file not found at {path}. Returning fresh SaveData object.");
+            return new SaveData(); // Safely returns a blank data object instead of crashing
+        }
+        
         try
         {
-            string path = Path.Combine(savePath, directoryName, saveFileName);
-
             // Read the JSON file content
             string jsonContent = File.ReadAllText(path);
 
             // Deserialize the JSON to SaveData
             SaveData data = JsonConvert.DeserializeObject<SaveData>(jsonContent);
 
-            Debug.Log($"Successfully read items from {path}");
+            //Debug.Log($"Successfully read items from {path}");
             return data;
         }
         catch (Exception e)
