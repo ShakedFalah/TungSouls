@@ -8,15 +8,17 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 {
 
     private int currentDifficultyIndex;
-    private float currentTime = 0f;
-    private float currentDistance = 0f;
-    private int currentScore = 0;
+    public float currentTime { get; private set; } = 0f;
+    public float currentDistance { get; private set; } = 0f;
+    public int currentScore { get; private set; } = 0;
 
     [SerializeField] ThemesSo _themesSo;
     [SerializeField] ProfileSO _profileSO;
 
     public event Action<DifficultySettings> onDifficultyChange;
     public event Action onGameOver;
+    public event Action<float> onDistanceChanged;
+    public event Action<float> onScoreChanged;
     public DifficultySettings CurrentDifficulty => difficultyManagers[(int)difficultyLevel].difficultyList[currentDifficultyIndex];
 
     [Header("Game State")]
@@ -26,7 +28,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     [Header("Difficulty")]
     [SerializeField] private List<DifficultyManager> difficultyManagers;
-    private int difficultyLevel;
+    public int difficultyLevel { get; private set; }
 
     private HUDManager hudManager;
     private Canvas hud;
@@ -54,6 +56,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         currentTime += Time.deltaTime; // time
 
         currentDistance += CurrentDifficulty.movementSpeed * Time.deltaTime; // distance
+        onDistanceChanged?.Invoke(currentDistance);
 
         if (hudManager != null)
         {
@@ -70,6 +73,8 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         {
             hudManager.UpdateScoreDisplay(currentScore); // displays the score
         }
+
+        onScoreChanged?.Invoke(currentScore);
     }
 
     public void TriggerGameOver()

@@ -718,6 +718,7 @@ GameObject:
   - component: {fileID: 673060561}
   - component: {fileID: 673060560}
   - component: {fileID: 673060559}
+  - component: {fileID: 673060562}
   m_Layer: 5
   m_Name: Setttings
   m_TagString: Untagged
@@ -811,10 +812,22 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 673060559}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 673060562}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: OpenConsentSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &673060561
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -823,6 +836,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 673060557}
   m_CullTransparentMesh: 1
+--- !u!114 &673060562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 673060557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400577c3440e17045809279c40712c13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  consentPopupPanel: {fileID: 415295980}
 --- !u!1 &842346870
 GameObject:
   m_ObjectHideFlags: 0
