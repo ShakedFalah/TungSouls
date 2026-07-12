@@ -18,7 +18,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     public event Action<DifficultySettings> onDifficultyChange;
     public event Action onGameOver;
     public event Action<float> onDistanceChanged;
-    public event Action<float> onScoreChanged;
+    public event Action<int> onScoreChanged;
     public DifficultySettings CurrentDifficulty => difficultyManagers[(int)difficultyLevel].difficultyList[currentDifficultyIndex];
 
     [Header("Game State")]
