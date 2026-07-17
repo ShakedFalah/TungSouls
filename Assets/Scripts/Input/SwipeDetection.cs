@@ -75,7 +75,10 @@ public class SwipeDetection : MonoBehaviour
             case SwipeDirection.Up:
                 playerController.Jump();
                 break;
-            default:
+            case SwipeDirection.Down:
+                playerController.Drop();
+                break;
+            default: 
                 break;
         }
     }

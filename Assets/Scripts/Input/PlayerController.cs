@@ -24,11 +24,12 @@ public class PlayerController : MonoBehaviour
     [Header("Jump Setup")]    
     [SerializeField] private float jumpPower = 4f;
     [SerializeField] private float gravity = 2f;
+    [SerializeField] private float dropPower = 8f;
+    [SerializeField] private float distToGround = 1.5f; // distance from the ground that counts as touching the ground 
     
     public float[] lanesPositions => new float[] {-laneSpacing, middleLane, laneSpacing}; // using Lambda, I can skip making a function that gets the lanesPositions, making it in one line
     
     private Rigidbody rb;
-    private bool isGrounded;
     
     void Start()
     {
@@ -45,7 +46,7 @@ public class PlayerController : MonoBehaviour
         
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * laneSwitchSpeed); // makes the player slide to from thier current position to the target position 
         
-        if(!isGrounded && rb.linearVelocity.y  < 0)
+        if(!checkOnGround() && rb.linearVelocity.y  < 0)
         {
             rb.AddForce(Vector3.down * gravity * Time.deltaTime, ForceMode.VelocityChange);
         }
@@ -88,21 +89,52 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded)
+        if (checkOnGround())
         {
             // resets velocity Y to 0 so all jumps are equal 
             rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
             rb.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
-            isGrounded = false;
         }
     }
 
-    private void OnCollisionEnter(Collision collision) // reset isGrounded if the player touches the ground
+    public void Drop()
+    {
+        if (!checkOnGround())
+        {
+            // remove any upward momentum
+            if (rb.linearVelocity.y > 0)
+            {
+                rb.linearVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
+            }
+            
+            rb.AddForce(Vector3.down * dropPower, ForceMode.Impulse);
+        }
+    }
+
+    // old check for ground collision, I changed it to raytrace due to player feedback
+    /*private void OnCollisionEnter(Collision collision) // reset isGrounded if the player touches the ground
     {
         if (collision.gameObject.CompareTag("Ground"))
-        {
             isGrounded = true;
+    }*/
+
+    private bool checkOnGround() // checking with raycast
+    {
+        RaycastHit hit;
+    
+        Vector3 rayStart = transform.position;
+    
+        if (Physics.Raycast(rayStart, Vector3.down, out hit, distToGround))
+        {
+            if (hit.collider.CompareTag("Ground"))
+            {
+                //Debug.DrawRay(rayStart, Vector3.down * distToGround, Color.green);
+                return true;
+            }
         }
+
+        //Debug.DrawRay(rayStart, Vector3.down * distToGround, Color.red);
+        return false;
     }
     
     // Invincibility 
