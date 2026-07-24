@@ -9,13 +9,16 @@ public class HUDManager : MonoBehaviour // singleton
     [SerializeField] private TextMeshProUGUI distanceText; // distance
     [SerializeField] private TextMeshProUGUI difficultyText; // difficulty
     [SerializeField] private TextMeshProUGUI gameOverText; // game over
+    [SerializeField] private TextMeshProUGUI multiplierText; // x_
     [SerializeField] private GameObject inputButtons;
+    [SerializeField] private PlayerController playerController;
+
 
     void Start()
     {
         gameOverText.enabled = false;
         UpdateScoreDisplay(0);
-        UpdateHUDFields(0f, 0f, 1);
+        UpdateHUDFields(0f, 0f, 1, playerController.scoreMultiplier);
         GameManager.Instance.onGameOver += ShowGameOver;
 
         SettingsManager.Instance.onInputChanged += UpdateInputType;
@@ -30,7 +33,7 @@ public class HUDManager : MonoBehaviour // singleton
         }
     }
 
-    public void UpdateHUDFields(float time, float distance, int difficulty)
+    public void UpdateHUDFields(float time, float distance, int difficulty, float multiplier)
     {
         int minutes = Mathf.FloorToInt(time / 60F);
         int seconds = Mathf.FloorToInt(time % 60F);
@@ -47,6 +50,11 @@ public class HUDManager : MonoBehaviour // singleton
         if (difficultyText != null)
         {
             difficultyText.text = "Difficulty: " + difficulty;
+        }
+
+        if (multiplierText != null)
+        {
+            multiplierText.text = "x" + multiplier;
         }
     }
 

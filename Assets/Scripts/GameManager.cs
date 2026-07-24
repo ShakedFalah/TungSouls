@@ -11,6 +11,8 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     private float currentTime = 0f;
     private float currentDistance = 0f;
     private int currentScore = 0;
+    
+    [SerializeField] private PlayerController playerController;
 
     [Header("Themes and Profiles")]
     [SerializeField] ThemesSo _themesSo;
@@ -58,7 +60,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
         if (hudManager != null)
         {
-            hudManager.UpdateHUDFields(currentTime, currentDistance, currentDifficultyIndex + 1);
+            hudManager.UpdateHUDFields(currentTime, currentDistance, currentDifficultyIndex + 1, playerController.scoreMultiplier);
         }
 
     }
