@@ -10,7 +10,6 @@ public class ObstacleItem : MovingItemLogic
         if (playerScript != null && playerScript.invincibleDuration > 0)
         {
             //Debug.Log("Ignore Hit!!!");
-            
             base.OnPlayerHit(player);
             return;
         }

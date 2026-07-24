@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     public MagnetSettings magnetSettings;
     public InvincibilitySettings invincibilitySettings;
     public MultiplierSettings multiplierSettings;
+    [SerializeField] private GameObject shieldPrefab;
+    private GameObject shieldInstance;
     
     [Header("Jump Setup")]    
     [SerializeField] private float jumpPower = 4f;
@@ -33,6 +35,12 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
+        if (shieldPrefab == null)
+        {
+            Debug.LogError("Shield Prefab is NULL!", this);
+        }
+        shieldInstance = Instantiate(shieldPrefab);
+        shieldInstance.SetActive(false);
         currentLane = transform.position.x;
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; // stopping the player from spinning 
@@ -60,6 +68,16 @@ public class PlayerController : MonoBehaviour
         } else
         {
             scoreMultiplier = 1f;
+        }
+        
+        if (invincibleDuration > 0)
+        {
+            shieldInstance.SetActive(true);
+            shieldInstance.transform.position = transform.position;
+        }
+        else
+        {
+            shieldInstance.SetActive(false);
         }
     }
 
