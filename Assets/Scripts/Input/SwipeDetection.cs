@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.PlayerSettings;
 
 public enum SwipeDirection
 {
@@ -16,7 +17,11 @@ public class SwipeDetection : MonoBehaviour
     [SerializeField] private InputActionReference touchPosition;
 
     [Header("Swipe Settings")]
-    [SerializeField] private float minSwipeDistance = 80f;
+    [SerializeField] private float minSwipeDistance = 800f;
+    [SerializeField] private float swipeCooldown = 0.2f;
+
+    private float nextSwipeTime = 0;
+
 
     [SerializeField] private PlayerController playerController;
 
@@ -45,21 +50,31 @@ public class SwipeDetection : MonoBehaviour
 
     private void StartSwipe(InputAction.CallbackContext ctx)
     {
-        startPos = touchPosition.action.ReadValue<Vector2>();
+        startPos = Touchscreen.current.primaryTouch.position.ReadValue();
         isSwiping = true;
+        nextSwipeTime = 0;
     }
 
     private void EndSwipe(InputAction.CallbackContext ctx)
     {
+        isSwiping = false;
+    }
+
+    private void Update()
+    {
         if (!isSwiping)
             return;
 
-        Vector2 endPos = touchPosition.action.ReadValue<Vector2>();
-        Vector2 delta = endPos - startPos;
+        Vector2 currentPos = touchPosition.action.ReadValue<Vector2>();
+        Vector2 delta = currentPos - startPos;
 
-        isSwiping = false;
-
+        Debug.Log("update " + startPos);
         if (delta.magnitude < minSwipeDistance)
+        {
+            return;
+        }
+
+        if (Time.time < nextSwipeTime)
         {
             return;
         }
@@ -75,10 +90,13 @@ public class SwipeDetection : MonoBehaviour
             case SwipeDirection.Up:
                 playerController.Jump();
                 break;
-            default:
-                break;
         }
+
+        startPos = currentPos;
+        nextSwipeTime = Time.time + swipeCooldown;
     }
+
+
 
     private SwipeDirection HandleSwipe(Vector2 dir)
     {
