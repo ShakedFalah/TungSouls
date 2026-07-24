@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement; // to restart the game
 public class GameManager : SingletonPersistent<GameManager> // making it a singleton
 {
 
-    private int currentDifficultyIndex;
+    public int currentDifficultyIndex;
     public float currentTime { get; private set; } = 0f;
     public float currentDistance { get; private set; } = 0f;
     public int currentScore { get; private set; } = 0;
@@ -19,7 +19,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     public event Action onGameOver;
     public event Action<float> onDistanceChanged;
     public event Action<int> onScoreChanged;
-    public DifficultySettings CurrentDifficulty => difficultyManagers[(int)difficultyLevel].difficultyList[currentDifficultyIndex];
+    public DifficultySettings CurrentDifficulty => difficultyManager.difficultyList[currentDifficultyIndex];
 
     [Header("Game State")]
     [SerializeField] private bool isGameOver = false;
@@ -27,8 +27,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     private Coroutine difficultyCoroutine;
 
     [Header("Difficulty")]
-    [SerializeField] private List<DifficultyManager> difficultyManagers;
-    public int difficultyLevel { get; private set; }
+    [SerializeField] private DifficultyManager difficultyManager;
 
     private HUDManager hudManager;
     private Canvas hud;
@@ -44,10 +43,6 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         {
             ApplySeededRandomness(UnityEngine.Random.Range(100000, 999999).ToString());
         }
-
-        SettingsManager.Instance.onDifficultyChanged += UpdateDifficultyLevel;
-
-        UpdateDifficultyLevel(SettingsManager.Instance.settings.difficulty);
     }
     void Update()
     {
@@ -110,13 +105,13 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     IEnumerator ChangeDifficulty()
     {
         yield return new WaitForEndOfFrame();
-        while (currentDifficultyIndex < difficultyManagers[(int)difficultyLevel].difficultyList.Count - 1)
+        while (currentDifficultyIndex < difficultyManager.difficultyList.Count - 1)
         {
-            yield return new WaitForSeconds(difficultyManagers[(int)difficultyLevel].difficultyChangeTime * (currentDifficultyIndex + 1) - currentTime);
+            yield return new WaitForSeconds(difficultyManager.difficultyChangeTime * (currentDifficultyIndex + 1) - currentTime);
 
             if (isGameOver) yield break;
 
-            if (currentDifficultyIndex < difficultyManagers[(int)difficultyLevel].difficultyList.Count - 1)
+            if (currentDifficultyIndex < difficultyManager.difficultyList.Count - 1)
             {
                 currentDifficultyIndex++;
                 if (onDifficultyChange != null)
@@ -192,12 +187,6 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         Time.timeScale = 1;
     }
 
-    public void UpdateDifficultyLevel(int difficultyLevel)
-    {
-        this.difficultyLevel = difficultyLevel;
-        onDifficultyChange?.Invoke(CurrentDifficulty);
-    }
-
     private void OnApplicationQuit()
     {
         SaveGame(_profileSO.profileName);
@@ -211,7 +200,6 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         data.score = currentScore;
         data.distance = currentDistance;
         data.time = currentTime;
-        data.difficultyIndex = difficultyLevel;
         data.playerPositionX = player.transform.position.x;
         data.obstaclesData = SaveHandler.GetObstacleDataList();
         data.magnetDuration = playerController.magnetDuration;

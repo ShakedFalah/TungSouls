@@ -18,7 +18,7 @@ public class AnalyticsManager : MonoBehaviour
     {
         if (!didCall100m && distance >= 100)
         {
-            OnReached100M(gameManager.currentTime, gameManager.currentScore, gameManager.difficultyLevel);
+            OnReached100M(gameManager.currentTime, gameManager.currentScore, gameManager.currentDifficultyIndex);
         }
     }
     public void OnReached100M(float time, int score, int difficultyLevel)
@@ -37,7 +37,7 @@ public class AnalyticsManager : MonoBehaviour
     {
         if (!didCall50Score && score >= 50)
         {
-            On50Score(gameManager.currentTime, gameManager.currentDistance, gameManager.difficultyLevel);
+            On50Score(gameManager.currentTime, gameManager.currentDistance, gameManager.currentDifficultyIndex);
         }
     }
 
@@ -57,7 +57,7 @@ public class AnalyticsManager : MonoBehaviour
     {
         didCall100m = false;
         didCall50Score = false;
-        CallGameOverEvent(gameManager.currentTime, gameManager.currentScore, gameManager.currentDistance, gameManager.difficultyLevel);
+        CallGameOverEvent(gameManager.currentTime, gameManager.currentScore, gameManager.currentDistance, gameManager.currentDifficultyIndex);
     }
 
     public void CallGameOverEvent(float time, int score, float distance, int difficultyLevel)

@@ -16,11 +16,6 @@ public class PauseMenu : MonoBehaviour
         SettingsManager.Instance.UpdateSFXVolume(volume);
     }
 
-    public void UpdateDifficultyLevel(int difficultyLevel)
-    {
-        SettingsManager.Instance.UpdateDifficulty(difficultyLevel);
-    }
-
     public void UpdateInputType(int inputValue)
     {
         SettingsManager.Instance.UpdateInput(inputValue);
