@@ -34,6 +34,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     [Header("Upgrades")]
     [SerializeField] private MetaUpgradesSO metaUpgrades;
+    [SerializeField] private IsMagnetableSettingsSO multiplierMagnetableSettings;
 
     private Dictionary<string, int> upgradeIndexes = new Dictionary<string, int>();
     private HUDManager hudManager;
@@ -319,6 +320,16 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         }
 
         return upgrade.newSettings;
+    }
+
+    public void AddPlayerLife()
+    {
+        playerController.AddLife();
+    }
+
+    public void SetMultiplierMagnetable(bool magnetable)
+    {
+        multiplierMagnetableSettings.isMagnetable = magnetable;
     }
 }
 

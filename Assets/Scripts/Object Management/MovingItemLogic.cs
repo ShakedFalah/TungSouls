@@ -8,7 +8,7 @@ public class MovingItemLogic : MonoBehaviour
     [SerializeField] protected ItemType poolTag; // for returning objects to the pool
     
     [Header("Magnet Pull Settings")]
-    [SerializeField] private bool isMagnetable = false; // only on for items that arent affected by magnet the player
+    [SerializeField] private IsMagnetableSettingsSO isMagnetableSettings; // only on for items that arent affected by magnet the player
     
     private PlayerController playerScript;
 
@@ -23,7 +23,7 @@ public class MovingItemLogic : MonoBehaviour
     
     void Update()
     {
-        if (isMagnetable && playerScript != null && playerScript.magnetDuration > 0) // activating the magnet pull
+        if (isMagnetableSettings.isMagnetable && playerScript != null && playerScript.magnetDuration > 0) // activating the magnet pull
         {
             float zDistanceToPlayer = transform.position.z - playerScript.transform.position.z;
 

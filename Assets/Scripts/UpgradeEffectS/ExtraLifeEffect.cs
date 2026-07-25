@@ -5,5 +5,6 @@ public class ExtraLifeEffect : UpgradeEffectSO
 {
     public override void Apply(GameManager game)
     {
+        game.AddPlayerLife();
     }
 }

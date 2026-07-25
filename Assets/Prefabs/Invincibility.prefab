@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CollectableItem
   despawnDistance: -8
   poolTag: 3
-  isMagnetable: 0
+  isMagnetableSettings: {fileID: 11400000, guid: 342ae3a41380d784d843dfe6329c767b, type: 2}
   collectableSettings: {fileID: 11400000, guid: 30400a35a6cf9ad44aa0186824852f65, type: 2}
 --- !u!65 &2832829974383161991
 BoxCollider:
