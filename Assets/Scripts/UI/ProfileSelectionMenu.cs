@@ -8,7 +8,8 @@ public class ProfileSelectionMenu : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private Transform slotsContainer; 
     [SerializeField] private ProfileSlotUI slotPrefab;
-
+    
+    [SerializeField] private DailyRewardManager dailyRewardManager;
     [SerializeField] private ProfileSO _ProfileSO;
     private string nextSave = "";
     void OnEnable()
@@ -61,11 +62,15 @@ public class ProfileSelectionMenu : MonoBehaviour
         
         _ProfileSO.profileName = chosenDirectory;
         _ProfileSO.iSProfileLoaded = true;
-        
-        MainMenuHUD mainHUD = UnityEngine.Object.FindFirstObjectByType<MainMenuHUD>();
-        if (mainHUD != null)
+
+        if (dailyRewardManager != null)
         {
-            mainHUD.StartLoadedGame();
+            dailyRewardManager.CheckDailyRewardOnLogin(chosenDirectory);
+        }
+        else
+        {
+            Debug.Log("daily reward refrence is missing!");
+            
         }
     }
 
@@ -74,12 +79,20 @@ public class ProfileSelectionMenu : MonoBehaviour
         _ProfileSO.profileName = nextSave;
         _ProfileSO.iSProfileLoaded = false;
 
+        if (dailyRewardManager != null)
+        {
+            dailyRewardManager.CheckDailyRewardOnLogin(nextSave);
+        }
+        
+        //Debug.Log("User clicked to create a brand new save profile slot.");
+    }
+
+    public void StartTheGame()
+    {
         MainMenuHUD mainHUD = UnityEngine.Object.FindFirstObjectByType<MainMenuHUD>();
         if (mainHUD != null)
         {
             mainHUD.StartLoadedGame();
         }
-
-        Debug.Log("User clicked to create a brand new save profile slot.");
     }
 }

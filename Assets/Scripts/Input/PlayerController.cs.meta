@@ -1,2 +1,15 @@
 fileFormatVersion: 2
 guid: 323a6f8b1577d0043984311f7b631b52
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - magnetSettings: {fileID: 11400000, guid: 5025fb7ede4f46a4f8a8328ba9e2a924, type: 2}
+  - invincibilitySettings: {fileID: 11400000, guid: 9a2379df5ef3c684889bada97606db79, type: 2}
+  - multiplierSettings: {fileID: 11400000, guid: e7a88228f19b88546a09a07f634932b2, type: 2}
+  - shieldPrefab: {fileID: 5792359540993666966, guid: 8afd9e65594041e4d98d94e6c9caa85a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
