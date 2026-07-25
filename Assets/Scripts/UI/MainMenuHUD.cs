@@ -76,13 +76,15 @@ public class MainMenuHUD : MonoBehaviour
         
         finalSelectionPanel.SetActive(true);
         profileSelectionPanel.SetActive(false);
+        upgradeSelectionPanel.SetActive(false);
     }
 
     public void OpenUpgradeMenu()
     {
-        finalSelectionPanel.SetActive(false);
         upgradeSelectionPanel.SetActive(true);
+        finalSelectionPanel.SetActive(false);
     }
+    
     
     public void ExitApp()
     {
