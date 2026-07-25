@@ -62,6 +62,9 @@ public class ProfileSelectionMenu : MonoBehaviour
         
         _ProfileSO.profileName = chosenDirectory;
         _ProfileSO.iSProfileLoaded = true;
+        
+        PlayerPrefs.SetString("LastSelectedProfile", chosenDirectory);
+        PlayerPrefs.Save();
 
         if (dailyRewardManager != null)
         {
@@ -79,6 +82,9 @@ public class ProfileSelectionMenu : MonoBehaviour
         _ProfileSO.profileName = nextSave;
         _ProfileSO.iSProfileLoaded = false;
 
+        PlayerPrefs.SetString("LastSelectedProfile", nextSave);
+        PlayerPrefs.Save();
+        
         if (dailyRewardManager != null)
         {
             dailyRewardManager.CheckDailyRewardOnLogin(nextSave);
@@ -92,7 +98,7 @@ public class ProfileSelectionMenu : MonoBehaviour
         MainMenuHUD mainHUD = UnityEngine.Object.FindFirstObjectByType<MainMenuHUD>();
         if (mainHUD != null)
         {
-            mainHUD.StartLoadedGame();
+            mainHUD.OpenFinalMenu();
         }
     }
 }
