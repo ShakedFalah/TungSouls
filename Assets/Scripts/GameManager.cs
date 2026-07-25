@@ -143,9 +143,23 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
         AssignReferences();
 
-        playerController.magnetSettings = GetAndApplyPowerUpUpgrade("Magnet", upgradeIndexes["Magnet"]) as MagnetSettings;
-        playerController.invincibilitySettings = GetAndApplyPowerUpUpgrade("Invincibility", upgradeIndexes["Invincibility"]) as InvincibilitySettings;
-        playerController.multiplierSettings = GetAndApplyPowerUpUpgrade("Multiplier", upgradeIndexes["Multiplier"]) as MultiplierSettings;
+        if (upgradeIndexes.TryGetValue("Magnet", out int magnetIndex))
+        {
+            playerController.magnetSettings =
+                GetAndApplyPowerUpUpgrade("Magnet", magnetIndex) as MagnetSettings;
+        }
+
+        if (upgradeIndexes.TryGetValue("Invincibility", out int invincibilityIndex))
+        {
+            playerController.invincibilitySettings =
+                GetAndApplyPowerUpUpgrade("Invincibility", invincibilityIndex) as InvincibilitySettings;
+        }
+
+        if (upgradeIndexes.TryGetValue("Multiplier", out int multiplierIndex))
+        {
+            playerController.multiplierSettings =
+                GetAndApplyPowerUpUpgrade("Multiplier", multiplierIndex) as MultiplierSettings;
+        }
 
         // Restart the difficulty loop safely
         if (difficultyCoroutine != null)
