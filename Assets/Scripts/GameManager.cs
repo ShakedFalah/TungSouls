@@ -11,7 +11,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     public float currentTime { get; private set; } = 0f;
     public float currentDistance { get; private set; } = 0f;
     public int currentScore { get; private set; } = 0;
-    [SerializeField] private PlayerController playerController;
+    private PlayerController playerController;
 
     [Header("Themes and Profiles")]
     [SerializeField] ThemesSo _themesSo;
@@ -152,6 +152,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         hudManager = GameObject.FindGameObjectWithTag("HUDManager").GetComponent<HUDManager>();
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<Canvas>();
         pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu").GetComponent<Canvas>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     public override void Awake()

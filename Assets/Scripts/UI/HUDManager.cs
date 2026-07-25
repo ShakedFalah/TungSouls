@@ -20,7 +20,7 @@ public class HUDManager : MonoBehaviour // singleton
     [SerializeField] private TextMeshProUGUI gameOverText; // game over
     [SerializeField] private GameObject inputButtons; // Input
     [SerializeField] private List<PowerupTimerEntry> powerupTimerEntries; // Powerup status timers
-
+    [SerializeField] private TextMeshProUGUI multiplierText; // x_
 
     [Header("Player Controller")]
     [SerializeField] private PlayerController playerController;
@@ -37,9 +37,6 @@ public class HUDManager : MonoBehaviour // singleton
         }
     }
 
-    [SerializeField] private TextMeshProUGUI multiplierText; // x_
-    [SerializeField] private GameObject inputButtons;
-    [SerializeField] private PlayerController playerController;
 
 
     void Start()

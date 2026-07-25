@@ -83,7 +83,6 @@ public class PlayerController : MonoBehaviour
         {
             shieldInstance.SetActive(false);
         }
-    }
 
         onPowerupStatusChanged?.Invoke(new Dictionary<string, float>
         {
