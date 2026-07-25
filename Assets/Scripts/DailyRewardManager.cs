@@ -5,7 +5,7 @@ using System.Globalization;
 public class DailyRewardManager : MonoBehaviour
 {
     
-    [SerializeField] private int rewardAmount = 50; // The currency you get (change later)-----------------------------------------------
+    [SerializeField] private int rewardAmount = 1000; // The currency you get (change later)-----------------------------------------------
  
     [Header("Scripts")]
     [SerializeField] private NotificationsManager notificationsManager; 

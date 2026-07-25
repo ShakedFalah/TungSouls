@@ -1,9 +1,12 @@
+using System.ComponentModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuHUD : MonoBehaviour
 {
+    [SerializeField] private int totalTungs;
+    
     [SerializeField] private ThemesSo _themesSo;
     
     [SerializeField] private GameObject baseSelectionPanel;
@@ -11,7 +14,10 @@ public class MainMenuHUD : MonoBehaviour
     [SerializeField] private GameObject profileSelectionPanel;
     
     [SerializeField] private GameObject finalSelectionPanel;
+    
+    [SerializeField] private GameObject saveStats;
     [SerializeField] private TextMeshProUGUI saveNameText;
+    [SerializeField] private TextMeshProUGUI currencyText;
     
     [SerializeField] private GameObject upgradeSelectionPanel;
     
@@ -72,8 +78,20 @@ public class MainMenuHUD : MonoBehaviour
 
     public void OpenFinalMenu()
     {
-        saveNameText.text = PlayerPrefs.GetString("LastSelectedProfile", "");
+        string selectedProfile = PlayerPrefs.GetString("LastSelectedProfile", "");
+        saveNameText.text = selectedProfile;
         
+        if (!string.IsNullOrEmpty(selectedProfile))
+        {
+            SaveData data = SaveHandler.ReadFromJson(selectedProfile);
+            currencyText.text = $"Tungs: {data.totalTungs}$";
+        }
+        else
+        {
+            currencyText.text = "Tungs: 0$";
+        }
+        
+        saveStats.SetActive(true);
         finalSelectionPanel.SetActive(true);
         profileSelectionPanel.SetActive(false);
         upgradeSelectionPanel.SetActive(false);
