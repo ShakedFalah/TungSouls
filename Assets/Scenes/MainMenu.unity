@@ -574,6 +574,7 @@ GameObject:
   - component: {fileID: 128845925}
   - component: {fileID: 128845924}
   - component: {fileID: 128845923}
+  - component: {fileID: 128845926}
   m_Layer: 5
   m_Name: MultTier3
   m_TagString: Untagged
@@ -644,19 +645,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 128845924}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962547527}
-        m_TargetAssemblyTypeName: MainMenuHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &128845924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +684,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 128845921}
   m_CullTransparentMesh: 1
+--- !u!114 &128845926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128845921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d9d37f8496cbe4482e332765cd2e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonUI
+  catalog: {fileID: 11400000, guid: 2d48dc6e012941c46b37609d1396868b, type: 2}
+  targetUpgradeID: Mult_3
+  buttonImage: {fileID: 128845924}
+  redCantAfford: {r: 0.9, g: 0.3, b: 0.3, a: 1}
+  grayLocked: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  whiteAvailable: {r: 1, g: 1, b: 1, a: 1}
+  greenPurchased: {r: 0.3, g: 0.9, b: 0.3, a: 1}
 --- !u!1 &152834721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1332,6 +1340,7 @@ GameObject:
   - component: {fileID: 398901528}
   - component: {fileID: 398901527}
   - component: {fileID: 398901526}
+  - component: {fileID: 398901529}
   m_Layer: 5
   m_Name: MagTier3
   m_TagString: Untagged
@@ -1402,19 +1411,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 398901527}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962547527}
-        m_TargetAssemblyTypeName: MainMenuHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &398901527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1453,6 +1450,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 398901524}
   m_CullTransparentMesh: 1
+--- !u!114 &398901529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 398901524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d9d37f8496cbe4482e332765cd2e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonUI
+  catalog: {fileID: 11400000, guid: 2d48dc6e012941c46b37609d1396868b, type: 2}
+  targetUpgradeID: Mag_3
+  buttonImage: {fileID: 398901527}
+  redCantAfford: {r: 0.9, g: 0.3, b: 0.3, a: 1}
+  grayLocked: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  whiteAvailable: {r: 1, g: 1, b: 1, a: 1}
+  greenPurchased: {r: 0.3, g: 0.9, b: 0.3, a: 1}
 --- !u!1 &402196723
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,6 +1516,7 @@ GameObject:
   - component: {fileID: 404721199}
   - component: {fileID: 404721198}
   - component: {fileID: 404721197}
+  - component: {fileID: 404721200}
   m_Layer: 5
   m_Name: MagTier1
   m_TagString: Untagged
@@ -1570,19 +1587,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 404721198}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962547527}
-        m_TargetAssemblyTypeName: MainMenuHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &404721198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1621,6 +1626,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404721195}
   m_CullTransparentMesh: 1
+--- !u!114 &404721200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404721195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d9d37f8496cbe4482e332765cd2e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonUI
+  catalog: {fileID: 11400000, guid: 2d48dc6e012941c46b37609d1396868b, type: 2}
+  targetUpgradeID: Mag_1
+  buttonImage: {fileID: 404721198}
+  redCantAfford: {r: 0.9, g: 0.3, b: 0.3, a: 1}
+  grayLocked: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  whiteAvailable: {r: 1, g: 1, b: 1, a: 1}
+  greenPurchased: {r: 0.3, g: 0.9, b: 0.3, a: 1}
 --- !u!1 &409320784
 GameObject:
   m_ObjectHideFlags: 0
@@ -2143,6 +2167,7 @@ GameObject:
   - component: {fileID: 543236457}
   - component: {fileID: 543236456}
   - component: {fileID: 543236455}
+  - component: {fileID: 543236458}
   m_Layer: 5
   m_Name: MultTier1
   m_TagString: Untagged
@@ -2213,19 +2238,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 543236456}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962547527}
-        m_TargetAssemblyTypeName: MainMenuHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &543236456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2264,6 +2277,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 543236453}
   m_CullTransparentMesh: 1
+--- !u!114 &543236458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543236453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d9d37f8496cbe4482e332765cd2e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonUI
+  catalog: {fileID: 11400000, guid: 2d48dc6e012941c46b37609d1396868b, type: 2}
+  targetUpgradeID: Mult_1
+  buttonImage: {fileID: 543236456}
+  redCantAfford: {r: 0.9, g: 0.3, b: 0.3, a: 1}
+  grayLocked: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  whiteAvailable: {r: 1, g: 1, b: 1, a: 1}
+  greenPurchased: {r: 0.3, g: 0.9, b: 0.3, a: 1}
 --- !u!1 &651183802
 GameObject:
   m_ObjectHideFlags: 0
@@ -3091,6 +3123,7 @@ GameObject:
   - component: {fileID: 877046968}
   - component: {fileID: 877046967}
   - component: {fileID: 877046966}
+  - component: {fileID: 877046969}
   m_Layer: 5
   m_Name: MultTier2
   m_TagString: Untagged
@@ -3161,19 +3194,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 877046967}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962547527}
-        m_TargetAssemblyTypeName: MainMenuHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &877046967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3212,6 +3233,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877046964}
   m_CullTransparentMesh: 1
+--- !u!114 &877046969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877046964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d9d37f8496cbe4482e332765cd2e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonUI
+  catalog: {fileID: 11400000, guid: 2d48dc6e012941c46b37609d1396868b, type: 2}
+  targetUpgradeID: Mult_2
+  buttonImage: {fileID: 877046967}
+  redCantAfford: {r: 0.9, g: 0.3, b: 0.3, a: 1}
+  grayLocked: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  whiteAvailable: {r: 1, g: 1, b: 1, a: 1}
+  greenPurchased: {r: 0.3, g: 0.9, b: 0.3, a: 1}
 --- !u!1 &938693076
 GameObject:
   m_ObjectHideFlags: 0
@@ -4878,6 +4918,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 584ef2abb63e690409d3f62dff320fc3, type: 3}
   m_PrefabInstance: {fileID: 1775924300}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1364106808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1364106810}
+  - component: {fileID: 1364106809}
+  m_Layer: 0
+  m_Name: ShopManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1364106809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364106808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d6720cf2ed5ba4aac3ec641b633348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShopManager
+  currencyText: {fileID: 1107444865}
+--- !u!4 &1364106810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1364106808}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 823.0431, y: 1069.2842, z: -26.40309}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1385389332
 GameObject:
   m_ObjectHideFlags: 0
@@ -5027,6 +5112,7 @@ GameObject:
   - component: {fileID: 1391620027}
   - component: {fileID: 1391620026}
   - component: {fileID: 1391620025}
+  - component: {fileID: 1391620028}
   m_Layer: 5
   m_Name: InvTier2
   m_TagString: Untagged
@@ -5097,19 +5183,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1391620026}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962547527}
-        m_TargetAssemblyTypeName: MainMenuHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &1391620026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5148,6 +5222,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1391620023}
   m_CullTransparentMesh: 1
+--- !u!114 &1391620028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391620023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d9d37f8496cbe4482e332765cd2e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonUI
+  catalog: {fileID: 11400000, guid: 2d48dc6e012941c46b37609d1396868b, type: 2}
+  targetUpgradeID: Inv_2
+  buttonImage: {fileID: 1391620026}
+  redCantAfford: {r: 0.9, g: 0.3, b: 0.3, a: 1}
+  grayLocked: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  whiteAvailable: {r: 1, g: 1, b: 1, a: 1}
+  greenPurchased: {r: 0.3, g: 0.9, b: 0.3, a: 1}
 --- !u!1 &1406428474
 GameObject:
   m_ObjectHideFlags: 0
@@ -6087,6 +6180,7 @@ GameObject:
   - component: {fileID: 1670247517}
   - component: {fileID: 1670247516}
   - component: {fileID: 1670247515}
+  - component: {fileID: 1670247518}
   m_Layer: 5
   m_Name: InvTier1
   m_TagString: Untagged
@@ -6157,19 +6251,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1670247516}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962547527}
-        m_TargetAssemblyTypeName: MainMenuHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &1670247516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6208,6 +6290,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670247513}
   m_CullTransparentMesh: 1
+--- !u!114 &1670247518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670247513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d9d37f8496cbe4482e332765cd2e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonUI
+  catalog: {fileID: 11400000, guid: 2d48dc6e012941c46b37609d1396868b, type: 2}
+  targetUpgradeID: Inv_1
+  buttonImage: {fileID: 1670247516}
+  redCantAfford: {r: 0.9, g: 0.3, b: 0.3, a: 1}
+  grayLocked: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  whiteAvailable: {r: 1, g: 1, b: 1, a: 1}
+  greenPurchased: {r: 0.3, g: 0.9, b: 0.3, a: 1}
 --- !u!1 &1731031653
 GameObject:
   m_ObjectHideFlags: 0
@@ -6254,6 +6355,7 @@ GameObject:
   - component: {fileID: 1737453127}
   - component: {fileID: 1737453126}
   - component: {fileID: 1737453125}
+  - component: {fileID: 1737453128}
   m_Layer: 5
   m_Name: InvTier3
   m_TagString: Untagged
@@ -6324,19 +6426,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1737453126}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962547527}
-        m_TargetAssemblyTypeName: MainMenuHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &1737453126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6375,6 +6465,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1737453123}
   m_CullTransparentMesh: 1
+--- !u!114 &1737453128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1737453123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d9d37f8496cbe4482e332765cd2e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonUI
+  catalog: {fileID: 11400000, guid: 2d48dc6e012941c46b37609d1396868b, type: 2}
+  targetUpgradeID: Inv_3
+  buttonImage: {fileID: 1737453126}
+  redCantAfford: {r: 0.9, g: 0.3, b: 0.3, a: 1}
+  grayLocked: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  whiteAvailable: {r: 1, g: 1, b: 1, a: 1}
+  greenPurchased: {r: 0.3, g: 0.9, b: 0.3, a: 1}
 --- !u!1001 &1775924300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6703,6 +6812,7 @@ GameObject:
   - component: {fileID: 1812303724}
   - component: {fileID: 1812303723}
   - component: {fileID: 1812303722}
+  - component: {fileID: 1812303725}
   m_Layer: 5
   m_Name: MagTier2
   m_TagString: Untagged
@@ -6773,19 +6883,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1812303723}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 962547527}
-        m_TargetAssemblyTypeName: MainMenuHUD, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
 --- !u!114 &1812303723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6824,6 +6922,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1812303720}
   m_CullTransparentMesh: 1
+--- !u!114 &1812303725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812303720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33d9d37f8496cbe4482e332765cd2e17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeButtonUI
+  catalog: {fileID: 11400000, guid: 2d48dc6e012941c46b37609d1396868b, type: 2}
+  targetUpgradeID: Mag_2
+  buttonImage: {fileID: 1812303723}
+  redCantAfford: {r: 0.9, g: 0.3, b: 0.3, a: 1}
+  grayLocked: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  whiteAvailable: {r: 1, g: 1, b: 1, a: 1}
+  greenPurchased: {r: 0.3, g: 0.9, b: 0.3, a: 1}
 --- !u!1 &1842021998
 GameObject:
   m_ObjectHideFlags: 0
@@ -7689,3 +7806,4 @@ SceneRoots:
   - {fileID: 393185925}
   - {fileID: 1246705847}
   - {fileID: 651183805}
+  - {fileID: 1364106810}
