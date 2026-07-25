@@ -15,7 +15,7 @@ public class MetaUpgradesSO : ScriptableObject
 {
     public List<UpgradesKeyObject> upgradesList = new List<UpgradesKeyObject>();
 
-    public PowerupUpgradeSO GetActivePowerupUpgrade(string name, int index)
+    public PowerupUpgradeSO GetPowerupUpgradeByIndex(string name, int index)
     {
         // Find the matching upgrades list
         UpgradesKeyObject upgradeEntry = upgradesList.Find(x => x.key == name);

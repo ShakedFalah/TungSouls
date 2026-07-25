@@ -136,7 +136,7 @@ MonoBehaviour:
   despawnDistance: -8
   poolTag: 4
   isMagnetable: 0
-  collectableSettings: {fileID: 11400000, guid: 5025fb7ede4f46a4f8a8328ba9e2a924, type: 2}
+  collectableSettings: {fileID: 11400000, guid: 4384cc4012cc27b40b6c2d587de89e15, type: 2}
 --- !u!65 &8622863119628684807
 BoxCollider:
   m_ObjectHideFlags: 0

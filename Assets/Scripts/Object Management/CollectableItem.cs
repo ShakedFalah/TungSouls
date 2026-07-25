@@ -3,7 +3,7 @@ using UnityEngine;
 public class CollectableItem : MovingItemLogic
 {
     [Header("Collectable")]
-    public CollectableSettings collectableSettings;
+    public OnCollectSO collectableSettings;
     
     protected override void OnPlayerHit(GameObject player)
     {

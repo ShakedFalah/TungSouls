@@ -17,6 +17,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     [SerializeField] ThemesSo _themesSo;
     [SerializeField] ProfileSO _profileSO;
 
+
     public event Action<DifficultySettings> onDifficultyChange;
     public event Action onGameOver;
     public event Action<float> onDistanceChanged;
@@ -31,6 +32,10 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     [Header("Difficulty")]
     [SerializeField] private DifficultyManager difficultyManager;
 
+    [Header("Upgrades")]
+    [SerializeField] private MetaUpgradesSO metaUpgrades;
+
+    private Dictionary<string, int> upgradeIndexes = new Dictionary<string, int>();
     private HUDManager hudManager;
     private Canvas hud;
     private Canvas pauseMenu;
@@ -137,6 +142,10 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         Time.timeScale = 1f;
 
         AssignReferences();
+
+        playerController.magnetSettings = GetAndApplyPowerUpUpgrade("Magnet", upgradeIndexes["Magnet"]) as MagnetSettings;
+        playerController.invincibilitySettings = GetAndApplyPowerUpUpgrade("Invincibility", upgradeIndexes["Invincibility"]) as InvincibilitySettings;
+        playerController.multiplierSettings = GetAndApplyPowerUpUpgrade("Multiplier", upgradeIndexes["Multiplier"]) as MultiplierSettings;
 
         // Restart the difficulty loop safely
         if (difficultyCoroutine != null)
@@ -284,6 +293,18 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         UnityEngine.Random.InitState(seedHash);
 
         Debug.Log($"Pseudorandom State Lock Initiated. Seed Content: '{seedString}' -> State Key: {seedHash}");
+    }
+
+    private PowerUpSettings GetAndApplyPowerUpUpgrade(string name, int index)
+    {
+        PowerupUpgradeSO upgrade = metaUpgrades.GetPowerupUpgradeByIndex("Magnet", upgradeIndexes["Magnet"]);
+
+        foreach (var effect in upgrade.effects)
+        {
+            effect.Apply(this);
+        }
+
+        return upgrade.newSettings;
     }
 }
 
