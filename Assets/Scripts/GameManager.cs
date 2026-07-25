@@ -173,7 +173,16 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Restart();
+        Instance.SaveGame(_profileSO.profileName);
+        if (scene.name != "Game")
+        {
+            Instance = null;
+            Destroy(gameObject);
+        } else
+        {
+            Restart();
+        }
+
     }
 
     public void PauseGame()
@@ -212,6 +221,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         data.invincibilityDuration = playerController.invincibleDuration;
         data.multiplierValue = playerController.scoreMultiplier;
         data.randomState = JsonUtility.ToJson(UnityEngine.Random.state);
+        data.totalTungs += this.currentScore;
 
         SaveHandler.SaveToJson(data, saveName);
 
@@ -275,6 +285,5 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
         Debug.Log($"Pseudorandom State Lock Initiated. Seed Content: '{seedString}' -> State Key: {seedHash}");
     }
-
 }
 

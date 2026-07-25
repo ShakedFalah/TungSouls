@@ -47,7 +47,7 @@ public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 public class SingletonPersistent<T> : MonoBehaviour
     where T : MonoBehaviour
 {
-    public static T Instance { get; private set; }
+    public static T Instance { get; protected set; }
 
     public virtual void Awake()
     {
