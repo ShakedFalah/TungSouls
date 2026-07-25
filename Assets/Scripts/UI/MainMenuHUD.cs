@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,11 @@ public class MainMenuHUD : MonoBehaviour
     [SerializeField] private GameObject baseSelectionPanel;
 
     [SerializeField] private GameObject profileSelectionPanel;
+    
+    [SerializeField] private GameObject finalSelectionPanel;
+    [SerializeField] private TextMeshProUGUI saveNameText;
+    
+    [SerializeField] private GameObject upgradeSelectionPanel;
     
     public static bool IsLoadingFromSave { get; private set; }
 
@@ -62,6 +68,20 @@ public class MainMenuHUD : MonoBehaviour
         if (_themesSo.currentThemeIndex >= _themesSo.skyThemes.Count)
             _themesSo.currentThemeIndex = 0;
         RenderSettings.skybox = _themesSo.skyThemes[_themesSo.currentThemeIndex];
+    }
+
+    public void OpenFinalMenu()
+    {
+        saveNameText.text = PlayerPrefs.GetString("LastSelectedProfile", "");
+        
+        finalSelectionPanel.SetActive(true);
+        profileSelectionPanel.SetActive(false);
+    }
+
+    public void OpenUpgradeMenu()
+    {
+        finalSelectionPanel.SetActive(false);
+        upgradeSelectionPanel.SetActive(true);
     }
     
     public void ExitApp()
