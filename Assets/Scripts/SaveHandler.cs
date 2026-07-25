@@ -1,5 +1,6 @@
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic; 
 using System.IO;
 using UnityEngine;
 
@@ -29,6 +30,8 @@ public class SaveData
     
     public string lastClaimedTimeStr; // when player got their last reward
     public int totalTungs; // the daily reward
+    
+    public List<string> purchasedUpgrades = new List<string>();
 }
 
 public static class SaveHandler
@@ -51,7 +54,7 @@ public static class SaveHandler
         // Write the JSON data to a file
         File.WriteAllText(Path.Combine(path, saveFileName), json);
 
-        //Debug.Log("List of data saved as JSON to: " + path); // For debugging purposes
+        //Debug.Log("List of data saved as JSON to: " + path);
     }
 
     // Function to read SaveData from JSON
@@ -73,6 +76,11 @@ public static class SaveHandler
             // Deserialize the JSON to SaveData
             SaveData data = JsonConvert.DeserializeObject<SaveData>(jsonContent);
 
+            if (data.purchasedUpgrades == null)
+            {
+                data.purchasedUpgrades = new List<string>();
+            }
+            
             //Debug.Log($"Successfully read items from {path}");
             return data;
         }
