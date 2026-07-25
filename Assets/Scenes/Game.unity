@@ -2034,11 +2034,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   currentDifficultyIndex: 0
-  playerController: {fileID: 972797515}
   _themesSo: {fileID: 11400000, guid: 8d7c5c2f504101d4590ce8c7966255fb, type: 2}
   _profileSO: {fileID: 11400000, guid: de069106c7b195c418cfd02961ee6516, type: 2}
   isGameOver: 0
   difficultyManager: {fileID: 11400000, guid: b048fa9e186cd6f4da56341807a9dafb, type: 2}
+  metaUpgrades: {fileID: 11400000, guid: dc7a89e3bb8b6e2458b67e6dd4b6125b, type: 2}
+  multiplierMagnetableSettings: {fileID: 11400000, guid: 2e6b6c27195696d4280753a0a765bff9, type: 2}
 --- !u!4 &611144191
 Transform:
   m_ObjectHideFlags: 0
@@ -3066,6 +3067,7 @@ MonoBehaviour:
   invincibilitySettings: {fileID: 11400000, guid: 9a2379df5ef3c684889bada97606db79, type: 2}
   multiplierSettings: {fileID: 11400000, guid: e7a88228f19b88546a09a07f634932b2, type: 2}
   shieldPrefab: {fileID: 5792359540993666966, guid: 8afd9e65594041e4d98d94e6c9caa85a, type: 3}
+  onHitInvincibilityDuration: 2
   jumpPower: 11
   gravity: 25
   dropPower: 8

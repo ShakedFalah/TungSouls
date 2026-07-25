@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         onPowerupStatusChanged?.Invoke(new Dictionary<string, float>
         {
             { "Magnet", magnetDuration / magnetSettings.duration },
-            { "Multiplier", multiplierDuration / magnetSettings.duration },
+            { "Multiplier", multiplierDuration / multiplierSettings.duration },
             { "Invincibility", invincibleDuration / invincibilitySettings.duration }
         });
     }
