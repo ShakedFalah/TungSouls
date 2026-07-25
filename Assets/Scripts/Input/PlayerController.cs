@@ -167,21 +167,21 @@ public class PlayerController : MonoBehaviour
     }
     
     // Invincibility 
-    public void StartInvinciblity(float duration) // start invincibility coroutine
+    public void StartInvinciblity() // start invincibility coroutine
     {
-        invincibleDuration = duration;
+        invincibleDuration = invincibilitySettings.duration;
     }
     
     // Multiplayer
-    public void StartMultiplier(float duration)
+    public void StartMultiplier()
     {
-        multiplierDuration = duration;
+        multiplierDuration = multiplierSettings.duration;
         scoreMultiplier *= multiplierSettings.multiplierValue;
     }
     
     // Magnet
-    public void StartMagnet(float duration)
+    public void StartMagnet()
     {
-        magnetDuration = duration;
+        magnetDuration = magnetSettings.duration;
     }    
 }

@@ -130,4 +130,4 @@ MonoBehaviour:
   despawnDistance: -5
   poolTag: 2
   isMagnetable: 1
-  collectableSettings: {fileID: 11400000, guid: 0eb07c7e2ffd89548a126e3e0c4938d9, type: 2}
+  collectableSettings: {fileID: 11400000, guid: 9ba5911834fba9b4ca22699077a7a857, type: 2}

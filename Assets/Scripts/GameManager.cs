@@ -17,6 +17,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     [SerializeField] ThemesSo _themesSo;
     [SerializeField] ProfileSO _profileSO;
 
+
     public event Action<DifficultySettings> onDifficultyChange;
     public event Action onGameOver;
     public event Action<float> onDistanceChanged;
@@ -31,6 +32,10 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     [Header("Difficulty")]
     [SerializeField] private DifficultyManager difficultyManager;
 
+    [Header("Upgrades")]
+    [SerializeField] private MetaUpgradesSO metaUpgrades;
+
+    private Dictionary<string, int> upgradeIndexes = new Dictionary<string, int>();
     private HUDManager hudManager;
     private Canvas hud;
     private Canvas pauseMenu;
@@ -138,6 +143,24 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
         AssignReferences();
 
+        if (upgradeIndexes.TryGetValue("Magnet", out int magnetIndex))
+        {
+            playerController.magnetSettings =
+                GetAndApplyPowerUpUpgrade("Magnet", magnetIndex) as MagnetSettings;
+        }
+
+        if (upgradeIndexes.TryGetValue("Invincibility", out int invincibilityIndex))
+        {
+            playerController.invincibilitySettings =
+                GetAndApplyPowerUpUpgrade("Invincibility", invincibilityIndex) as InvincibilitySettings;
+        }
+
+        if (upgradeIndexes.TryGetValue("Multiplier", out int multiplierIndex))
+        {
+            playerController.multiplierSettings =
+                GetAndApplyPowerUpUpgrade("Multiplier", multiplierIndex) as MultiplierSettings;
+        }
+
         // Restart the difficulty loop safely
         if (difficultyCoroutine != null)
         {
@@ -173,7 +196,16 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
     }
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Restart();
+        Instance.SaveGame(_profileSO.profileName);
+        if (scene.name != "Game")
+        {
+            Instance = null;
+            Destroy(gameObject);
+        } else
+        {
+            Restart();
+        }
+
     }
 
     public void PauseGame()
@@ -212,6 +244,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         data.invincibilityDuration = playerController.invincibleDuration;
         data.multiplierValue = playerController.scoreMultiplier;
         data.randomState = JsonUtility.ToJson(UnityEngine.Random.state);
+        data.totalTungs += this.currentScore;
 
         SaveHandler.SaveToJson(data, saveName);
 
@@ -276,5 +309,16 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         Debug.Log($"Pseudorandom State Lock Initiated. Seed Content: '{seedString}' -> State Key: {seedHash}");
     }
 
+    private PowerUpSettings GetAndApplyPowerUpUpgrade(string name, int index)
+    {
+        PowerupUpgradeSO upgrade = metaUpgrades.GetPowerupUpgradeByIndex("Magnet", upgradeIndexes["Magnet"]);
+
+        foreach (var effect in upgrade.effects)
+        {
+            effect.Apply(this);
+        }
+
+        return upgrade.newSettings;
+    }
 }
 

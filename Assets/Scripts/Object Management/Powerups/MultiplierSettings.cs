@@ -4,9 +4,4 @@ using UnityEngine;
 public class MultiplierSettings : PowerUpSettings
 {
     public float multiplierValue;
-
-    public override void OnCollect(PlayerController player)
-    {
-        player.StartMultiplier(duration);
-    }
 }

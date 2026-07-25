@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4bdb561857f7846b5f97cab54d05fa, type: 3}
+  m_Name: MultiplierUpgrade3
+  m_EditorClassIdentifier: Assembly-CSharp::PowerupUpgradeSO
+  newSettings: {fileID: 11400000, guid: 1e3e8800ad8c1ed45aba494c3ef98a19, type: 2}
+  performOnStart:
+    m_PersistentCalls:
+      m_Calls: []

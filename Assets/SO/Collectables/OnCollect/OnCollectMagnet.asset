@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d886bfcf9288e25498bdd69ab15ffec4, type: 3}
-  m_Name: MagnetSettings
-  m_EditorClassIdentifier: Assembly-CSharp::MagnetSettings
+  m_Script: {fileID: 11500000, guid: c907ec1b452c7174cb184105701d4184, type: 3}
+  m_Name: OnCollectMagnet
+  m_EditorClassIdentifier: Assembly-CSharp::OnCollectMagnet
   collectSound: {fileID: 8300000, guid: 04c3b7af72c434b4b849ab491115fdcd, type: 3}
-  duration: 10
-  image: {fileID: 2800000, guid: cf948be825bafe1499007a8ab7f800e3, type: 3}
-  color: {r: 0, g: 0.083200455, b: 1, a: 0}
-  pullSpeed: 15
-  pullDistance: 15
