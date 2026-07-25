@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -20,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public MagnetSettings magnetSettings;
     public InvincibilitySettings invincibilitySettings;
     public MultiplierSettings multiplierSettings;
+    public event Action<Dictionary<string, float>> onPowerupStatusChanged;
     
     [Header("Jump Setup")]    
     [SerializeField] private float jumpPower = 4f;
@@ -36,16 +39,16 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; // stopping the player from spinning 
     }
-    
+
     void Update()
     {
         float targerXPosition = currentLane; // where the player should be (same lane)
-        
+
         Vector3 targetPosition = new Vector3(targerXPosition, transform.position.y, transform.position.z); // keeps the same y and z
-        
+
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * laneSwitchSpeed); // makes the player slide to from thier current position to the target position 
-        
-        if(!isGrounded && rb.linearVelocity.y  < 0)
+
+        if (!isGrounded && rb.linearVelocity.y < 0)
         {
             rb.AddForce(Vector3.down * gravity * Time.deltaTime, ForceMode.VelocityChange);
         }
@@ -56,10 +59,18 @@ public class PlayerController : MonoBehaviour
         if (multiplierDuration > 0)
         {
             multiplierDuration -= Time.deltaTime;
-        } else
+        }
+        else
         {
             scoreMultiplier = 1f;
         }
+
+        onPowerupStatusChanged?.Invoke(new Dictionary<string, float>
+        {
+            { "Magnet", magnetDuration / magnetSettings.duration },
+            { "Multiplier", multiplierDuration / magnetSettings.duration },
+            { "Invincibility", invincibleDuration / invincibilitySettings.duration }
+        });
     }
 
     private void LowerTimer(ref float timer)

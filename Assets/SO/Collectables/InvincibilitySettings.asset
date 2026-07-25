@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InvincibilitySettings
   collectSound: {fileID: 8300000, guid: d0f0e2be580bcdb458eed8bab4a4c261, type: 3}
   duration: 10
+  image: {fileID: 2800000, guid: 256926bd01657f04e883614084438d6f, type: 3}
+  color: {r: 0.96015084, g: 1, b: 0, a: 0}

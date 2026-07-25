@@ -1,5 +1,14 @@
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
+
+
+[System.Serializable]
+public class PowerupTimerEntry
+{
+    public string key;
+    public PowerupTimer timer;
+}
 
 public class HUDManager : MonoBehaviour // singleton
 {
@@ -9,7 +18,25 @@ public class HUDManager : MonoBehaviour // singleton
     [SerializeField] private TextMeshProUGUI distanceText; // distance
     [SerializeField] private TextMeshProUGUI difficultyText; // difficulty
     [SerializeField] private TextMeshProUGUI gameOverText; // game over
-    [SerializeField] private GameObject inputButtons;
+    [SerializeField] private GameObject inputButtons; // Input
+    [SerializeField] private List<PowerupTimerEntry> powerupTimerEntries; // Powerup status timers
+
+
+    [Header("Player Controller")]
+    [SerializeField] private PlayerController playerController;
+
+    private Dictionary<string, PowerupTimer> powerupTimers;
+
+    private void Awake()
+    {
+        powerupTimers = new Dictionary<string, PowerupTimer>();
+
+        foreach (var entry in powerupTimerEntries)
+        {
+            powerupTimers[entry.key] = entry.timer;
+        }
+    }
+
 
     void Start()
     {
@@ -20,6 +47,7 @@ public class HUDManager : MonoBehaviour // singleton
 
         SettingsManager.Instance.onInputChanged += UpdateInputType;
         UpdateInputType(SettingsManager.Instance.settings.inputType);
+        playerController.onPowerupStatusChanged += UpdatePowerupStatus;
     }
 
     public void UpdateScoreDisplay(int scoreToDisplay)
@@ -63,6 +91,14 @@ public class HUDManager : MonoBehaviour // singleton
         } else
         {
             inputButtons.SetActive(true);
+        }
+    }
+
+    private void UpdatePowerupStatus(Dictionary<string, float> powerupStatuses)
+    {
+        foreach(var status in powerupStatuses)
+        {
+            powerupTimers[status.Key].SetPercentageTime(status.Value);
         }
     }
 

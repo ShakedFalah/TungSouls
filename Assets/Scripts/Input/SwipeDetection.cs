@@ -68,7 +68,6 @@ public class SwipeDetection : MonoBehaviour
         Vector2 currentPos = touchPosition.action.ReadValue<Vector2>();
         Vector2 delta = currentPos - startPos;
 
-        Debug.Log("update " + startPos);
         if (delta.magnitude < minSwipeDistance)
         {
             return;

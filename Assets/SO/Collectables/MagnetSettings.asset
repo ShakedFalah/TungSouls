@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MagnetSettings
   collectSound: {fileID: 8300000, guid: 04c3b7af72c434b4b849ab491115fdcd, type: 3}
   duration: 10
+  image: {fileID: 2800000, guid: cf948be825bafe1499007a8ab7f800e3, type: 3}
+  color: {r: 0, g: 0.083200455, b: 1, a: 0}
   pullSpeed: 15
   pullDistance: 15
