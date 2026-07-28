@@ -17,14 +17,24 @@ MonoBehaviour:
   maxObstacles: 20
   obstacleSettings:
   - pattern: {fileID: 11400000, guid: 19c936266b35da943b7d944b44d978a9, type: 2}
-    probability: 20
+    probability: 10
   - pattern: {fileID: 11400000, guid: a5fd449e0ffd059459e506769cb47399, type: 2}
-    probability: 20
+    probability: 10
   - pattern: {fileID: 11400000, guid: a9c8b93f02fd28b4db908971184ed5c2, type: 2}
-    probability: 20
+    probability: 10
   - pattern: {fileID: 11400000, guid: 82d2aaa60f5d7ad41a4f79ee5f609b57, type: 2}
-    probability: 20
+    probability: 10
   - pattern: {fileID: 11400000, guid: 0afef2c2138871e4186229834c642323, type: 2}
-    probability: 20
+    probability: 10
+  - pattern: {fileID: 11400000, guid: d6e89c739fe2b3442904d9b2b3271572, type: 2}
+    probability: 10
+  - pattern: {fileID: 11400000, guid: 3f998204f334306469f68f3c8531dc23, type: 2}
+    probability: 10
+  - pattern: {fileID: 11400000, guid: 6056e00c6c4898646868b187cfb6b47e, type: 2}
+    probability: 10
+  - pattern: {fileID: 11400000, guid: 9b8a9f858fdfc974fb5f199b0c26cf08, type: 2}
+    probability: 10
+  - pattern: {fileID: 11400000, guid: d12c4d3a25d85214d848df959e266bf6, type: 2}
+    probability: 10
   groundMaterial: {fileID: 2100000, guid: 102f422f73f382a48989da897532a678, type: 2}
   environmentObjects: 07000000
