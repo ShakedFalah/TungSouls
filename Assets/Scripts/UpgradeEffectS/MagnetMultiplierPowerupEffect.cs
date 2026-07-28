@@ -5,6 +5,7 @@ public class MagnetMultiplierPowerupEffect : UpgradeEffectSO
 {
     public override void Apply(GameManager game)
     {
+        game.SetMultiplierMagnetable(true);
     }
 }
 

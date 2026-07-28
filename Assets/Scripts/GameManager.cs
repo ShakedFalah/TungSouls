@@ -34,6 +34,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     [Header("Upgrades")]
     [SerializeField] private MetaUpgradesSO metaUpgrades;
+    [SerializeField] private IsMagnetableSettingsSO multiplierMagnetableSettings;
 
     private Dictionary<string, int> upgradeIndexes = new Dictionary<string, int>();
     private HUDManager hudManager;
@@ -129,20 +130,8 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         }
     }
 
-    void Restart()
+    void UpdateUpgradeStatus()
     {
-        RenderSettings.skybox = _themesSo.skyThemes[_themesSo.currentThemeIndex];
-        
-        // Reset our variables for the fresh scene
-        isGameOver = false;
-        currentDifficultyIndex = 0;
-        currentTime = 0f;
-        currentDistance = 0f;
-        currentScore = 0;
-        Time.timeScale = 1f;
-
-        AssignReferences();
-
         if (upgradeIndexes.TryGetValue("Magnet", out int magnetIndex))
         {
             playerController.magnetSettings =
@@ -160,6 +149,23 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
             playerController.multiplierSettings =
                 GetAndApplyPowerUpUpgrade("Multiplier", multiplierIndex) as MultiplierSettings;
         }
+    }
+
+    void Restart()
+    {
+        RenderSettings.skybox = _themesSo.skyThemes[_themesSo.currentThemeIndex];
+        
+        // Reset our variables for the fresh scene
+        isGameOver = false;
+        currentDifficultyIndex = 0;
+        currentTime = 0f;
+        currentDistance = 0f;
+        currentScore = 0;
+        Time.timeScale = 1f;
+
+        AssignReferences();
+
+        UpdateUpgradeStatus();
 
         // Restart the difficulty loop safely
         if (difficultyCoroutine != null)
@@ -278,7 +284,60 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         playerController.multiplierDuration = data.multiplierDuration;
         playerController.invincibleDuration = data.invincibilityDuration;
         playerController.scoreMultiplier = data.multiplierValue;
-        
+
+        // Load meta upgrades
+        // Multiplier
+        if (data.purchasedUpgrades.Contains("Mult_3"))
+        {
+            upgradeIndexes["Multiplier"] = 3;
+        } else if (data.purchasedUpgrades.Contains("Mult_2"))
+        {
+            upgradeIndexes["Multiplier"] = 2;
+        } else if (data.purchasedUpgrades.Contains("Mult_1"))
+        {
+            upgradeIndexes["Multiplier"] = 1;
+        } else
+        {
+            upgradeIndexes["Multiplier"] = 0;
+        }
+
+        // Magnet
+        if (data.purchasedUpgrades.Contains("Mag_3"))
+        {
+            upgradeIndexes["Magnet"] = 3;
+        }
+        else if (data.purchasedUpgrades.Contains("Mag_2"))
+        {
+            upgradeIndexes["Magnet"] = 2;
+        }
+        else if (data.purchasedUpgrades.Contains("Mag_1"))
+        {
+            upgradeIndexes["Magnet"] = 1;
+        }
+        else
+        {
+            upgradeIndexes["Magnet"] = 0;
+        }
+
+        // Invincibility
+        if (data.purchasedUpgrades.Contains("Inv_3"))
+        {
+            upgradeIndexes["Invincibility"] = 3;
+        }
+        else if (data.purchasedUpgrades.Contains("Inv_2"))
+        {
+            upgradeIndexes["Invincibility"] = 2;
+        }
+        else if (data.purchasedUpgrades.Contains("Inv_1"))
+        {
+            upgradeIndexes["Invincibility"] = 1;
+        }
+        else
+        {
+            upgradeIndexes["Invincibility"] = 0;
+        }
+
+        UpdateUpgradeStatus();
         LoadObstacles(data.obstaclesData);
     }
 
@@ -311,7 +370,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
 
     private PowerUpSettings GetAndApplyPowerUpUpgrade(string name, int index)
     {
-        PowerupUpgradeSO upgrade = metaUpgrades.GetPowerupUpgradeByIndex("Magnet", upgradeIndexes["Magnet"]);
+        PowerupUpgradeSO upgrade = metaUpgrades.GetPowerupUpgradeByIndex(name, upgradeIndexes[name]);
 
         foreach (var effect in upgrade.effects)
         {
@@ -319,6 +378,16 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         }
 
         return upgrade.newSettings;
+    }
+
+    public void AddPlayerLife()
+    {
+        playerController.AddLife();
+    }
+
+    public void SetMultiplierMagnetable(bool magnetable)
+    {
+        multiplierMagnetableSettings.isMagnetable = magnetable;
     }
 }
 

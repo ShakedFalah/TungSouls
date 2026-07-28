@@ -6,20 +6,7 @@ public class ObstacleItem : MovingItemLogic
     {
         PlayerController playerScript = player.GetComponent<PlayerController>();
 
-        // if player is invincible
-        if (playerScript != null && playerScript.invincibleDuration > 0)
-        {
-            //Debug.Log("Ignore Hit!!!");
-            base.OnPlayerHit(player);
-            return;
-        }
-        
-        // if player is NOT invincible
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.TriggerGameOver(); // calls GameManager TriggerGameOver sequence
-        }
-
+        playerScript.HitObstacle();
         base.OnPlayerHit(player);
     }
 }

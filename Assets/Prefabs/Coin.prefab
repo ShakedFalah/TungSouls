@@ -129,5 +129,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CoinItem
   despawnDistance: -5
   poolTag: 2
-  isMagnetable: 1
+  isMagnetableSettings: {fileID: 11400000, guid: cd2edbb5ad4ac2b438a1f6d304ad1b8a, type: 2}
   collectableSettings: {fileID: 11400000, guid: 9ba5911834fba9b4ca22699077a7a857, type: 2}

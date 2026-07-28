@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public InvincibilitySettings invincibilitySettings;
     public MultiplierSettings multiplierSettings;
     [SerializeField] private GameObject shieldPrefab;
+    [SerializeField] private float onHitInvincibilityDuration = 2f;
     private GameObject shieldInstance;
     public event Action<Dictionary<string, float>> onPowerupStatusChanged;
     
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float distToGround = 1.5f; // distance from the ground that counts as touching the ground 
     
     public float[] lanesPositions => new float[] {-laneSpacing, middleLane, laneSpacing}; // using Lambda, I can skip making a function that gets the lanesPositions, making it in one line
+    private int extraLife = 0;
     
     private Rigidbody rb;
     
@@ -87,7 +89,7 @@ public class PlayerController : MonoBehaviour
         onPowerupStatusChanged?.Invoke(new Dictionary<string, float>
         {
             { "Magnet", magnetDuration / magnetSettings.duration },
-            { "Multiplier", multiplierDuration / magnetSettings.duration },
+            { "Multiplier", multiplierDuration / multiplierSettings.duration },
             { "Invincibility", invincibleDuration / invincibilitySettings.duration }
         });
     }
@@ -183,5 +185,32 @@ public class PlayerController : MonoBehaviour
     public void StartMagnet()
     {
         magnetDuration = magnetSettings.duration;
-    }    
+    }
+
+    public void AddLife()
+    {
+        extraLife++;
+    }
+
+    public void HitObstacle()
+    {
+        if (invincibleDuration > 0)
+        {
+            return;
+        }
+
+        if (extraLife > 0)
+        {
+            extraLife--;
+            invincibleDuration = onHitInvincibilityDuration;
+            return;
+        }
+
+        // if player is NOT invincible
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.TriggerGameOver(); // calls GameManager TriggerGameOver sequence
+        }
+
+    }
 }

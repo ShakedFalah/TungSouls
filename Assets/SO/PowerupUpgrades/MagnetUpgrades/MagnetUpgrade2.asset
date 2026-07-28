@@ -13,6 +13,5 @@ MonoBehaviour:
   m_Name: MagnetUpgrade2
   m_EditorClassIdentifier: Assembly-CSharp::PowerupUpgradeSO
   newSettings: {fileID: 11400000, guid: ab6b60e366ed2c148989336ad682dc01, type: 2}
-  performOnStart:
-    m_PersistentCalls:
-      m_Calls: []
+  effects:
+  - {fileID: 11400000, guid: 122c33ff2f7bf264c8ddc3d564b37796, type: 2}
