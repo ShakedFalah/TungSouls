@@ -31,6 +31,7 @@ public class ConsentManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("PrivacyChoiceMade", 1);
         PlayerPrefs.SetInt("DataTrackingConsent", 1);
+        PlayerPrefs.Save();
         consentPopupPanel.SetActive(false);
 
         InitializeUnityServices(true);
@@ -41,6 +42,7 @@ public class ConsentManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("PrivacyChoiceMade", 1);
         PlayerPrefs.SetInt("DataTrackingConsent", 0);
+        PlayerPrefs.Save();
         consentPopupPanel.SetActive(false);
 
         InitializeUnityServices(false);

@@ -24,6 +24,7 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         GameManager.Instance.ResumeGame();
+        SettingsManager.Instance.Save();
     }
 
     public void UpdateSettings(GameSettings settings)
