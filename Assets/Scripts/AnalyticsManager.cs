@@ -30,6 +30,7 @@ public class AnalyticsManager : MonoBehaviour
             { "difficultyLevel", difficultyLevel }
         };
 
+        didCall100m = true;
         AnalyticsService.Instance.RecordEvent(reached100mEvent);
     }
 
@@ -37,11 +38,11 @@ public class AnalyticsManager : MonoBehaviour
     {
         if (!didCall50Score && score >= 50)
         {
-            On50Score(gameManager.currentTime, gameManager.currentDistance, gameManager.currentDifficultyIndex);
+            On50Score(gameManager.currentTime, (int)gameManager.currentDistance, gameManager.currentDifficultyIndex);
         }
     }
 
-    public void On50Score(float time, float distance, int difficultyLevel)
+    public void On50Score(float time, int distance, int difficultyLevel)
     {
         CustomEvent reached100mEvent = new("got50Score")
         {
@@ -50,6 +51,7 @@ public class AnalyticsManager : MonoBehaviour
             { "difficultyLevel", difficultyLevel }
         };
 
+        didCall50Score = true;
         AnalyticsService.Instance.RecordEvent(reached100mEvent);
     }
 
@@ -57,10 +59,10 @@ public class AnalyticsManager : MonoBehaviour
     {
         didCall100m = false;
         didCall50Score = false;
-        CallGameOverEvent(gameManager.currentTime, gameManager.currentScore, gameManager.currentDistance, gameManager.currentDifficultyIndex);
+        CallGameOverEvent(gameManager.currentTime, gameManager.currentScore, (int)gameManager.currentDistance, gameManager.currentDifficultyIndex);
     }
 
-    public void CallGameOverEvent(float time, int score, float distance, int difficultyLevel)
+    public void CallGameOverEvent(float time, int score, int distance, int difficultyLevel)
     {
         CustomEvent reached100mEvent = new("gameOver")
         {
