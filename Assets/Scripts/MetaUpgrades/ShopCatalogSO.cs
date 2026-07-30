@@ -7,7 +7,7 @@ public class UpgradeEntry
 {
     public string upgradeID;     
     public int cost = 1000;
-    public string prerequisiteID; // Previous item that unlocks the current one, by ID
+    public string prerequisiteID; // previous item that unlocks the current one, by ID
 }
 
 [CreateAssetMenu(fileName = "ShopCatalog", menuName = "Shop/Shop Catalog")]
@@ -31,10 +31,10 @@ public class ShopCatalogSO : ScriptableObject
         UpgradeEntry entry = GetUpgradeByID(upgradeID);
         if (entry == null) return true;
 
-        // Unlocks if it's the first upgrade in queue 
+        // unlocks if it's the first upgrade in queue 
         if (string.IsNullOrEmpty(entry.prerequisiteID)) return false;
 
-        // Locked if the player hasn't bought the previous upgrade yet
+        // locked if the player hasn't bought the previous upgrade yet
         return !IsPurchased(entry.prerequisiteID, saveData);
     }
 }

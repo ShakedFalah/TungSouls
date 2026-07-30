@@ -130,7 +130,7 @@ public class GameManager : SingletonPersistent<GameManager> // making it a singl
         }
     }
 
-    void UpdateUpgradeStatus()
+    void UpdateUpgradeStatus() // power up statuses
     {
         if (upgradeIndexes.TryGetValue("Magnet", out int magnetIndex))
         {

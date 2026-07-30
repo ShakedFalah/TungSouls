@@ -5,7 +5,7 @@ using System.Globalization;
 public class DailyRewardManager : MonoBehaviour
 {
     
-    [SerializeField] private int rewardAmount = 1000; // The currency you get (change later)-----------------------------------------------
+    [SerializeField] private int rewardAmount = 1000; // The currency you get 
  
     [Header("Scripts")]
     [SerializeField] private NotificationsManager notificationsManager; 
@@ -50,7 +50,7 @@ public class DailyRewardManager : MonoBehaviour
         Debug.Log($"Saved string: {data.lastClaimedTimeStr}");
         */
         
-        if (timePassed.TotalHours >= notificationsManager.dailyNotificationsTimer)
+        if (timePassed.TotalHours >= notificationsManager.DailyNotificationsTimer)
         {
             GrantReward(data); 
         }

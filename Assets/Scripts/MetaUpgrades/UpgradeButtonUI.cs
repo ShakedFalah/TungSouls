@@ -9,7 +9,7 @@ public class UpgradeButtonUI : MonoBehaviour
 
     [Header("Color States")]
     [SerializeField] private Image buttonImage;
-    [SerializeField] private Color redCantAfford = new Color(0.9f, 0.3f, 0.3f);
+    [SerializeField] private Color redCantAfford = new Color(0.9f, 0.3f, 0.3f); // played with the colors a bit
     [SerializeField] private Color grayLocked = new Color(0.3f, 0.3f, 0.3f);
     [SerializeField] private Color whiteAvailable = Color.white;
     [SerializeField] private Color greenPurchased = new Color(0.3f, 0.9f, 0.3f);
@@ -22,18 +22,18 @@ public class UpgradeButtonUI : MonoBehaviour
         if (buttonImage == null) buttonImage = GetComponent<Image>();
     }
 
-    private void OnEnable()
+    private void OnEnable() // makes the click do something
     {
         button.onClick.AddListener(OnButtonClicked);
         RefreshButtonState();
     }
 
-    private void OnDisable()
+    private void OnDisable() // makes the click do nothing
     {
         button.onClick.RemoveListener(OnButtonClicked);
     }
 
-    public void RefreshButtonState()
+    public void RefreshButtonState() // changes a buttons color depending on his state (purchased / can't afford...)
     {
         if (catalog == null || string.IsNullOrEmpty(targetUpgradeID)) return;
 
@@ -69,7 +69,7 @@ public class UpgradeButtonUI : MonoBehaviour
         }
     }
 
-    private void OnButtonClicked()
+    private void OnButtonClicked() // go to shopmanager and try buying it
     {
         if (catalog != null)
         {

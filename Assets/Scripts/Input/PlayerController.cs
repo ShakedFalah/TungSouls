@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * laneSwitchSpeed); // makes the player slide to from thier current position to the target position 
         
-        if(!checkOnGround() && rb.linearVelocity.y  < 0)
+        if(!checkOnGround() && rb.linearVelocity.y  < 0) 
         {
             rb.AddForce(Vector3.down * gravity * Time.deltaTime, ForceMode.VelocityChange);
         }

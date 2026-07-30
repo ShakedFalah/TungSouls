@@ -29,9 +29,9 @@ public class SaveData
     public string randomState;
     
     public string lastClaimedTimeStr; // when player got their last reward
-    public int totalTungs; // the daily reward
+    public int totalTungs; // total money owned
     
-    public List<string> purchasedUpgrades = new List<string>();
+    public List<string> purchasedUpgrades = new List<string>(); // list of every upgrade purchased
 }
 
 public static class SaveHandler
@@ -65,7 +65,7 @@ public static class SaveHandler
         if (!File.Exists(path))
         {
             //Debug.Log($"Save file not found at {path}. Returning fresh SaveData object.");
-            return new SaveData(); // Safely returns a blank data object instead of crashing
+            return new SaveData(); // returns a blank data object instead of crashing, (for safety)
         }
         
         try
@@ -78,7 +78,7 @@ public static class SaveHandler
 
             if (data.purchasedUpgrades == null)
             {
-                data.purchasedUpgrades = new List<string>();
+                data.purchasedUpgrades = new List<string>(); // creates a new list if there is none
             }
             
             //Debug.Log($"Successfully read items from {path}");
@@ -93,11 +93,12 @@ public static class SaveHandler
 
     public static ObstacleData[] GetObstacleDataList()
     {
-        MovingItemLogic[] movingItemLogics = GameObject.FindObjectsByType<MovingItemLogic>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+        MovingItemLogic[] movingItemLogics = GameObject.FindObjectsByType<MovingItemLogic>(FindObjectsInactive.Exclude, FindObjectsSortMode.None); // finds every active GameObject in the scene that has a MovingItemLogic component
         ObstacleData[] obstacleDatas = new ObstacleData[movingItemLogics.Length];
-        for (int i = 0; i < movingItemLogics.Length; i++)
+        
+        for (int i = 0; i < movingItemLogics.Length; i++) // reads current object's position and its poolTag
         {
-            obstacleDatas[i] = new ObstacleData()
+            obstacleDatas[i] = new ObstacleData() 
             {
                 positionX = movingItemLogics[i].transform.position.x,
                 positionY = movingItemLogics[i].transform.position.y,
@@ -109,7 +110,7 @@ public static class SaveHandler
         return obstacleDatas;
     }
 
-    public static void SaveThumbnail(Texture2D image, string directoryName)
+    public static void SaveThumbnail(Texture2D image, string directoryName) // saves screenshot
     {
         var bytes = image.EncodeToPNG();
         File.WriteAllBytes(Path.Combine(savePath, directoryName, thumbnailName), bytes);
@@ -130,7 +131,7 @@ public static class SaveHandler
         return tex;
     }
 
-    public static string[] GetSaveNames()
+    public static string[] GetSaveNames() // the new save's name will be the last save's name +1
     {
         if (!Directory.Exists(savePath))
         {
