@@ -6,9 +6,9 @@ using System.Globalization;
 
 public class NotificationsManager : MonoBehaviour
 {
-    [SerializeField] private int dailyNotificationsTimer = 24; // daily timer, changeable in the inspector
+    [SerializeField] private float dailyNotificationsTimer = 24; // daily timer, changeable in the inspector
     
-    public int DailyNotificationsTimer => dailyNotificationsTimer; // allows other scripts to read it
+    public float DailyNotificationsTimer => dailyNotificationsTimer; // allows other scripts to read it
     
     private const string ChannelId = "Daily Triple T Notification";
     private const string TimeFormat = "yyyy-MM-dd HH:mm:ss";
